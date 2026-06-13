@@ -1,0 +1,148 @@
+examples:
+
+  - name: Get Summary Page Data
+    description: Retrieve dashboard summary metrics for a specific date range from Triple Whale.
+    method: POST
+    path: /api/v2/summary-page/get-data
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shopId: madisonbraids.myshopify.com
+      dateRange:
+        start: "2024-11-01"
+        end: "2024-11-30"
+    notes: Returns aggregated metrics from 60+ integrated tools for the specified shop and date range.
+
+  - name: Create Ad Record
+    description: Ingest Facebook Ads performance data into Triple Whale.
+    method: POST
+    path: /api/v2/data-in/ads
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shop: madisonbraids.myshopify.com
+      channel: facebook-ads
+      event_date: "2024-11-28"
+      currency: USD
+      campaign:
+        id: campaign_example_id
+        name: Black Friday Campaign
+        status: ACTIVE
+      adset:
+        id: adset_example_id
+        name: Retargeting Adset
+        status: ACTIVE
+      ad:
+        id: ad_example_id
+        name: Product Carousel Ad
+        status: ACTIVE
+        thumbnail: https://example.com/placeholder.jpg
+      metrics:
+        clicks: 1500
+        conversions: 75
+        conversion_value: 3750.50
+        impressions: 25000
+        spend: 500.00
+        visits: 2000
+    notes: Use standardized channel IDs from triplewhale.readme.io/docs/ads-standardized-channel-ids.
+
+  - name: Create Order Record
+    description: Ingest an order from a custom sales platform into Triple Whale.
+    method: POST
+    path: /api/v2/data-in/orders
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shop: madisonbraids.myshopify.com
+      order_id: order_12345
+      platform: magento
+      created_at: "2022-06-15T19:26:30.000Z"
+      currency: USD
+      customer:
+        id: customer_123
+        email: customer@example.com
+        first_name: John
+        last_name: Doe
+      order_revenue: 150.75
+      total_discounts: 15.50
+      taxes: 8.25
+      shipping_price: 15.00
+      status: completed
+      line_items:
+        - id: line_item_1
+          product_id: product_123
+          variant_id: variant_456
+          product_name: T-shirt
+          quantity: 2
+          price: 20.00
+    notes: At least one of customer.email or customer.phone must be provided alongside customer.id.
+
+  - name: Get Attribution Journey Data
+    description: Export customer journey attribution data for orders in a date range.
+    method: POST
+    path: /api/v2/attribution/get-orders-with-journeys-v2
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shopId: madisonbraids.myshopify.com
+      dateRange:
+        start: "2024-11-01"
+        end: "2024-11-30"
+    notes: Returns full customer journey data powered by Triple Whale's pixel. v1 of this endpoint is deprecated.
+
+  - name: Execute Moby AI Query
+    description: Run a natural language analytics query against Triple Whale data using Moby AI.
+    method: POST
+    path: /api/v2/orcabase/api/moby
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shopId: madisonbraids.myshopify.com
+      query: What was my ROAS by channel last month?
+    notes: Moby AI translates natural language questions into SQL queries against the OrcaBase data layer.
+
+  - name: Execute Custom SQL Query
+    description: Run a custom SQL query against the Triple Whale OrcaBase data layer.
+    method: POST
+    path: /api/v2/orcabase/api/sql
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shopId: madisonbraids.myshopify.com
+      query: "SELECT event_date, SUM(order_revenue) as revenue FROM orders WHERE event_date >= '2024-11-01' GROUP BY event_date ORDER BY event_date"
+    notes: Requires OrcaBase access. Use standard SQL syntax against Triple Whale's normalized data tables.
+
+  - name: Validate API Key
+    description: Confirm that your Triple Whale API key is valid and check its associated permissions.
+    method: GET
+    path: /api/v2/users/api-keys/me
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+    notes: Rate limited to 100 requests per 60-second window.
+
+  - name: Create Compliance Deletion Request
+    description: Submit a GDPR/CCPA data deletion request for a specific customer.
+    method: POST
+    path: /api/v2/compliance/requests/create-request
+    baseUrl: https://api.triplewhale.com
+    headers:
+      x-api-key: YOUR_API_KEY
+      Content-Type: application/json
+    body:
+      shopId: madisonbraids.myshopify.com
+      customerEmail: customer@example.com
+      requestType: deletion
+    notes: Used to comply with data subject deletion requests under GDPR, CCPA, and similar regulations.

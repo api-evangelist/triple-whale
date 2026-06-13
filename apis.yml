@@ -38,6 +38,8 @@ apis:
         url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
       - type: GitHubRepository
         url: https://github.com/Triple-Whale/triple-whale-public-apis
+      - type: OpenAPI
+        url: openapi/triple-whale-openapi.yml
   - aid: triple-whale:triple-whale-attribution-api
     name: Triple Whale Attribution API
     description: Data-Out API for querying customer journey attribution data powered
@@ -56,6 +58,8 @@ apis:
         url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
       - type: GitHubRepository
         url: https://github.com/Triple-Whale/triple-whale-public-apis
+      - type: OpenAPI
+        url: openapi/triple-whale-openapi.yml
   - aid: triple-whale:triple-whale-data-in-api
     name: Triple Whale Data-In API
     description: Ingestion API for pushing external data into Triple Whale from platforms
@@ -75,6 +79,14 @@ apis:
         url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
       - type: GitHubRepository
         url: https://github.com/Triple-Whale/triple-whale-public-apis
+      - type: OpenAPI
+        url: openapi/triple-whale-openapi.yml
+      - type: JSONSchema
+        url: json-schema/triple-whale-order.json
+      - type: JSONSchema
+        url: json-schema/triple-whale-ad.json
+      - type: Examples
+        url: examples/triple-whale-examples.yml
 common:
   - type: Website
     url: https://www.triplewhale.com
@@ -98,6 +110,10 @@ common:
     url: rate-limits/triple-whale-rate-limits.yml
   - type: FinOps
     url: finops/triple-whale-finops.yml
+  - type: Vocabulary
+    url: vocabulary/triple-whale-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/triple-whale-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

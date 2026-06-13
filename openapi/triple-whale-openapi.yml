@@ -1,0 +1,3993 @@
+openapi: 3.0.3
+info:
+  title: Triple Whale API
+  version: '1.0'
+  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation,
+    and uploading data such as ads and metrics.
+
+    '
+servers:
+- url: https://api.triplewhale.com/api/v2/
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+security:
+- apiKeyAuth: []
+paths:
+  /users/api-keys/me:
+    get:
+      summary: Validate Your Triple Whale API Key
+      description: 'Enter your API key in Credentials > Header to the right and click "Try it!" to test its validity.
+
+        '
+      operationId: validate-your-triple-whale-api-key
+      tags:
+      - API Keys
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: A successful response
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as `{quota};w={window}` where `window` is in seconds
+                and `quota` is the allowed number of calls a user can make per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Result:
+                  value: '{}'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Result:
+                  value: '{}'
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+  /data-in/ads:
+    post:
+      summary: Create Ad Record
+      description: 'Ingest ad data into Triple Whale. This endpoint allows users to upload  detailed ad information, including
+        campaign, adset, ad details, and  performance metrics.
+
+        '
+      operationId: create-ad-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - channel
+              - event_date
+              - currency
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                channel:
+                  type: string
+                  description: 'The advertising platform associated with the ad data. Use a [Standardized Ad Channel ID](https://triplewhale.readme.io/docs/ads-standardized-channel-ids#/)
+                    or enter a custom value.
+
+                    '
+                  example: facebook-ads
+                channel_account_id:
+                  type: string
+                  description: 'The platform-specific account ID. Maps to `account_id` in the Ads table.
+
+                    '
+                  default: CUSTOM_CHANNEL
+                  example: example_fb_account
+                event_date:
+                  type: string
+                  format: date
+                  description: 'The date of the event in local timezone. Must be a valid date string (e.g., YYYY-MM-DD).
+
+                    '
+                  example: '2024-11-28'
+                currency:
+                  type: string
+                  description: The currency used for reporting (e.g., 'USD').
+                  example: USD
+                campaign:
+                  type: object
+                  description: Details of the advertising campaign. At least one of `campaign`, `adset`, or `ad` is required.
+                  required:
+                  - id
+                  - name
+                  - status
+                  properties:
+                    id:
+                      type: string
+                      description: The unique ID of the campaign. Maps to `campaign_id` in the Ads table.
+                      example: campaign_example_id
+                    name:
+                      type: string
+                      description: The name of the campaign. Maps to `campaign_name` in the Ads table.
+                      example: Example Campaign
+                    status:
+                      type: string
+                      enum:
+                      - PAUSED
+                      - ACTIVE
+                      description: The status of the campaign (e.g., 'PAUSED' or 'ACTIVE'). Maps to `campaign_status` in the
+                        Ads table.
+                      example: ACTIVE
+                adset:
+                  type: object
+                  description: Details of the adset. At least one of `campaign`, `adset`, or `ad` is required.
+                  required:
+                  - id
+                  - name
+                  - status
+                  properties:
+                    id:
+                      type: string
+                      description: The unique ID of the adset. Maps to `adset_id` in the Ads table.
+                      example: adset_example_id
+                    name:
+                      type: string
+                      description: The name of the adset. Maps to `adset_name` in the Ads table.
+                      example: Example Adset
+                    status:
+                      type: string
+                      enum:
+                      - PAUSED
+                      - ACTIVE
+                      description: The status of the adset (e.g., 'PAUSED' or 'ACTIVE'). Maps to `adset_status` in the Ads
+                        table.
+                      example: ACTIVE
+                ad:
+                  type: object
+                  description: Details of the individual ad. At least one of `campaign`, `adset`, or `ad` is required.
+                  required:
+                  - id
+                  - name
+                  - status
+                  properties:
+                    id:
+                      type: string
+                      description: The unique ID of the ad. Maps to `ad_id` in the Ads table.
+                      example: ad_example_id
+                    name:
+                      type: string
+                      description: The name of the ad. Maps to `ad_name` in the Ads table.
+                      example: Example Ad
+                    status:
+                      type: string
+                      enum:
+                      - PAUSED
+                      - ACTIVE
+                      description: The status of the ad (e.g., 'PAUSED' or 'ACTIVE'). Maps to `ad_status` in the Ads table.
+                      example: ACTIVE
+                    thumbnail:
+                      type: string
+                      description: The URL of the ad's thumbnail image. Maps to `ad_image_url` in the Ads table.
+                      example: https://example.com/placeholder.jpg
+                metrics:
+                  type: object
+                  description: Performance metrics for the ad.
+                  properties:
+                    clicks:
+                      type: number
+                      description: Total number of clicks.
+                      default: 0
+                      example: 1500
+                    conversions:
+                      type: number
+                      description: Total number of conversions (purchases).
+                      default: 0
+                      example: 75
+                    conversion_value:
+                      type: number
+                      description: Total conversion value (order revenue).
+                      default: 0
+                      example: 3750.5
+                    impressions:
+                      type: number
+                      description: Total number of impressions.
+                      default: 0
+                      example: 25000
+                    spend:
+                      type: number
+                      description: Total ad spend.
+                      default: 0
+                      example: 500
+                    visits:
+                      type: number
+                      description: Total number of visits.
+                      default: 0
+                      example: 2000
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the ad record was last updated. Must be provided in ISO 8601 format, with
+                    explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2024-11-28T15:30:00Z'
+      responses:
+        '200':
+          description: Ad record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Ad received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid ad data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing ad
+  /data-in/orders:
+    post:
+      summary: Create Order Record
+      description: 'Ingest order data into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload  detailed
+        order information,  including customer details, product information, transaction totals,  discounts, refunds, and
+        shipping details.
+
+        '
+      operationId: create-order-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - order_id
+              - created_at
+              - currency
+              - customer
+              - order_revenue
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403. Maps to `shop_id` in the Orders table.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                order_id:
+                  type: string
+                  description: The unique identifier for the order.
+                  example: order_12345
+                platform:
+                  type: string
+                  description: 'The sales platform where the order originated. Note that for custom sales platforms, the platform
+                    will appear as `custom-msp` in SQL queries the Triple Whale app, regardless of the value sent.
+
+                    '
+                  default: custom-msp
+                  example: magento
+                platform_account_id:
+                  type: string
+                  description: 'The account ID associated with the platform.
+
+                    '
+                  default: custom-msp
+                  example: shop_account_123
+                created_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the order record was created. Must be provided in ISO 8601 format, with
+                    explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2022-06-15T21:26:30+02:00`).
+                    Maps to `created_at` in the Orders table and is  used to derive `event_date`, which reflects the shop
+                    time zone.
+
+                    '
+                  example: '2022-06-15T19:26:30.000Z'
+                currency:
+                  type: string
+                  description: The currency in which the transaction was processed (e.g. `USD`, `EUR`).
+                  example: USD
+                customer:
+                  type: object
+                  description: 'Details of the customer who placed the order. The `id` field is required.  Additionally, at
+                    least one of `email` or `phone` must be provided.
+
+                    '
+                  required:
+                  - id
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier for the customer. Maps to `customer_id` in the Orders table.
+                      example: customer_123
+                    email:
+                      type: string
+                      description: The customer’s email address. Maps to `customer_email` in the Orders table.
+                      example: customer@example.com
+                    phone:
+                      type: string
+                      description: The customer’s phone number.
+                      example: '+1234567890'
+                    first_name:
+                      type: string
+                      description: The customer’s first name. Maps to `customer_first_name` in the Orders table.
+                      example: John
+                    last_name:
+                      type: string
+                      description: The customer’s last name. Maps to `customer_last_name` in the Orders table.
+                      example: Doe
+                custom_expenses:
+                  type: number
+                  description: Custom expenses associated with the order, must be non-negative.
+                  example: 25.0
+                discount_codes:
+                  type: array
+                  description: Discount codes applied to the order.
+                  items:
+                    type: object
+                    properties:
+                      code:
+                        type: string
+                        description: The discount code used in the order. Maps to `discount_code` in the Orders table.
+                        example: BLACKFRIDAY
+                      amount:
+                        type: number
+                        description: The discount amount applied for the discount code. Must be non-negative. Note that this
+                          field does not map to `discount_amount` in the Orders table; to send total discount amount for the
+                          order, use `total_discounts`.
+                        example: 15.5
+                      type:
+                        type: string
+                        description: 'The type of discount applied. Use `percentage` when the discount amount represents a
+                          percentage of the order total, and `fixed_amount` when it represents a fixed monetary value in the
+                          order’s currency. Maps to `discount_type` in the Orders table.
+
+                          '
+                        enum:
+                        - percentage
+                        - fixed_amount
+                        example: percentage
+                line_items:
+                  type: array
+                  description: Details of the products in the order.
+                  items:
+                    type: object
+                    required:
+                    - id
+                    - quantity
+                    - price
+                    - variant_id
+                    - product_id
+                    properties:
+                      id:
+                        type: string
+                        description: The unique identifier for the line item.
+                        example: line_item_1
+                      name:
+                        type: string
+                        description: The name for the line item.
+                        example: Line Item 1
+                      price:
+                        type: number
+                        description: The price of the product. Maps to `products_info.product_name_price` in the Orders table.
+                        example: 20.0
+                      quantity:
+                        type: integer
+                        description: The quantity of the product in the order. Maps to `products_info.product_name_quantity_sold`
+                          in the Orders table.
+                        example: 2
+                      product_id:
+                        type: string
+                        description: The unique identifier for the product. Maps to `products_info.product_id` in the Orders
+                          table. Required for [Product Analytics](https://app.triplewhale.com/dashboards/product-analytics);
+                          must match a `product_id` sent via the `/products` endpoint.
+                        example: product_123
+                      product_name:
+                        type: string
+                        description: The name of the product associated with this line item. Maps to `products_info.product_name`
+                          in the Orders table.
+                        example: T-shirt
+                      variant_id:
+                        type: string
+                        description: The unique identifier for the product variant. Maps to `products_info.variant_id` in
+                          the Orders table.
+                        example: variant_456
+                      variant_name:
+                        type: string
+                        description: The name of the product variant. Maps to `products_info.variant_name` in the Orders table.
+                        example: Red T-shirt (Large)
+                      sku:
+                        type: string
+                        description: The stock keeping unit of the product. Maps to `products_info.product_sku` in the Orders
+                          table.
+                        example: sku_123
+                name:
+                  type: string
+                  description: 'The name of the order, as assigned by the seller on the main sales platform. Maps to `order_name`
+                    in the Orders table. Defaults to `order_id` if not provided.
+
+                    '
+                  example: 'Order #12345'
+                payment_gateway_names:
+                  type: array
+                  description: 'The payment gateway used for the transaction (e.g., `shopify_payments`, `paypal`, `gift_card`).
+                    Required in order to update payment gateway settings, and to calculate `payment_gateway_costs` in the
+                    Orders table. Edit Payment Gateway Costs in [Cost Settings](https://app.triplewhale.com/cost-settings)
+                    > Gateway Costs.
+
+                    '
+                  items:
+                    type: string
+                  example:
+                  - paypal
+                refunds:
+                  type: array
+                  description: Details of refunds applied to the order.
+                  items:
+                    type: object
+                    required:
+                    - refund_id
+                    - refunded_at
+                    - total_refund
+                    properties:
+                      refund_id:
+                        type: string
+                        description: The unique identifier for the refund.
+                        example: refund_1
+                      refunded_at:
+                        type: string
+                        format: date-time
+                        description: 'The time at which the refund was processed. Must be provided in ISO 8601 format, with
+                          explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                          '
+                        example: '2024-11-29T11:00:00Z'
+                      line_items:
+                        type: array
+                        description: Details of refunded line items.
+                        items:
+                          type: object
+                          required:
+                          - id
+                          - quantity
+                          - price
+                          - variant_id
+                          properties:
+                            id:
+                              type: string
+                              description: The unique identifier for the refunded line item.
+                              example: line_item_1
+                            line_item_id:
+                              type: string
+                              description: The unique identifier of the line item associated with this refund line item.
+                              example: line_item_1
+                            quantity:
+                              type: integer
+                              description: The quantity of the refunded line item.
+                              example: 1
+                            product_id:
+                              type: string
+                              description: The unique identifier for the refunded product.
+                              example: product_123
+                            variant_id:
+                              type: string
+                              description: The unique identifier for the refunded variant.
+                              example: variant_456
+                            price:
+                              type: number
+                              description: The price of the refunded line item.
+                              example: 20.0
+                            currency:
+                              type: string
+                              description: The currency of the refunded line item.
+                              example: USD
+                            total_discount:
+                              type: number
+                              description: The total discount applied to the refunded line item.
+                              example: 0.0
+                      total_refund:
+                        type: number
+                        description: The total amount refunded.
+                        example: 40.0
+                      total_tax_refund:
+                        type: number
+                        description: The total tax refunded.
+                        example: 3.0
+                      total_shipping_refund:
+                        type: number
+                        description: The total shipping refunded.
+                        example: 5.0
+                      tags:
+                        type: array
+                        description: Tags associated with the refund.
+                        items:
+                          type: string
+                          example: damaged_item
+                      void:
+                        type: boolean
+                        description: 'Set to `true` to void (soft delete) this refund.  Voided refund records are excluded
+                          from all queries.   To void a refund, resend the entire Order record with all fields identical except
+                          for `"void": true` for this refund.   [Learn more](https://triplewhale.readme.io/reference/managing-data-in-connections#voiding-records-soft-delete)
+
+                          '
+                        default: false
+                        example: false
+                shipping_address:
+                  type: object
+                  description: Shipping address details.
+                  properties:
+                    address_1:
+                      type: string
+                      description: The first line of the address.
+                      example: 123 Main Street
+                    address_2:
+                      type: string
+                      description: The second line of the address.
+                      example: Apt 4B
+                    zip:
+                      type: string
+                      description: The ZIP or postal code of the address.
+                      example: '10001'
+                    city:
+                      type: string
+                      description: The city of the address. Maps to `customer_from_city` in the Orders table.
+                      example: New York
+                    country:
+                      type: string
+                      description: The country of the address.
+                      example: USA
+                    country_code:
+                      type: string
+                      description: The country code of the address. Maps to `customer_from_country_code` in the Orders table.
+                      example: US
+                    province_code:
+                      type: string
+                      description: The province or state code of the address. Maps to `customer_from_state_code` in the Orders
+                        table.
+                      example: NY
+                shipping_lines:
+                  type: array
+                  description: Details of the shipping lines for the order.
+                  items:
+                    type: object
+                    properties:
+                      shipping_discounted_price:
+                        type: number
+                        description: The discounted price for shipping.
+                        example: 5.0
+                      shipping_price:
+                        type: number
+                        description: The original price for shipping.
+                        example: 10.0
+                      source:
+                        type: string
+                        description: The source or method of shipping.
+                        example: standard_shipping
+                      title:
+                        type: string
+                        description: The title or description of the shipping method.
+                        example: Standard Shipping
+                shipping_price:
+                  type: number
+                  description: The total shipping price of the order (paid by the buyer), including shipping taxes and shipping
+                    discounts.
+                  example: 15.0
+                shipping_costs:
+                  type: number
+                  description: 'Shipping costs paid by the seller. Must be non-negative. To apply this value to your data,
+                    ensure **Default Shipping Costs** is selected in [Cost Settings](https://app.triplewhale.com/cost-settings)
+                    > Shipping.
+
+                    '
+                  example: 15.0
+                source_name:
+                  type: string
+                  description: The origin of the order as designated by the seller on the main sales platform (e.g. `web`,
+                    `pos`, `tiktok`).
+                  example: web
+                subscription_id:
+                  type: string
+                  description: The unique identifier for the subscription associated with the order.
+                  example: sub_12345
+                tags:
+                  type: array
+                  description: 'Tags associated with the order. Include a distinct tag to classify or identify specific order
+                    types or processing rules. For example, use `holiday_sale` to mark seasonal campaign purchases, or `staff_order`
+                    for internal orders.
+
+                    '
+                  items:
+                    type: string
+                  example:
+                  - holiday_sale
+                  - staff_order
+                taxes_included:
+                  type: boolean
+                  description: Indicates if taxes are included in the total price of the order.
+                  default: false
+                  example: false
+                order_revenue:
+                  type: number
+                  description: The total revenue after adjustments such as discounts, shipping, fees, and taxes. Must be non-negative.
+                  example: 150.75
+                total_discounts:
+                  type: number
+                  description: The total discount amount applied to the order, including shipping discounts. Must be non-negative.
+                    Maps to `discount_amount` in the Orders table.
+                  example: 15.5
+                taxes:
+                  type: number
+                  description: The total tax applied to the order. Must be non-negative.
+                  example: 8.25
+                status:
+                  type: string
+                  description: The current status of the order (e.g., "completed", "pending"). Maps to `fulfillment_status`
+                    in the Orders table.
+                  example: completed
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the order record was last updated. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2024-11-29T10:00:00Z'
+                void:
+                  type: boolean
+                  description: 'Set to `true` to void (soft delete) this order record, as well as all associated refund records  (even
+                    if the refunds are not individually voided).  Voided orders (and associated refunds) are excluded from
+                    all queries.   To void an order record, resend it with all fields identical except for `"void": true`.   [Learn
+                    more](https://triplewhale.readme.io/reference/managing-data-in-connections#voiding-records-soft-delete)
+
+                    '
+                  default: false
+                  example: false
+      responses:
+        '200':
+          description: Order record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Order received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid order data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing order
+  /data-in/bulk-orders:
+    post:
+      summary: Bulk Create Order Records
+      description: 'Ingest multiple order records into Triple Whale for Custom Sales Platforms.   This endpoint allows users
+        to upload batches of order information, including customer details, product information, transaction totals, discounts,
+        refunds, and shipping details.
+
+        '
+      operationId: bulk-create-order-records
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - orders
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must also
+                    have access to the shop, otherwise the request will return 403. Maps to `shop_id` in the Orders table.
+
+                    This value is applied to every order in the `orders` array and overwrites any per-order `shop` value.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                orders:
+                  type: array
+                  description: 'An array of Order objects to ingest. Must contain between 1 and 1000 orders. Each order object
+                    uses the same schema as the `/data-in/orders` endpoint, except `shop` is not required (and is ignored/overwritten
+                    if provided).
+
+                    '
+                  minItems: 1
+                  maxItems: 1000
+                  items:
+                    type: object
+                    required:
+                    - order_id
+                    - created_at
+                    - currency
+                    - customer
+                    - order_revenue
+                    properties:
+                      shop:
+                        type: string
+                        description: 'Optional. If provided, it will be overwritten by the top-level `shop` value in this
+                          request.
+
+                          '
+                        example: madisonbraids.myshopify.com
+                      order_id:
+                        type: string
+                        description: The unique identifier for the order.
+                        example: order_12345
+                      platform:
+                        type: string
+                        description: 'The sales platform where the order originated. Note that for custom sales platforms,
+                          the platform will appear as `custom-msp` in SQL queries the Triple Whale app, regardless of the
+                          value sent.
+
+                          '
+                        default: custom-msp
+                        example: magento
+                      platform_account_id:
+                        type: string
+                        description: 'The account ID associated with the platform.
+
+                          '
+                        default: custom-msp
+                        example: shop_account_123
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: 'The time at which the order record was created. Must be provided in ISO 8601 format,
+                          with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2022-06-15T21:26:30+02:00`).
+                          Maps to `created_at` in the Orders table and is  used to derive `event_date`, which reflects the
+                          shop time zone.
+
+                          '
+                        example: '2022-06-15T19:26:30.000Z'
+                      currency:
+                        type: string
+                        description: The currency in which the transaction was processed (e.g. `USD`, `EUR`).
+                        example: USD
+                      customer:
+                        type: object
+                        description: 'Details of the customer who placed the order. The `id` field is required.  Additionally,
+                          at least one of `email` or `phone` must be provided.
+
+                          '
+                        required:
+                        - id
+                        properties:
+                          id:
+                            type: string
+                            description: The unique identifier for the customer. Maps to `customer_id` in the Orders table.
+                            example: customer_123
+                          email:
+                            type: string
+                            description: The customer’s email address. Maps to `customer_email` in the Orders table.
+                            example: customer@example.com
+                          phone:
+                            type: string
+                            description: The customer’s phone number.
+                            example: '+1234567890'
+                          first_name:
+                            type: string
+                            description: The customer’s first name. Maps to `customer_first_name` in the Orders table.
+                            example: John
+                          last_name:
+                            type: string
+                            description: The customer’s last name. Maps to `customer_last_name` in the Orders table.
+                            example: Doe
+                      custom_expenses:
+                        type: number
+                        description: Custom expenses associated with the order, must be non-negative.
+                        example: 25.0
+                      discount_codes:
+                        type: array
+                        description: Discount codes applied to the order.
+                        items:
+                          type: object
+                          properties:
+                            code:
+                              type: string
+                              description: The discount code used in the order. Maps to `discount_code` in the Orders table.
+                              example: BLACKFRIDAY
+                            amount:
+                              type: number
+                              description: The discount amount applied for the discount code. Must be non-negative. Note that
+                                this field does not map to `discount_amount` in the Orders table; to send total discount amount
+                                for the order, use `total_discounts`.
+                              example: 15.5
+                            type:
+                              type: string
+                              description: 'The type of discount applied. Use `percentage` when the discount amount represents
+                                a percentage of the order total, and `fixed_amount` when it represents a fixed monetary value
+                                in the order’s currency. Maps to `discount_type` in the Orders table.
+
+                                '
+                              enum:
+                              - percentage
+                              - fixed_amount
+                              example: percentage
+                      line_items:
+                        type: array
+                        description: Details of the products in the order.
+                        items:
+                          type: object
+                          required:
+                          - id
+                          - quantity
+                          - price
+                          - variant_id
+                          - product_id
+                          properties:
+                            id:
+                              type: string
+                              description: The unique identifier for the line item.
+                              example: line_item_1
+                            name:
+                              type: string
+                              description: The name for the line item.
+                              example: Line Item 1
+                            price:
+                              type: number
+                              description: The price of the product. Maps to `products_info.product_name_price` in the Orders
+                                table.
+                              example: 20.0
+                            quantity:
+                              type: integer
+                              description: The quantity of the product in the order. Maps to `products_info.product_name_quantity_sold`
+                                in the Orders table.
+                              example: 2
+                            product_id:
+                              type: string
+                              description: The unique identifier for the product. Maps to `products_info.product_id` in the
+                                Orders table. Required for [Product Analytics](https://app.triplewhale.com/dashboards/product-analytics);
+                                must match a `product_id` sent via the `/products` endpoint.
+                              example: product_123
+                            product_name:
+                              type: string
+                              description: The name of the product associated with this line item. Maps to `products_info.product_name`
+                                in the Orders table.
+                              example: T-shirt
+                            variant_id:
+                              type: string
+                              description: The unique identifier for the product variant. Maps to `products_info.variant_id`
+                                in the Orders table.
+                              example: variant_456
+                            variant_name:
+                              type: string
+                              description: The name of the product variant. Maps to `products_info.variant_name` in the Orders
+                                table.
+                              example: Red T-shirt (Large)
+                            sku:
+                              type: string
+                              description: The stock keeping unit of the product. Maps to `products_info.product_sku` in the
+                                Orders table.
+                              example: sku_123
+                      name:
+                        type: string
+                        description: 'The name of the order, as assigned by the seller on the main sales platform. Maps to
+                          `order_name` in the Orders table. Defaults to `order_id` if not provided.
+
+                          '
+                        example: 'Order #12345'
+                      payment_gateway_names:
+                        type: array
+                        description: 'The payment gateway used for the transaction (e.g., `shopify_payments`, `paypal`, `gift_card`).
+                          Required in order to update payment gateway settings, and to calculate `payment_gateway_costs` in
+                          the Orders table. Edit Payment Gateway Costs in [Cost Settings](https://app.triplewhale.com/cost-settings)
+                          > Gateway Costs.
+
+                          '
+                        items:
+                          type: string
+                        example:
+                        - paypal
+                      refunds:
+                        type: array
+                        description: Details of refunds applied to the order.
+                        items:
+                          type: object
+                          required:
+                          - refund_id
+                          - refunded_at
+                          - total_refund
+                          properties:
+                            refund_id:
+                              type: string
+                              description: The unique identifier for the refund.
+                              example: refund_1
+                            refunded_at:
+                              type: string
+                              format: date-time
+                              description: 'The time at which the refund was processed. Must be provided in ISO 8601 format,
+                                with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g.,
+                                `2024-11-29T12:00:00+02:00`).
+
+                                '
+                              example: '2024-11-29T11:00:00Z'
+                            line_items:
+                              type: array
+                              description: Details of refunded line items.
+                              items:
+                                type: object
+                                required:
+                                - id
+                                - quantity
+                                - price
+                                - variant_id
+                                properties:
+                                  id:
+                                    type: string
+                                    description: The unique identifier for the refunded line item.
+                                    example: line_item_1
+                                  line_item_id:
+                                    type: string
+                                    description: The unique identifier of the line item associated with this refund line item.
+                                    example: line_item_1
+                                  quantity:
+                                    type: integer
+                                    description: The quantity of the refunded line item.
+                                    example: 1
+                                  product_id:
+                                    type: string
+                                    description: The unique identifier for the refunded product.
+                                    example: product_123
+                                  variant_id:
+                                    type: string
+                                    description: The unique identifier for the refunded variant.
+                                    example: variant_456
+                                  price:
+                                    type: number
+                                    description: The price of the refunded line item.
+                                    example: 20.0
+                                  currency:
+                                    type: string
+                                    description: The currency of the refunded line item.
+                                    example: USD
+                                  total_discount:
+                                    type: number
+                                    description: The total discount applied to the refunded line item.
+                                    example: 0.0
+                            total_refund:
+                              type: number
+                              description: The total amount refunded.
+                              example: 40.0
+                            total_tax_refund:
+                              type: number
+                              description: The total tax refunded.
+                              example: 3.0
+                            total_shipping_refund:
+                              type: number
+                              description: The total shipping refunded.
+                              example: 5.0
+                            tags:
+                              type: array
+                              description: Tags associated with the refund.
+                              items:
+                                type: string
+                                example: damaged_item
+                            void:
+                              type: boolean
+                              description: 'Set to `true` to void (soft delete) this refund.  Voided refund records are excluded
+                                from all queries.   To void a refund, resend the entire Order record with all fields identical
+                                except for `"void": true` for this refund.   [Learn more](https://triplewhale.readme.io/reference/managing-data-in-connections#voiding-records-soft-delete)
+
+                                '
+                              default: false
+                              example: false
+                      shipping_address:
+                        type: object
+                        description: Shipping address details.
+                        properties:
+                          address_1:
+                            type: string
+                            description: The first line of the address.
+                            example: 123 Main Street
+                          address_2:
+                            type: string
+                            description: The second line of the address.
+                            example: Apt 4B
+                          zip:
+                            type: string
+                            description: The ZIP or postal code of the address.
+                            example: '10001'
+                          city:
+                            type: string
+                            description: The city of the address. Maps to `customer_from_city` in the Orders table.
+                            example: New York
+                          country:
+                            type: string
+                            description: The country of the address.
+                            example: USA
+                          country_code:
+                            type: string
+                            description: The country code of the address. Maps to `customer_from_country_code` in the Orders
+                              table.
+                            example: US
+                          province_code:
+                            type: string
+                            description: The province or state code of the address. Maps to `customer_from_state_code` in
+                              the Orders table.
+                            example: NY
+                      shipping_lines:
+                        type: array
+                        description: Details of the shipping lines for the order.
+                        items:
+                          type: object
+                          properties:
+                            shipping_discounted_price:
+                              type: number
+                              description: The discounted price for shipping.
+                              example: 5.0
+                            shipping_price:
+                              type: number
+                              description: The original price for shipping.
+                              example: 10.0
+                            source:
+                              type: string
+                              description: The source or method of shipping.
+                              example: standard_shipping
+                            title:
+                              type: string
+                              description: The title or description of the shipping method.
+                              example: Standard Shipping
+                      shipping_price:
+                        type: number
+                        description: The total shipping price of the order (paid by the buyer), including shipping taxes and
+                          shipping discounts.
+                        example: 15.0
+                      shipping_costs:
+                        type: number
+                        description: 'Shipping costs paid by the seller. Must be non-negative. To apply this value to your
+                          data, ensure **Default Shipping Costs** is selected in [Cost Settings](https://app.triplewhale.com/cost-settings)
+                          > Shipping.
+
+                          '
+                        example: 15.0
+                      source_name:
+                        type: string
+                        description: The origin of the order as designated by the seller on the main sales platform (e.g.
+                          `web`, `pos`, `tiktok`).
+                        example: web
+                      subscription_id:
+                        type: string
+                        description: The unique identifier for the subscription associated with the order.
+                        example: sub_12345
+                      tags:
+                        type: array
+                        description: 'Tags associated with the order. Include a distinct tag to classify or identify specific
+                          order types or processing rules. For example, use `holiday_sale` to mark seasonal campaign purchases,
+                          or `staff_order` for internal orders.
+
+                          '
+                        items:
+                          type: string
+                        example:
+                        - holiday_sale
+                        - staff_order
+                      taxes_included:
+                        type: boolean
+                        description: Indicates if taxes are included in the total price of the order.
+                        default: false
+                        example: false
+                      order_revenue:
+                        type: number
+                        description: The total revenue after adjustments such as discounts, shipping, fees, and taxes. Must
+                          be non-negative.
+                        example: 150.75
+                      total_discounts:
+                        type: number
+                        description: The total discount amount applied to the order, including shipping discounts. Must be
+                          non-negative. Maps to `discount_amount` in the Orders table.
+                        example: 15.5
+                      taxes:
+                        type: number
+                        description: The total tax applied to the order. Must be non-negative.
+                        example: 8.25
+                      status:
+                        type: string
+                        description: The current status of the order (e.g., "completed", "pending"). Maps to `fulfillment_status`
+                          in the Orders table.
+                        example: completed
+                      updated_at:
+                        type: string
+                        format: date-time
+                        description: 'The time at which the order record was last updated. Must be provided in ISO 8601 format,
+                          with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                          Defaults to the current time.
+
+                          '
+                        example: '2024-11-29T10:00:00Z'
+                      void:
+                        type: boolean
+                        description: 'Set to `true` to void (soft delete) this order record, as well as all associated refund
+                          records  (even if the refunds are not individually voided).  Voided orders (and associated refunds)
+                          are excluded from all queries.   To void an order record, resend it with all fields identical except
+                          for `"void": true`.   [Learn more](https://triplewhale.readme.io/reference/managing-data-in-connections#voiding-records-soft-delete)
+
+                          '
+                        default: false
+                        example: false
+      responses:
+        '200':
+          description: Order records successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 1000 orders received
+        '400':
+          description: 'Bad Request. Returned if one or more orders fail validation. Valid orders in the same request are
+            still processed even when this response is returned.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Validation errors
+                  errors:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        order_id:
+                          type: string
+                          example: '737052615'
+                        error:
+                          type: string
+                          example: id is required
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing order
+  /data-in/subscriptions:
+    post:
+      summary: Create Subscription Record
+      description: 'Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription
+        information, including customer details, items, status, and metadata.
+
+        '
+      operationId: create-subscription-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - subscription_id
+              - created_at
+              - currency
+              - status
+              - customer
+              - subscription_items
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                subscription_id:
+                  type: string
+                  description: The unique identifier for the subscription.
+                  example: sub-123
+                platform:
+                  type: string
+                  description: 'The platform where the subscription was processed.
+
+                    '
+                  default: custom_subscription_platform
+                  example: custom_subscription_platform
+                platform_account_id:
+                  type: string
+                  description: 'The account ID associated with the platform. Can be used to segment parts of the data coming
+                    from different platform accounts, e.g. `facebook_account_a` vs. `facebook_account_b`.
+
+                    '
+                  default: custom_platform_account
+                  example: acct-456
+                created_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the subscription record was created. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                    '
+                  example: '2022-06-15T19:26:30.000Z'
+                canceled_at:
+                  type: string
+                  format: date-time
+                  description: 'The time the subscription was canceled, if applicable. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                    '
+                  example: '2024-12-01T10:00:00Z'
+                ended_at:
+                  type: string
+                  format: date-time
+                  description: 'The time the subscription ended (canceled or expired), if applicable. Must be provided in
+                    ISO 8601 format, with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported
+                    (e.g., `2024-11-29T12:00:00+02:00`).
+
+                    '
+                  example: '2024-12-15T12:00:00Z'
+                cancellation_reason:
+                  type: string
+                  description: The reason for the subscription's cancellation.
+                  example: Customer Request
+                cancellation_comments:
+                  type: string
+                  description: Additional comments regarding the cancellation.
+                  example: Dissatisfaction with service.
+                currency:
+                  type: string
+                  description: The currency of the subscription (e.g., 'USD').
+                  example: USD
+                customer:
+                  type: object
+                  description: Details of the customer associated with the subscription.
+                  required:
+                  - id
+                  properties:
+                    id:
+                      type: string
+                      description: The unique identifier for the customer. Maps to `customer_id` in the Subscriptions table.
+                      example: cust-789
+                    email:
+                      type: string
+                      format: email
+                      description: The customer's email address. At least one of email or phone is required.
+                      example: customer@example.com
+                    phone:
+                      type: string
+                      description: The customer's phone number. At least one of email or phone is required.
+                      example: '+1234567890'
+                    first_name:
+                      type: string
+                      description: The customer's first name.
+                      example: John
+                    last_name:
+                      type: string
+                      description: The customer's last name.
+                      example: Doe
+                subscription_items:
+                  type: array
+                  description: Details of the items included in the subscription. At least one is required.
+                  minItems: 1
+                  items:
+                    type: object
+                    required:
+                    - subscription_item_id
+                    - created_at
+                    - status
+                    - interval
+                    - interval_count
+                    - price
+                    - quantity
+                    properties:
+                      subscription_item_id:
+                        type: string
+                        description: The unique identifier for the subscription item.
+                        example: sub-item-001
+                      created_at:
+                        type: string
+                        format: date-time
+                        description: 'The date and time the subscription item was created. Must be provided in ISO 8601 format,
+                          with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                          '
+                        example: '2022-06-15T19:26:30.000Z'
+                      canceled_at:
+                        type: string
+                        format: date-time
+                        description: 'The date and time the subscription item was canceled, if applicable. Must be provided
+                          in ISO 8601 format, with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported
+                          (e.g., `2024-11-29T12:00:00+02:00`).
+
+                          '
+                        example: '2024-12-01T10:00:00Z'
+                      ended_at:
+                        type: string
+                        format: date-time
+                        description: 'The date and time the subscription item ended, if applicable. Must be provided in ISO
+                          8601 format, with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported
+                          (e.g., `2024-11-29T12:00:00+02:00`).
+
+                          '
+                        example: '2024-12-15T12:00:00Z'
+                      status:
+                        type: string
+                        enum:
+                        - active
+                        - canceled
+                        - expired
+                        - deleted
+                        description: The current status of the subscription item.
+                        example: active
+                      interval:
+                        type: string
+                        enum:
+                        - day
+                        - week
+                        - month
+                        - year
+                        description: The billing interval for the subscription item.
+                        example: month
+                      interval_count:
+                        type: integer
+                        description: The number of intervals for each billing cycle.
+                        example: 1
+                      product_id:
+                        type: string
+                        description: The unique identifier for the product associated with this item.
+                        example: prod-123
+                      price:
+                        type: number
+                        format: float
+                        description: The price of the subscription item.
+                        example: 19.99
+                      quantity:
+                        type: integer
+                        description: The quantity of the subscription item.
+                        example: 1
+                      variant_id:
+                        type: string
+                        description: The unique identifier for the product variant, if applicable.
+                        example: variant-123
+                      discount:
+                        type: object
+                        description: Discounts applied to the subscription item.
+                        default: {}
+                        properties:
+                          amount_off:
+                            type: number
+                            format: float
+                            description: The amount of discount applied to the subscription item.
+                            example: 5.0
+                          percent_off:
+                            type: number
+                            format: float
+                            description: The percentage of discount applied to the subscription item.
+                            example: 10.0
+                status:
+                  type: string
+                  description: The status of the subscription (e.g., active, canceled).
+                  example: active
+                metadata:
+                  type: string
+                  description: Additional metadata or notes related to the subscription.
+                  example: Preferred customer
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the subscription record was last updated. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2024-11-29T10:00:00Z'
+      responses:
+        '200':
+          description: Subscription record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Subscription received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid subscription data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing subscription
+  /data-in/products:
+    post:
+      summary: Create Product Record
+      description: 'Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information,
+        including variants, tags, collections, and images.
+
+        '
+      operationId: create-product-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - product_id
+              - product_title
+              - variants
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                platform:
+                  type: string
+                  description: 'The platform where the product originated.
+
+                    '
+                  default: custom-msp
+                  example: magento
+                platform_account_id:
+                  type: string
+                  description: 'The account ID associated with the platform.
+
+                    '
+                  default: custom-msp
+                  example: shop_account_123
+                product_id:
+                  type: string
+                  description: The unique identifier for the product. To use [Product Analytics](https://app.triplewhale.com/dashboards/product-analytics),
+                    matching `line_items.product_id` values must also be sent via the `/orders` endpoint.
+                  example: prod-123
+                product_title:
+                  type: string
+                  description: The name or title of the product.
+                  example: Triple Whale T-Shirt
+                vendor:
+                  type: string
+                  description: The vendor of the product.
+                  example: Triple Whale
+                product_status:
+                  type: string
+                  description: 'The status of the product in the connected sales platform (e.g., `active`, `draft`, `archived`).
+
+                    '
+                  default: active
+                  example: active
+                product_tags:
+                  type: array
+                  description: Tags associated with the product, set in the main sales platform (e.g. `Upsell`, `Order Credits`,
+                    `discount_eligible`).
+                  items:
+                    type: string
+                  example:
+                  - discount_eligible
+                  - Upsell
+                product_type:
+                  type: string
+                  description: The type or category of the product.
+                  example: Clothing
+                collections:
+                  type: array
+                  description: Collections the product belongs to.
+                  items:
+                    type: string
+                  example:
+                  - Summer Collection
+                  - T-Shirts
+                images:
+                  type: array
+                  description: Images associated with the product.
+                  items:
+                    type: object
+                    required:
+                    - image_id
+                    - image_src
+                    properties:
+                      image_id:
+                        type: string
+                        description: The unique identifier for the image.
+                        example: img-001
+                      image_src:
+                        type: string
+                        description: The URL of the image.
+                        example: https://example.com/image.jpg
+                  default: []
+                variants:
+                  type: array
+                  description: Variants of the product. If there are no variants, then use `product_id`.
+                  items:
+                    type: object
+                    required:
+                    - variant_id
+                    - variant_title
+                    properties:
+                      variant_id:
+                        type: string
+                        description: The unique identifier for the variant.
+                        example: variant-123
+                      variant_title:
+                        type: string
+                        description: The name or title of the variant.
+                        example: Blue / Medium
+                      variant_price:
+                        type: number
+                        description: The price of the variant, to the buyer.
+                        example: 19.99
+                      sku:
+                        type: string
+                        description: The stock keeping unit (SKU) of the variant.
+                        example: SKU12345
+                      variant_cost:
+                        type: number
+                        description: The cost of the variant, to the seller.
+                        example: 8.5
+                      handling_fee:
+                        type: number
+                        description: The handling fee for the variant.
+                        example: 5.5
+                      inventory_quantity:
+                        type: number
+                        description: The number of items in stock for the variant.
+                        example: 74
+                      image_src:
+                        type: string
+                        description: The URL of the image associated with this variant.
+                        example: https://example.com/variant-image.jpg
+                      compare_at_price:
+                        type: number
+                        description: 'The original price of the variant before a discount is applied. Typically used to show
+                          a strikethrough “compare at” price alongside the current selling price. Must be greater than or
+                          equal to `variant_price`.
+
+                          '
+                        example: 29.99
+                created_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the product record was created. Must be provided in ISO 8601 format, with
+                    explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2022-06-15T19:26:30.000Z'
+                updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the product record was last updated. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2024-11-29T10:00:00Z'
+      responses:
+        '200':
+          description: Product record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: product received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid product data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing product
+  /data-in/pps:
+    post:
+      summary: Create Post-Purchase Survey (PPS) Record
+      description: 'Ingest PPS data into Triple Whale. This endpoint allows users to upload  detailed post-purchase survey
+        information, including order-related data, questions, and responses.
+
+        '
+      operationId: create-pps-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - order_id
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                platform:
+                  type: string
+                  description: 'The platform where the post-purchase survey originated.
+
+                    '
+                  default: custom_pps_platform
+                  example: custom_pps_platform
+                platform_account_id:
+                  type: string
+                  description: 'The account ID associated with the platform.
+
+                    '
+                  default: custom_platform_account
+                  example: platform_account_123
+                order_id:
+                  type: string
+                  description: The unique identifier for the order associated with the PPS.
+                  example: order-123
+                created_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the post-purchase survey record was created. Must be provided in ISO 8601
+                    format, with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2022-06-15T19:26:30.000Z'
+                total_price:
+                  type: number
+                  description: The total price of the order associated with the PPS. Must be non-negative.
+                  example: 150.75
+                question_id:
+                  type: string
+                  description: Unique ID for the survey question. If omitted, the data will still be used for attribution
+                    (when `include_in_attribution = true`), but won’t appear in the PPS table, SQL, or Moby.
+                  example: question-001
+                question_text:
+                  type: string
+                  description: The text of the survey question. Maps to `question` in the Post-Purchase Survey table.
+                  example: How did you hear about us?
+                response_id:
+                  type: string
+                  description: Unique ID for the survey response.
+                  example: response-001
+                response:
+                  type: string
+                  description: The customer’s response to the survey question. Maps to `answer` in the Post-Purchase Survey
+                    table.
+                  example: Recommended by a friend
+                include_in_attribution:
+                  type: boolean
+                  description: 'Set to `true` to include this survey response in the [Total Impact and Triple Attribution
+                    models](https://kb.triplewhale.com/en/articles/5960333-understanding-and-utilizing-attribution-models#h_2edf480eb9).  If
+                    omitted, Triple Whale will determine whether the question is attribution-related based on the `question_text`.
+
+                    '
+                  example: true
+                source:
+                  type: string
+                  description: 'The marketing or referral channel that appears in [Attribution](https://app.triplewhale.com/dashboards/attribution/all/).
+                    If omitted, Triple Whale infers the source from the `response` text. You may provide any string value,
+                    but using a [Standardized PPS Source ID](https://triplewhale.readme.io/docs/post-purchase-survey-pps-standardized-source-ids#/)
+                    (e.g. `facebook-ads`) ensures offline events are grouped with existing channels rather than appearing
+                    as a separate custom source.
+
+                    '
+                  example: facebook-ads
+      responses:
+        '200':
+          description: PPS record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: pps received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid PPS data.
+        '404':
+          description: Order Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Order not found
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+                example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing pps
+  /data-in/customers:
+    post:
+      summary: Create Customer Record
+      description: 'Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information
+        — including contact details, address, consent status, and purchase history metadata.
+
+        '
+      operationId: create-customer-record
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - customer_id
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                customer_id:
+                  type: string
+                  description: The unique identifier for the customer.
+                  example: '5209503793328'
+                platform:
+                  type: string
+                  description: 'The platform associated with the customer record (e.g. `shopify`, `magento`, `woocommerce`,
+                    `klaviyo`).
+
+                    '
+                  default: custom-msp
+                  example: magento
+                platform_account_id:
+                  type: string
+                  description: 'The account ID associated with the platform.
+
+                    '
+                  default: custom-msp
+                  example: shop_account_123
+                address1:
+                  type: string
+                  description: The first line of the customer's default address.
+                  example: 764 Example Dr
+                address2:
+                  type: string
+                  description: The second line of the customer's default address.
+                  example: Apt 603
+                amount_spent:
+                  type: number
+                  description: The total amount spent by the customer.
+                  example: 1250.75
+                city:
+                  type: string
+                  description: The city of the customer's default address.
+                  example: San Francisco
+                country:
+                  type: string
+                  description: The country of the customer's default address.
+                  example: United States
+                country_code:
+                  type: string
+                  description: The country code of the customer’s default address, according to ISO 3166-1 alpha-2.
+                  example: US
+                created_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the customer record was created. Must be provided in ISO 8601 format, with
+                    explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+                    Defaults to the current time.
+
+                    '
+                  example: '2022-06-15T19:26:30.000Z'
+                customer_tags:
+                  type: array
+                  description: Tags associated with the customer, set in the main sales platform.
+                  items:
+                    type: string
+                  default: []
+                  example:
+                  - Active Subscriber
+                  - PayPal_user
+                  - Login with FB
+                display_name:
+                  type: string
+                  description: The display name of the customer.
+                  example: John Doe
+                email_address:
+                  type: string
+                  description: The primary email address associated with the customer’s account.
+                  example: customer@example.com
+                email_marketing_consent_collected_from:
+                  type: string
+                  description: The source from which the customer's email marketing consent was collected.
+                  example: website_signup
+                email_marketing_consent_opt_in_level:
+                  type: string
+                  description: The level of consent provided by the customer for email marketing.
+                  example: SINGLE_OPT_IN
+                email_marketing_consent_status:
+                  type: string
+                  description: The current status of the customer's email marketing consent.
+                  example: SUBSCRIBED
+                email_marketing_consent_updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the email marketing consent was updated. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                    '
+                  example: '2019-05-22 21:01:29'
+                first_name:
+                  type: string
+                  description: The customer's first name.
+                  example: John
+                last_name:
+                  type: string
+                  description: The customer's last name.
+                  example: Doe
+                last_order_id:
+                  type: string
+                  description: The ID of the most recent order from the customer.
+                  example: '4930225799243'
+                latitude:
+                  type: number
+                  description: The latitude associated with the customer's location.
+                  example: 34.1413713
+                locale:
+                  type: string
+                  description: The locale setting associated with the customer's account.
+                  example: en-US
+                longitude:
+                  type: number
+                  description: The longitude associated with the customer's location.
+                  example: -118.8639169
+                note:
+                  type: string
+                  description: Any note attached to the customer profile.
+                  example: VIP customer
+                number_of_orders:
+                  type: integer
+                  description: The total number of orders placed by the customer.
+                  example: 15
+                phone:
+                  type: string
+                  description: The customer's phone number.
+                  example: '18005550199'
+                product_subscriber_status:
+                  type: string
+                  description: The customer's subscription status for products.
+                  example: ACTIVE
+                sms_marketing_consent_collected_from:
+                  type: string
+                  description: The source from which the customer's SMS marketing consent was collected.
+                  example: checkout
+                sms_marketing_consent_opt_in_level:
+                  type: string
+                  description: The level of consent provided by the customer for SMS marketing.
+                  example: CONFIRMED_OPT_IN
+                sms_marketing_consent_updated_at:
+                  type: string
+                  format: date-time
+                  description: 'The time at which the sms marketing consent was updated. Must be provided in ISO 8601 format,
+                    with explicit timezone information (`Z` or `+/-HH:mm` offset). Offsets are supported (e.g., `2024-11-29T12:00:00+02:00`).
+
+                    '
+                  example: '2019-05-22 21:01:29'
+                state:
+                  type: string
+                  description: The state or province of the customer's default address.
+                  example: Oregon
+                state_code:
+                  type: string
+                  description: The state or province code of the customer's default address.
+                  example: OR
+                status:
+                  type: string
+                  description: The current status of the customer in the system.
+                  example: ENABLED
+                tax_exempt:
+                  type: boolean
+                  description: Indicates whether the customer is exempt from tax.
+                  default: false
+                  example: false
+                zip:
+                  type: string
+                  description: The zip or postal code of the customer's defaults address.
+                  example: '48104'
+      responses:
+        '200':
+          description: Customer record successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: customer received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid customer data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing customer
+  /data-in/orders-enrichment:
+    post:
+      summary: Enrich Orders Data
+      description: 'Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags.  Note: Supported
+        for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported
+        for Custom Sales Platforms—to update these, resend the full order via the [Orders](https://triplewhale.readme.io/reference/create-order-record)
+        endpoint.
+
+        '
+      operationId: enrich-orders-data
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - order_id
+              properties:
+                custom_expenses:
+                  type: number
+                  description: 'Additional custom expenses associated with the order, in the currency of the order enriched.
+                    Must be non-negative.
+
+                    '
+                  example: 25.0
+                custom_gross_profit:
+                  type: number
+                  description: 'Custom Gross Profit for the order, in the currency of the order being enriched. Must be non-negative.
+
+                    '
+                  example: 400
+                custom_gross_sales:
+                  type: number
+                  description: 'Custom Gross Sales for the order, in the currency of the order being enriched. Must be non-negative.
+
+                    '
+                  example: 2000
+                custom_net_revenue:
+                  type: number
+                  description: 'Custom Net Revenue for the order, in the currency of the order being enriched. Must be non-negative.
+
+                    '
+                  example: 1200
+                custom_number:
+                  type: number
+                  description: 'A custom numeric value for the order, can be used for specialized calculations, references,
+                    or reporting.
+
+                    '
+                  example: 3.14
+                custom_status:
+                  type: string
+                  description: 'A custom status label for the order, useful for filtering on statuses not  captured by the
+                    built-in `status` field.
+
+                    '
+                  example: unfulfilled
+                custom_string:
+                  type: string
+                  description: 'A free-form text field for storing additional metadata, internal notes, or other custom data
+                    relevant to this order.
+
+                    '
+                  example: AlphaBetaTest
+                ignore_order:
+                  type: boolean
+                  description: 'If true, the order is flagged to be ignored in standard reporting  (e.g., to exclude test
+                    data or partial orders).
+
+                    '
+                  default: false
+                  example: false
+                order_id:
+                  type: string
+                  description: 'The unique identifier for the order being enriched.
+
+                    '
+                  example: order_12345
+                orders_quantity:
+                  type: number
+                  description: 'The quantity of orders to count for this single order_id. Must be 0 or 1.
+
+                    '
+                  example: 1
+                platform:
+                  type: string
+                  description: 'The sales platform where the order being enriched was processed. Required for secondary sales
+                    platforms (e.g. Amazon), optional for main sales platform (e.g. Shopify).
+
+                    '
+                  example: amazon
+                shipping_costs:
+                  type: number
+                  description: 'Shipping costs paid by the seller for the order, in the currency of the order being enriched.
+                    Must be non-negative. To apply this value to your data, ensure **Default Shipping Costs** is selected
+                    in [Cost Settings](https://app.triplewhale.com/cost-settings) > Shipping.
+
+                    '
+                  example: 15.0
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                total_items_quantity:
+                  type: number
+                  description: 'The total number of items in the order. Must be non-negative.
+
+                    '
+                  example: 10
+      responses:
+        '200':
+          description: Order enrichment successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Order enrichment received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid order enrichment data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing order enrichment
+  /data-in/products-enrichment:
+    post:
+      summary: Enrich Products Data
+      description: 'Use this endpoint to enrich existing products—such as adding cost data from external systems.  Supported
+        for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported
+        for Custom Sales Platforms—to update these, resend the full product record via the  [Products](https://triplewhale.readme.io/reference/create-product-record)
+        endpoint.
+
+        '
+      operationId: enrich-products-data
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - product_id
+              properties:
+                product_id:
+                  type: string
+                  description: The unique identifier for the product being enriched.
+                  example: prod-123
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                variant_cost:
+                  type: number
+                  description: The cost of the variant, to the seller.
+                  example: 8.5
+                variant_id:
+                  type: string
+                  description: The unique identifier for the variant.
+                  example: variant-123
+      responses:
+        '200':
+          description: Order enrichment successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Order enrichment received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid order enrichment data.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing order enrichment
+  /data-in/event:
+    post:
+      summary: Enrich Pixel With Offline Events
+      description: 'Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events,
+        or fully custom events—into Triple Whale.  Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`,
+        you can add additional properties of type **Number, Float, String, Boolean, or Date**.
+
+        '
+      operationId: enrich-pixel-with-offline-events
+      tags:
+      - Data In
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - type
+              - profileIdentifiers
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                type:
+                  type: string
+                  description: 'The event category. Can be a standard lifecycle event (`lead`, `mql`, `sql`, `opportunity`,
+                    `book_demo`) or a Custom event (`custom`).
+
+                    '
+                  enum:
+                  - lead
+                  - mql
+                  - sql
+                  - opportunity
+                  - book_demo
+                  - custom
+                  example: custom
+                profileIdentifiers:
+                  type: object
+                  description: 'At least one identifier is required.   Use these to match the event to an existing or future
+                    profile.
+
+                    '
+                  properties:
+                    email:
+                      type: string
+                      format: email
+                      example: john.smith@gmail.com
+                    phone:
+                      type: string
+                      example: +1-555-123-4567
+                    externalId:
+                      type: string
+                      example: user_123
+                eventId:
+                  type: string
+                  description: 'Optional unique identifier for the event to prevent duplicates.
+
+                    '
+                  example: event_456
+                timestamp:
+                  type: number
+                  format: int64
+                  description: 'Optional UNIX timestamp in **seconds** for when the event occurred.   Defaults to the current
+                    server time if omitted.
+
+                    '
+                  example: 1732579200
+                event_name:
+                  type: string
+                  description: 'Required only when **type** = `custom`.   A descriptive name for the custom event.
+
+                    '
+                  example: productCustomizationInteraction
+                source:
+                  type: string
+                  description: 'Optional attribution source for custom events. To have events grouped into existing paid channels
+                    in [Attribution](https://app.triplewhale.com/dashboards/attribution/all/), use a [standardized source
+                    ID](https://triplewhale.readme.io/docs/post-purchase-survey-pps-standardized-source-ids) (e.g. `facebook-ads`).
+                    Custom values will appear as separate custom sources.
+
+                    '
+                  example: facebook-ads
+                campaign:
+                  type: string
+                  description: 'Optional attribution campaign for custom events.
+
+                    '
+                  example: Winter_Sale_2025
+                ad:
+                  type: string
+                  description: 'Optional attribution ad name for custom events.
+
+                    '
+                  example: Winter_Sale_2025_Ad_1
+                adset:
+                  type: string
+                  description: 'Optional attribution ad set name for custom events.
+
+                    '
+                  example: Winter_Sale_2025_Adset_A
+              additionalProperties:
+                type: object
+                oneOf:
+                - type: number
+                - type: string
+                - type: boolean
+                description: 'Extra properties allowed **only** when `type = custom`.   Each value must be a **Number (Integer
+                  or Float), String (Plain String or Date), or Boolean**.
+
+                  '
+            examples:
+              LeadEvent:
+                value:
+                  shop: madisonbraids.myshopify.com
+                  type: lead
+                  profileIdentifiers:
+                    email: john.smith@gmail.com
+              CustomEvent:
+                value:
+                  shop: madisonbraids.myshopify.com
+                  type: custom
+                  timestamp: 1732579200
+                  profileIdentifiers:
+                    email: abcdef@gmail.com
+                  event_name: my_test_event
+                  value: 10
+      responses:
+        '200':
+          description: Pixel event successfully received.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Pixel event received
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid pixel event data.
+        '413':
+          description: Payload Too Large
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Payload too large
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'Seconds until another request can be made.
+
+                '
+              schema:
+                type: string
+              example: '60'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Rate limit exceeded. Try again later.
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Error processing pixel event
+  /orcabase/api/moby:
+    post:
+      summary: Execute Natural Language Query (Moby AI)
+      description: 'Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and
+        generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped
+        based on the question.
+
+        '
+      operationId: data-out-execute-natural-language-query-moby
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - question
+              - shopId
+              properties:
+                shopId:
+                  type: string
+                  description: 'The shop domain for which you are requesting data  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                question:
+                  type: string
+                  description: 'The natural language input describing the data you want to query. The AI interprets this to
+                    generate SQL or directly retrieve relevant data.
+
+                    '
+                  example: 'I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and
+                    2. Give me the best performing campaigns list for the last 30 days.'
+      responses:
+        '200':
+          description: 'The natural language query was successfully processed, and the response contains the query results
+            in JSON format, grouped by `question` and its respective `answer`.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint. Allowed: no more than 10 requests per second and no more
+                than 60 requests per minute.
+
+                '
+              schema:
+                type: string
+              example: 60;w=60, 10;w=1
+            RateLimit:
+              description: 'The current usage of your rate limit for this endpoint.
+
+                '
+              schema:
+                type: string
+              example: 8/60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isError:
+                    type: boolean
+                    description: Indicates whether any errors occurred in processing the request.
+                    example: false
+                  error:
+                    type: string
+                    description: 'An optional error field if an error occurred.
+
+                      '
+                    nullable: true
+                  responses:
+                    type: array
+                    description: List of responses to the provided questions.
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                          description: The original user-provided question.
+                        answer:
+                          type: object
+                          description: 'The computed response with structured data. In practice, this object can contain arbitrary
+                            fields depending on the question, so it''s declared using additionalProperties.
+
+                            '
+                          additionalProperties:
+                            oneOf:
+                            - type: string
+                            - type: number
+                            - type: boolean
+                            - type: array
+                              items:
+                                oneOf:
+                                - type: string
+                                - type: number
+                                - type: boolean
+                                - type: object
+                                  additionalProperties: true
+                            - type: object
+                              additionalProperties: true
+                        isError:
+                          type: boolean
+                          description: Indicates whether an error occurred in processing the query.
+                          example: false
+                        errorMsg:
+                          type: string
+                          description: 'An optional message describing why an error occurred.
+
+                            '
+                          nullable: true
+                        assistant:
+                          type: string
+                          description: Internal assistant instructions and metadata (hidden from users).
+                  assistantConclusion:
+                    type: string
+                    description: Summary provided by the assistant regarding the processed queries.
+                    example: 'Your data is ready for exploration:
+
+
+                      1. **Blended Spend for the Last 7 Days**: You can view the daily breakdown in the table format.
+
+                      2. **Best Performing Campaigns in the Last 30 Days**: The list of top campaigns is available in the
+                      table format.
+
+
+                      If you need further assistance or have more questions, feel free to ask!
+
+                      '
+              example:
+                isError: false
+                error: null
+                responses:
+                - question: What is the blended spend for the last 7 days, broken down by day?
+                  answer:
+                    event_date:
+                    - '2025-02-05'
+                    - '2025-02-04'
+                    - '2025-02-03'
+                    - '2025-02-02'
+                    - '2025-02-01'
+                    - '2025-01-31'
+                    - '2025-01-30'
+                    blended_spend:
+                    - 98169.2413
+                    - 96323.7538
+                    - 99176.6398
+                    - 115385.6991
+                    - 98238.0891
+                    - 79859.6856
+                    - 69779.5765
+                  isError: false
+                  errorMsg: null
+                  assistant: "<!-- Instructions for the Assistant (Hidden from the user) -->\nInstructions to the Assistant:\n\
+                    1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics,\
+                    \ or interpretations.\n2. Inform the user that their data is ready to explore in the visualization type:\
+                    \ Table.\n3. If similar reports are provided, let the user know that some similar reports have been found.\n\
+                    4. Ask the user if there's anything else you can assist with.\n\n<!-- Internal Sections (Hidden from the\
+                    \ user) -->\n<<Only for INFO - Forbidden to show to the user>>\n<widget>\n  <data>{\"event_date\":[\"\
+                    2025-02-05\",\"2025-02-04\",\"2025-02-03\",\"2025-02-02\",\"2025-02-01\",\"2025-01-31\",\"2025-01-30\"\
+                    ],\"blended_spend\":[98169.2413,96323.7538,99176.6398,115385.6991,98238.0891,79859.6856,69779.5765]}</data>\n\
+                    </widget>\nTotal rows of current <data> without pagination: 7\nHere are details how we got the data: {\"\
+                    included_platforms\":[\"shopify\",\"amazon\"],\"final_select\":{\"tables_data\":[{\"table_name\":\"blended_stats_tvf\"\
+                    ,\"table_alias\":\"bst\"}],\"metrics\":[\"bst.event_date AS event_date\",\"SUM(bst.spend) AS blended_spend\"\
+                    ],\"filters\":[\"bst.event_date BETWEEN '2025-01-30' AND '2025-02-05'\"],\"group_by\":[\"bst.event_date\"\
+                    ],\"order_by\":[\"ORDER BY bst.event_date DESC\"]}}\n\n<<Only for TextToPython - Forbidden to show to\
+                    \ the user>>\n<fileName>what_is_the_blended_spend_for_the_last_7_days.json</fileName>\n\nSimilar report:\
+                    \ [Web Analysis 360](https://app.triplewhale.com/dashboards/IH53tYJ62E7kDtUmnBP1?shop-id=exampleshop.myshopify.com)\n\
+                    Similar report: [CPS ROAS Metrics](https://app.triplewhale.com/dashboards/WvwJU8w8sPvELVM4vSXq?shop-id=exampleshop.myshopify.com)"
+                - question: List the best performing campaigns in the last 30 days.
+                  answer:
+                    event_date:
+                    - '2025-02-02'
+                    - '2025-01-10'
+                    - '2025-01-24'
+                    - '2025-01-14'
+                    - '2025-01-11'
+                    - '2025-01-23'
+                    - '2025-01-13'
+                    - '2025-01-12'
+                    - '2025-02-02'
+                    - '2025-01-24'
+                    - '2025-02-05'
+                    - '2025-02-03'
+                    - '2025-02-03'
+                    - '2025-01-28'
+                    - '2025-01-20'
+                    - '2025-01-27'
+                    - '2025-01-21'
+                    - '2025-01-25'
+                    - '2025-01-27'
+                    - '2025-01-10'
+                    - '2025-01-16'
+                    - '2025-01-17'
+                    - '2025-01-16'
+                    - '2025-01-26'
+                    - '2025-01-15'
+                    - '2025-02-05'
+                    - '2025-02-03'
+                    - '2025-02-01'
+                    - '2025-01-18'
+                    - '2025-01-19'
+                    - '2025-01-31'
+                    - '2025-01-11'
+                    - '2025-02-01'
+                    - '2025-01-11'
+                    - '2025-01-22'
+                    - '2025-01-12'
+                    - '2025-02-04'
+                    - '2025-01-08'
+                    - '2025-01-23'
+                    - '2025-01-30'
+                    - '2025-02-05'
+                    - '2025-01-13'
+                    - '2025-01-12'
+                    - '2025-02-02'
+                    - '2025-01-09'
+                    - '2025-01-14'
+                    - '2025-01-31'
+                    - '2025-01-12'
+                    - '2025-01-23'
+                    - '2025-01-18'
+                    campaign_id:
+                    - 9da48d7a55e4aa02713ff9e2bd6a69e8
+                    - '120214728393150052'
+                    - '501490858035553'
+                    - '120209593687300052'
+                    - 1f0de9e5c6a9c1bb3d5682df245131f4
+                    - '422302067656093'
+                    - '501490858035553'
+                    - '501490858035553'
+                    - '22171659996'
+                    - '367700987853049'
+                    - '471288027443260'
+                    - '22171659996'
+                    - '543707118551857'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '519173100160558'
+                    - 1f0de9e5c6a9c1bb3d5682df245131f4
+                    - '22105299766'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '543707118551857'
+                    - '367700987853049'
+                    - '22171659996'
+                    - '367700987853049'
+                    - '21032301997'
+                    - '367700987853049'
+                    - '429079956350540'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '21032301997'
+                    - '21883477652'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '476483392245163'
+                    - '367700987853049'
+                    - '120214730413560052'
+                    - '22171659996'
+                    - '543707118551857'
+                    - '120215045998770052'
+                    - '485526473928952'
+                    campaign_name:
+                    - ExampleShop_Budget_CPP
+                    - c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing
+                    - ExampleShop_CPP
+                    - Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - All SKUs
+                    - SD_Conversion_Own Brand ASINs_LONG SLEEVE CREW 431a01
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple Crew Neck, 6pck
+                    - ExampleShop_CPP
+                    - c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - All SKUs
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - All SKUs
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic Crew Neck, 6pck
+                    - All SKUs
+                    - All SKUs
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE HENLEY
+                    - All SKUs
+                    - c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC Campaign
+                    - Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck, 6pck
+                    roas:
+                    - 7884.6338
+                    - 246
+                    - 229.4836
+                    - 170.48
+                    - 166.5097
+                    - 127.4314
+                    - 99.99
+                    - 99.99
+                    - 99.9151
+                    - 97.71
+                    - 94.3208
+                    - 93.2286
+                    - 88.2255
+                    - 85.9531
+                    - 82.7707
+                    - 81.6613
+                    - 79.876
+                    - 77.9684
+                    - 76.3282
+                    - 75.5596
+                    - 75.2808
+                    - 75.2316
+                    - 75.2262
+                    - 74.597
+                    - 74.2683
+                    - 72.8411
+                    - 72.2888
+                    - 72.1965
+                    - 71.7091
+                    - 70.9656
+                    - 70.9571
+                    - 70.5765
+                    - 69.6215
+                    - 68.5633
+                    - 68.3214
+                    - 67.9308
+                    - 67.4945
+                    - 67.2915
+                    - 67.2758
+                    - 67.2536
+                    - 65.9382
+                    - 65.8498
+                    - 65.1494
+                    - 63.6273
+                    - 61.4947
+                    - 60.435
+                    - 60.3353
+                    - 59.99
+                    - 57.8311
+                    - 57.7977
+                  isError: false
+                  errorMsg: null
+                  assistant: "<!-- Instructions for the Assistant (Hidden from the user) -->\nInstructions to the Assistant:\n\
+                    1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics,\
+                    \ or interpretations.\n2. Inform the user that their data is ready to explore in the visualization type:\
+                    \ Table.\n3. If similar reports are provided, let the user know that some similar reports have been found.\n\
+                    4. Ask the user if there's anything else you can assist with.\n\n<!-- Internal Sections (Hidden from the\
+                    \ user) -->\n<<Only for INFO - Forbidden to show to the user>>\n<widget>\n  <data>{\"event_date\":[\"\
+                    2025-02-02\",\"2025-01-10\",\"2025-01-24\",\"2025-01-14\",\"2025-01-11\",\"2025-01-23\",\"2025-01-13\"\
+                    ,\"2025-01-12\",\"2025-02-02\",\"2025-01-24\",\"2025-02-05\",\"2025-02-03\",\"2025-02-03\",\"2025-01-28\"\
+                    ,\"2025-01-20\",\"2025-01-27\",\"2025-01-21\",\"2025-01-25\",\"2025-01-27\",\"2025-01-10\",\"2025-01-16\"\
+                    ,\"2025-01-17\",\"2025-01-16\",\"2025-01-26\",\"2025-01-15\",\"2025-02-05\",\"2025-02-03\",\"2025-02-01\"\
+                    ,\"2025-01-18\",\"2025-01-19\",\"2025-01-31\",\"2025-01-11\",\"2025-02-01\",\"2025-01-11\",\"2025-01-22\"\
+                    ,\"2025-01-12\",\"2025-02-04\",\"2025-01-08\",\"2025-01-23\",\"2025-01-30\",\"2025-02-05\",\"2025-01-13\"\
+                    ,\"2025-01-12\",\"2025-02-02\",\"2025-01-09\",\"2025-01-14\",\"2025-01-31\",\"2025-01-12\",\"2025-01-23\"\
+                    ,\"2025-01-18\"],\"campaign_id\":[\"9da48d7a55e4aa02713ff9e2bd6a69e8\",\"120214728393150052\",\"501490858035553\"\
+                    ,\"120209593687300052\",\"1f0de9e5c6a9c1bb3d5682df245131f4\",\"422302067656093\",\"501490858035553\",\"\
+                    501490858035553\",\"22171659996\",\"367700987853049\",\"471288027443260\",\"22171659996\",\"543707118551857\"\
+                    ,\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"\
+                    519173100160558\",\"1f0de9e5c6a9c1bb3d5682df245131f4\",\"22105299766\",\"367700987853049\",\"367700987853049\"\
+                    ,\"367700987853049\",\"367700987853049\",\"543707118551857\",\"367700987853049\",\"22171659996\",\"367700987853049\"\
+                    ,\"21032301997\",\"367700987853049\",\"429079956350540\",\"367700987853049\",\"367700987853049\",\"21032301997\"\
+                    ,\"21883477652\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\"\
+                    ,\"367700987853049\",\"367700987853049\",\"476483392245163\",\"367700987853049\",\"120214730413560052\"\
+                    ,\"22171659996\",\"543707118551857\",\"120215045998770052\",\"485526473928952\"],\"campaign_name\":[\"\
+                    ExampleShop_Budget_CPP\",\"c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic\
+                    \ Crew Neck Multicolors\",\"c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing\",\"ExampleShop_CPP\"\
+                    ,\"Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic\
+                    \ Crew Neck Multicolors\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\"\
+                    ,\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"All SKUs\",\"SD_Conversion_Own Brand\
+                    \ ASINs_LONG SLEEVE CREW 431a01\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"\
+                    Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\"All SKUs\",\"All SKUs\"\
+                    ,\"All SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple\
+                    \ Crew Neck, 6pck\",\"ExampleShop_CPP\",\"c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley\",\"All SKUs\"\
+                    ,\"All SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew\
+                    \ Neck Multicolors\",\"All SKUs\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"\
+                    All SKUs\",\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\"All SKUs\",\"Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic\
+                    \ Crew Neck, 6pck\",\"All SKUs\",\"All SKUs\",\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\"\
+                    c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All\
+                    \ SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE\
+                    \ HENLEY\",\"All SKUs\",\"c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top\
+                    \ 50 Products\",\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\"c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC\
+                    \ Campaign\",\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck,\
+                    \ 6pck\"],\"roas\":[7884.6338,246,229.4836,170.48,166.5097,127.4314,99.99,99.99,99.9151,97.71,94.3208,93.2286,88.2255,85.9531,82.7707,81.6613,79.876,77.9684,76.3282,75.5596,75.2808,75.2316,75.2262,74.597,74.2683,72.8411,72.2888,72.1965,71.7091,70.9656,70.9571,70.5765,69.6215,68.5633,68.3214,67.9308,67.4945,67.2915,67.2758,67.2536,65.9382,65.8498,65.1494,63.6273,61.4947,60.435,60.3353,59.99,57.8311,57.7977]}\n\
+                    </widget>\nTotal rows of current <data> without pagination: 43246\nHere are details how we got the data:\
+                    \ {\"final_select\":{\"tables_data\":[{\"table_name\":\"pixel_joined_tvf\",\"table_alias\":\"pj\"}],\"\
+                    metrics\":[\"pj.event_date AS event_date\",\"pj.campaign_id AS campaign_id\",\"pj.campaign_name AS campaign_name\"\
+                    ,\"SUM(pj.channel_reported_conversion_value) / SUM(pj.spend) AS roas\"],\"filters\":[\"pj.event_date BETWEEN\
+                    \ '2025-01-08' AND '2025-02-06'\",\"pj.model = 'Triple Attribution'\"],\"group_by\":[\"pj.event_date\"\
+                    ,\"pj.campaign_id\",\"pj.campaign_name\"],\"order_by\":[\"ORDER BY roas DESC\"]}}\n\n<<Only for TextToPython\
+                    \ - Forbidden to show to the user>>\n<fileName>list_the_best_performing_campaigns_in_the_last_30_days.json</fileName>\n\
+                    \nSimilar report: [Activity Tracker](https://app.triplewhale.com/dashboards/O5uAw1DJ0VmuLsmaXMXh?shop-id=exampleshop.myshopify.com)\n\
+                    Similar report: [Chase Dimond's Klaviyo Template](https://app.triplewhale.com/dashboards/aGjZT4TwAKIfmGMK34Fo?shop-id=exampleshop.myshopify.com)"
+                assistantConclusion: 'Your data is ready for exploration:
+
+
+                  1. **Blended Spend for the Last 7 Days**: You can view the daily breakdown in the table format.
+
+                  2. **Best Performing Campaigns in the Last 30 Days**: The list of top campaigns is available in the table
+                  format.
+
+
+                  If you need further assistance or have more questions, feel free to ask!'
+        '400':
+          description: Invalid request due to missing or malformed parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing why the request failed, including the names of missing or malformed
+                      parameters.
+
+                      '
+                    example: 'Missing fields: question'
+        '403':
+          description: Access forbidden due to missing or invalid access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message indicating missing or invalid credentials.
+                    example: Access token is required
+        '429':
+          description: Rate limit exceeded. Too many requests were sent in a short period.
+          headers:
+            Retry-After:
+              description: 'The number of seconds until you can make another request.
+
+                '
+              schema:
+                type: integer
+              example: 10
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing the rate limit issue and suggesting when to retry.
+
+                      '
+                    example: Rate limit exceeded. Please wait 10 seconds before retrying.
+        '500':
+          description: Internal server error. An unexpected issue occurred on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message describing the internal server error.
+                    example: An unexpected error occurred. Please try again later.
+  /orcabase/api/sql:
+    post:
+      summary: Execute Custom SQL Query
+      description: 'Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON
+        format.
+
+        '
+      operationId: data-out-execute-custom-sql-query
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - query
+              - period
+              - shopId
+              properties:
+                shopId:
+                  type: string
+                  description: 'The shop domain for which you are requesting data  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                query:
+                  type: string
+                  description: 'The SQL query string to execute. Include dynamic `@startDate` AND `@endDate` parameters in
+                    your query string, and provide specific start and end values in the request body via `period.startDate`
+                    and `period.endDate`.
+
+                    '
+                  example: SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate
+                    GROUP BY channel
+                currency:
+                  type: string
+                  description: The currency for data aggregation (e.g., USD, EUR). Defaults to the currency provided during
+                    user account registration.
+                  example: USD
+                period:
+                  type: object
+                  description: The date range for the query period.
+                  required:
+                  - startDate
+                  - endDate
+                  properties:
+                    startDate:
+                      type: string
+                      format: date
+                      description: The start date for the query period (ISO 8601 format).
+                      example: '2025-07-01'
+                    endDate:
+                      type: string
+                      format: date
+                      description: The end date for the query period (ISO 8601 format).
+                      example: '2025-07-31'
+      responses:
+        '200':
+          description: 'The SQL query was executed successfully, and the response contains the query results in a JSON format
+            grouped by `channel` and `event_date`.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: true
+                  message:
+                    type: string
+                    description: A success message indicating the query was executed.
+                    example: The query was executed successfully.
+                  data:
+                    type: array
+                    description: 'The query results as an array of objects, with dynamically generated properties that can
+                      include strings, numbers, dates, or other types.
+
+                      '
+                    items:
+                      type: object
+                      additionalProperties:
+                        oneOf:
+                        - type: string
+                        - type: number
+                        - type: boolean
+                        - type: object
+                        - type: array
+                        - type: string
+                          format: date
+                    example:
+                    - channel: facebook-ads
+                      event_date: '2024-12-01'
+                      spend: 345.0
+                      clicks: 1250
+                    - channel: google-ads
+                      event_date: '2024-12-02'
+                      spend: 412.75
+                      clicks: 900
+                    - channel: twitter-ads
+                      event_date: '2024-12-03'
+                      spend: 210.25
+                      clicks: 640
+        '400':
+          description: Invalid request due to missing or malformed parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing why the request failed, including the names of missing or malformed
+                      parameters.
+
+                      '
+                    example: 'Missing fields: query, startDate, endDate'
+        '403':
+          description: Access forbidden due to missing or invalid access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message indicating missing or invalid credentials.
+                    example: Access token is required
+        '429':
+          description: Rate limit exceeded. Too many requests were sent in a short period.
+          headers:
+            Retry-After:
+              description: 'The number of seconds until you can make another request.
+
+                '
+              schema:
+                type: integer
+                example: 10
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing the rate limit issue and suggesting when to retry.
+
+                      '
+                    example: Rate limit exceeded. Please wait 10 seconds before retrying.
+        '500':
+          description: Internal server error. An unexpected issue occurred on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message describing the internal server error.
+                    example: An unexpected error occurred. Please try again later.
+  /attribution/get-orders-with-journeys-v2:
+    post:
+      summary: Get Customer Journey Attribution Data
+      description: 'Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order
+        in the specified period.
+
+        '
+      operationId: get-customer-journey-attribution-data
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - startDate
+              - endDate
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown
+                    in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also
+                    have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                startDate:
+                  type: string
+                  description: 'The start date or timestamp for the requested data period.  Must be in ISO 8601 format.
+
+                    '
+                  example: 2021-01-01T00:00:00.000-0400
+                endDate:
+                  type: string
+                  description: 'The end date or timestamp for the requested data period.  Must be in ISO 8601 format.
+
+                    '
+                  example: 2021-01-01T23:59:59.999-0400
+                page:
+                  type: number
+                  description: 'The page number of results to return, starting from 1.  Use this to paginate through the data.
+
+                    '
+                  minimum: 1
+                  maximum: 10000
+                  example: 2
+                  default: 1
+                pageSize:
+                  type: number
+                  description: 'The number of results per page. Must be between 1 and 100.
+
+                    '
+                  minimum: 1
+                  maximum: 100
+                  example: 25
+                  default: 50
+                excludeJourneyData:
+                  type: boolean
+                  description: 'Set this to `true` to exclude journey data from the response.
+
+                    '
+                  default: false
+                  example: false
+            examples:
+              ExampleRequest:
+                value:
+                  shop: madisonbraids.myshopify.com
+                  startDate: 2021-01-01T00:00:00.000-0400
+                  endDate: 2021-01-01T23:59:59.999-0400
+                  page: 2
+                  pageSize: 25
+                  excludeJourneyData: false
+      responses:
+        '200':
+          description: 'A successful response containing orders, attribution data,  and (optionally) journey events for the
+            requested period.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as {quota};w={window} where  window is in seconds
+                and quota is the allowed number of calls a user can make  per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - totalForRange
+                - count
+                - startDate
+                - endDate
+                - ordersWithJourneys
+                - earliestDate
+                properties:
+                  totalForRange:
+                    type: number
+                    description: 'The total number of orders within the requested date range.
+
+                      '
+                  count:
+                    type: number
+                    description: 'The number of orders returned in the current page of results.
+
+                      '
+                  startDate:
+                    type: string
+                    description: 'The start date or timestamp of the requested period in ISO 8601 format.
+
+                      '
+                    example: 2021-01-01T00:00:00.000-0400
+                  endDate:
+                    type: string
+                    description: 'The end date or timestamp of the requested period in ISO 8601 format.
+
+                      '
+                    example: 2021-01-01T23:59:59.999-0400
+                  page:
+                    type: number
+                    description: 'The page number of the current response. Starts at 1.
+
+                      '
+                  ordersWithJourneys:
+                    type: array
+                    description: 'A list of orders along with their attribution and journey details.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - order_id
+                      - created_at
+                      - order_name
+                      - attribution
+                      - customer_id
+                      - total_price
+                      - currency
+                      - journey
+                      properties:
+                        order_id:
+                          type: number
+                          description: 'The unique identifier for the order.
+
+                            '
+                        created_at:
+                          type: string
+                          description: 'The timestamp when the order was created, in ISO 8601 format.
+
+                            '
+                        order_name:
+                          type: string
+                          description: 'The name of the order as defined in the e-commerce platform.
+
+                            '
+                        attribution:
+                          type: object
+                          description: 'Attribution details for the order.
+
+                            '
+                          properties:
+                            firstClick:
+                              type: array
+                              description: 'A list of First Click attribution records, representing  the initial interaction
+                                leading to the order.
+
+                                '
+                              items:
+                                type: object
+                                required:
+                                - source
+                                - campaignId
+                                - adsetId
+                                - adId
+                                - clickDate
+                                properties:
+                                  source:
+                                    type: string
+                                    description: The source of the attribution (e.g., Facebook, Google).
+                                  campaignId:
+                                    type: string
+                                    description: The unique identifier of the campaign.
+                                  adsetId:
+                                    type: string
+                                    description: The unique identifier of the adset.
+                                  adId:
+                                    type: string
+                                    description: The unique identifier of the ad.
+                                  clickDate:
+                                    type: string
+                                    description: The timestamp of the click event.
+                        customer_id:
+                          type: number
+                          description: 'The unique identifier for the customer associated with the order.
+
+                            '
+                        total_price:
+                          type: string
+                          description: 'The total price of the order.
+
+                            '
+                        currency:
+                          type: string
+                          description: 'The currency code for the order (e.g., USD, EUR).
+
+                            '
+                          example: USD
+                        journey:
+                          type: array
+                          description: 'A list of events in the customer journey, such as page views  or add-to-cart events,
+                            leading to the order.
+
+                            '
+                          items:
+                            type: object
+                            required:
+                            - time
+                            - event
+                            - path
+                            - productId
+                            properties:
+                              time:
+                                type: string
+                                description: The timestamp of the journey event, in ISO 8601 format.
+                              event:
+                                type: string
+                                description: 'The name of the journey event (e.g., `page loaded` for page views,  `add2c`
+                                  for add-to-cart actions).
+
+                                  '
+                                enum:
+                                - page loaded
+                                - add2c
+                              path:
+                                type: string
+                                description: 'The URL path of the event (e.g., `/products/product-name`).
+
+                                  '
+                              productId:
+                                type: string
+                                description: 'The unique identifier of the product associated with the event.
+
+                                  '
+                  earliestDate:
+                    type: string
+                    description: 'The earliest date among the orders returned in this response.  Returns `null` if there are
+                      no earlier orders.
+
+                      '
+                  error:
+                    type: string
+                    description: 'An error message if the request failed or encountered an issue.
+
+                      '
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+  /summary-page/get-data:
+    post:
+      summary: Get Summary Page Data
+      description: 'Retrieve data from the Summary Page for a specified time period.
+
+        '
+      operationId: get-summary-page-data
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shopDomain
+              - period
+              - todayHour
+              properties:
+                shopDomain:
+                  type: string
+                  description: 'The domain of the shop for which data is being requested  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                period:
+                  type: object
+                  description: 'The time range for the requested data. Specify the start and end dates.
+
+                    '
+                  required:
+                  - start
+                  - end
+                  properties:
+                    start:
+                      type: string
+                      description: 'The start date of the period in ISO 8601 format.
+
+                        '
+                      example: '2023-01-01'
+                    end:
+                      type: string
+                      description: 'The end date of the period in ISO 8601 format.
+
+                        '
+                      example: '2023-01-07'
+                todayHour:
+                  type: number
+                  description: 'The hour of the current day for which data is requested,  base-1 (range: 1–25).
+
+                    '
+                  example: 1
+            examples:
+              ExampleRequest:
+                value:
+                  shopDomain: example.myshopify.com
+                  period:
+                    start: '2023-01-01'
+                    end: '2023-01-07'
+                  todayHour: 1
+      responses:
+        '200':
+          description: 'A successful response containing Summary Page data for the specified shop and period.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as `{quota};w={window}`  where `window` is in seconds
+                and `quota` is the allowed number of calls  per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metrics:
+                    type: array
+                    description: 'A list of key metrics and their values for the specified time period.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - metricName
+                      - value
+                      properties:
+                        metricName:
+                          type: string
+                          description: 'The name of the metric (e.g., `revenue`, `orders`).
+
+                            '
+                        value:
+                          type: number
+                          description: 'The value of the metric for the requested time period.
+
+                            '
+              examples:
+                SuccessResponse:
+                  value:
+                    metrics:
+                    - metricName: revenue
+                      value: 12345.67
+                    - metricName: orders
+                      value: 345
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid request. Please ensure all required fields are correctly populated.
+              examples:
+                BadRequestExample:
+                  value:
+                    success: false
+                    message: Invalid request. Please ensure all required fields are correctly populated.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+  /compliance/requests/create-request:
+    post:
+      summary: Create Compliance Data Deletion Request
+      description: 'Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails
+        and/or phone numbers).
+
+        '
+      operationId: create-compliance-request
+      tags:
+      - Compliance
+      security:
+      - apiKeyAuth:
+        - compliance:write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              properties:
+                shop:
+                  type: string
+                  description: 'The shop domain. The API key owner must have access to this shop.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                emails:
+                  type: array
+                  description: Customer email addresses to include in the request.
+                  items:
+                    type: string
+                    format: email
+                  default: []
+                  example:
+                  - john.smith@gmail.com
+                phones:
+                  type: array
+                  description: Customer phone numbers to include in the request.
+                  items:
+                    type: string
+                  default: []
+                  example:
+                  - +1-555-123-4567
+      responses:
+        '200':
+          description: Request created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Request created successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Shop ID is required
+        '403':
+          description: Forbidden
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: An unknown error occurred
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://triplewhale.com/schemas/order",
+  "title": "Triple Whale Order",
+  "description": "Schema for ingesting order data into Triple Whale via the Data-In API.",
+  "type": "object",
+  "required": ["shop", "order_id", "created_at", "currency", "customer", "order_revenue"],
+  "properties": {
+    "shop": {
+      "type": "string",
+      "description": "The exact Shop URL matching the store in Triple Whale settings.",
+      "example": "madisonbraids.myshopify.com"
+    },
+    "order_id": {
+      "type": "string",
+      "description": "The unique identifier for the order.",
+      "example": "order_12345"
+    },
+    "platform": {
+      "type": "string",
+      "description": "The sales platform where the order originated.",
+      "default": "custom-msp",
+      "example": "magento"
+    },
+    "platform_account_id": {
+      "type": "string",
+      "description": "The account ID associated with the platform.",
+      "default": "custom-msp"
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp with timezone when the order was created.",
+      "example": "2022-06-15T19:26:30.000Z"
+    },
+    "currency": {
+      "type": "string",
+      "description": "The currency code for the transaction.",
+      "example": "USD"
+    },
+    "customer": {
+      "type": "object",
+      "required": ["id"],
+      "description": "Details of the customer who placed the order.",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The unique identifier for the customer.",
+          "example": "customer_123"
+        },
+        "email": {
+          "type": "string",
+          "description": "The customer's email address.",
+          "example": "customer@example.com"
+        },
+        "phone": {
+          "type": "string",
+          "description": "The customer's phone number.",
+          "example": "+1234567890"
+        },
+        "first_name": {
+          "type": "string",
+          "example": "John"
+        },
+        "last_name": {
+          "type": "string",
+          "example": "Doe"
+        }
+      }
+    },
+    "order_revenue": {
+      "type": "number",
+      "description": "Total revenue after adjustments. Must be non-negative.",
+      "example": 150.75
+    },
+    "total_discounts": {
+      "type": "number",
+      "description": "Total discount amount including shipping discounts. Must be non-negative.",
+      "example": 15.5
+    },
+    "taxes": {
+      "type": "number",
+      "description": "Total tax applied to the order. Must be non-negative.",
+      "example": 8.25
+    },
+    "shipping_price": {
+      "type": "number",
+      "description": "Total shipping price paid by buyer.",
+      "example": 15.0
+    },
+    "status": {
+      "type": "string",
+      "description": "Current fulfillment status of the order.",
+      "example": "completed"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Tags associated with the order.",
+      "items": {"type": "string"},
+      "example": ["holiday_sale", "staff_order"]
+    },
+    "discount_codes": {
+      "type": "array",
+      "description": "Discount codes applied to the order.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {"type": "string"},
+          "amount": {"type": "number"},
+          "type": {"type": "string", "enum": ["percentage", "fixed_amount"]}
+        }
+      }
+    },
+    "line_items": {
+      "type": "array",
+      "description": "Products included in the order.",
+      "items": {
+        "type": "object",
+        "required": ["id", "quantity", "price", "variant_id", "product_id"],
+        "properties": {
+          "id": {"type": "string"},
+          "name": {"type": "string"},
+          "price": {"type": "number"},
+          "quantity": {"type": "integer"},
+          "product_id": {"type": "string"},
+          "product_name": {"type": "string"},
+          "variant_id": {"type": "string"},
+          "variant_name": {"type": "string"},
+          "sku": {"type": "string"}
+        }
+      }
+    },
+    "refunds": {
+      "type": "array",
+      "description": "Refunds applied to the order.",
+      "items": {
+        "type": "object",
+        "required": ["refund_id", "refunded_at", "total_refund"],
+        "properties": {
+          "refund_id": {"type": "string"},
+          "refunded_at": {"type": "string", "format": "date-time"},
+          "total_refund": {"type": "number"},
+          "total_tax_refund": {"type": "number"},
+          "total_shipping_refund": {"type": "number"}
+        }
+      }
+    },
+    "shipping_address": {
+      "type": "object",
+      "properties": {
+        "address_1": {"type": "string"},
+        "address_2": {"type": "string"},
+        "city": {"type": "string"},
+        "zip": {"type": "string"},
+        "country_code": {"type": "string"},
+        "province_code": {"type": "string"}
+      }
+    },
+    "void": {
+      "type": "boolean",
+      "description": "Set to true to soft-delete this order record.",
+      "default": false
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the order was last updated."
+    }
+  }
+}

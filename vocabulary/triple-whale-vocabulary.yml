@@ -1,0 +1,94 @@
+vocabulary:
+  - term: shop
+    definition: The Shopify store URL (e.g., example.myshopify.com) that identifies a merchant's Triple Whale account.
+    type: string
+    context: data-in, attribution, summary
+  - term: order_id
+    definition: The unique identifier for an order within the merchant's sales platform.
+    type: string
+    context: data-in, attribution
+  - term: order_revenue
+    definition: The total revenue for an order after adjustments such as discounts, shipping, fees, and taxes.
+    type: number
+    context: data-in/orders
+  - term: pixel
+    definition: Triple Whale's first-party tracking script placed on a Shopify storefront to capture customer journey touchpoints.
+    type: concept
+    context: attribution
+  - term: channel
+    definition: The advertising platform associated with ad data (e.g., facebook-ads, google-ads, tiktok-ads).
+    type: string
+    context: data-in/ads
+  - term: attribution
+    definition: The process of crediting marketing channels for driving customer conversions, using Triple Whale's proprietary pixel-based customer journey data.
+    type: concept
+    context: attribution
+  - term: customer_journey
+    definition: The full sequence of marketing touchpoints a customer experienced before placing an order.
+    type: concept
+    context: attribution
+  - term: blended_roas
+    definition: Return on Ad Spend calculated across all advertising channels, combining platform-reported and Triple Whale pixel-attributed revenue.
+    type: metric
+    context: summary
+  - term: summary_page
+    definition: Triple Whale's central dashboard aggregating metrics from 60+ integrated tools including TikTok, Shopify, Klaviyo, and QuickBooks.
+    type: concept
+    context: summary
+  - term: data_in
+    definition: Triple Whale's ingestion API for pushing external data into the platform from systems without native integration.
+    type: concept
+    context: data-in
+  - term: data_out
+    definition: Triple Whale's export API for retrieving analytics and attribution data for external use or warehousing.
+    type: concept
+    context: attribution, summary
+  - term: moby
+    definition: Triple Whale's AI analytics assistant that accepts natural language queries and returns e-commerce insights.
+    type: concept
+    context: orcabase
+  - term: orcabase
+    definition: Triple Whale's SQL-accessible data layer that exposes normalized e-commerce data for custom querying.
+    type: concept
+    context: orcabase
+  - term: pps
+    definition: Post-Purchase Survey — customer feedback collected after an order to attribute the purchase decision to a marketing channel.
+    type: concept
+    context: data-in/pps
+  - term: subscription
+    definition: A recurring billing arrangement for products or services, ingested into Triple Whale for cohort and LTV analysis.
+    type: concept
+    context: data-in/subscriptions
+  - term: variant_id
+    definition: The unique identifier for a specific product variant (e.g., size or color combination) within a product listing.
+    type: string
+    context: data-in/orders, data-in/products
+  - term: cohort
+    definition: A group of customers segmented by shared characteristics (e.g., first order date) for lifecycle revenue analysis.
+    type: concept
+    context: analytics
+  - term: ltv
+    definition: Lifetime Value — the total revenue attributed to a customer across all their orders.
+    type: metric
+    context: analytics
+  - term: event_date
+    definition: The calendar date (YYYY-MM-DD) on which an ad spend event or order occurred in the merchant's local timezone.
+    type: string
+    context: data-in/ads
+  - term: compliance_request
+    definition: A data deletion or access request submitted under GDPR, CCPA, or similar regulations via the Triple Whale compliance API.
+    type: concept
+    context: compliance
+  - term: api_key
+    definition: A personal authentication credential generated in the Triple Whale app used to authenticate API requests via the x-api-key header.
+    type: concept
+    context: authentication
+  - term: oauth2
+    definition: The OAuth 2.0 authorization framework used by third-party app integrations to access Triple Whale data on behalf of merchants.
+    type: concept
+    context: authentication
+  - term: tw_account_id
+    definition: The Triple Whale account identifier used to scope external integration metric pushes to a specific merchant account.
+    type: string
+    context: external-integrations
+</content>

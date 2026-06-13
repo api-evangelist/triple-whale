@@ -1,0 +1,143 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "tw": "https://www.triplewhale.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "shop": {
+      "@id": "tw:shop",
+      "@type": "xsd:string"
+    },
+    "order_id": {
+      "@id": "tw:orderId",
+      "@type": "xsd:string"
+    },
+    "order_revenue": {
+      "@id": "tw:orderRevenue",
+      "@type": "xsd:decimal"
+    },
+    "channel": {
+      "@id": "tw:channel",
+      "@type": "xsd:string"
+    },
+    "event_date": {
+      "@id": "tw:eventDate",
+      "@type": "xsd:date"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "customer": {
+      "@id": "schema:Person"
+    },
+    "customer_id": {
+      "@id": "tw:customerId",
+      "@type": "xsd:string"
+    },
+    "customer_email": {
+      "@id": "schema:email",
+      "@type": "xsd:string"
+    },
+    "product_id": {
+      "@id": "tw:productId",
+      "@type": "xsd:string"
+    },
+    "product_title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "variant_id": {
+      "@id": "tw:variantId",
+      "@type": "xsd:string"
+    },
+    "subscription_id": {
+      "@id": "tw:subscriptionId",
+      "@type": "xsd:string"
+    },
+    "pixel": {
+      "@id": "tw:Pixel"
+    },
+    "attribution": {
+      "@id": "tw:Attribution"
+    },
+    "customer_journey": {
+      "@id": "tw:CustomerJourney"
+    },
+    "blended_roas": {
+      "@id": "tw:blendedROAS",
+      "@type": "xsd:decimal"
+    },
+    "moby": {
+      "@id": "tw:MobyAI"
+    },
+    "orcabase": {
+      "@id": "tw:OrcaBase"
+    },
+    "pps": {
+      "@id": "tw:PostPurchaseSurvey"
+    },
+    "tw_account_id": {
+      "@id": "tw:accountId",
+      "@type": "xsd:string"
+    },
+    "api_key": {
+      "@id": "tw:ApiKey"
+    },
+    "campaign": {
+      "@id": "schema:MarketingCampaign"
+    },
+    "campaign_id": {
+      "@id": "tw:campaignId",
+      "@type": "xsd:string"
+    },
+    "adset_id": {
+      "@id": "tw:adSetId",
+      "@type": "xsd:string"
+    },
+    "ad_id": {
+      "@id": "tw:adId",
+      "@type": "xsd:string"
+    },
+    "impressions": {
+      "@id": "tw:impressions",
+      "@type": "xsd:integer"
+    },
+    "clicks": {
+      "@id": "tw:clicks",
+      "@type": "xsd:integer"
+    },
+    "conversions": {
+      "@id": "tw:conversions",
+      "@type": "xsd:integer"
+    },
+    "spend": {
+      "@id": "tw:adSpend",
+      "@type": "xsd:decimal"
+    },
+    "currency": {
+      "@id": "schema:currency",
+      "@type": "xsd:string"
+    },
+    "line_items": {
+      "@id": "schema:orderedItem"
+    },
+    "refunds": {
+      "@id": "tw:Refund"
+    },
+    "tags": {
+      "@id": "schema:keywords"
+    },
+    "shipping_address": {
+      "@id": "schema:PostalAddress"
+    },
+    "status": {
+      "@id": "schema:orderStatus",
+      "@type": "xsd:string"
+    }
+  }
+}
