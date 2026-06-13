@@ -1,0 +1,44 @@
+name: Triple Whale API Rate Limits
+description: Rate limits and payload constraints for Triple Whale's Data-In and Data-Out
+  APIs.
+version: '0.1'
+url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+limits:
+  - name: Offline Events Rate Limit
+    description: Maximum number of offline pixel events that can be sent per minute
+      via the Data-In API.
+    scope: api
+    endpoint: /v2/pixel/events
+    rate: 1000
+    interval: minute
+    unit: events
+  - name: Offline Event Payload Size
+    description: Maximum payload size per offline event request sent to the Triple
+      Whale pixel events endpoint.
+    scope: request
+    endpoint: /v2/pixel/events
+    limit: 3
+    unit: KB
+    type: payload_size
+  - name: Order Records Batch Support
+    description: Order records endpoint supports batch submission of multiple orders
+      in a single request to optimize throughput.
+    scope: api
+    endpoint: /v2/orders
+    type: batch
+    notes: Batch ingestion supported; individual record limits apply
+authentication:
+  - type: APIKey
+    header: x-api-key
+    notes: Personal API keys scoped per environment (production, testing, development).
+      Key validation endpoint available at /api/v2/users/api-keys/me.
+  - type: OAuth2
+    notes: Required for third-party integrations. App registration via Triple Whale
+      developer portal required before OAuth2 flow.
+notes:
+  - Specific rate limits for Data-Out endpoints (SQL queries, natural language queries,
+    summary page, attribution) are not publicly documented.
+  - Enterprise plan customers may negotiate higher rate limits via their dedicated
+    success team.
+  - Rate limit details for the Summary and Attribution APIs should be confirmed with
+    Triple Whale support or via the developer portal.

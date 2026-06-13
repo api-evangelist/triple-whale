@@ -1,0 +1,86 @@
+name: Triple Whale FinOps Framework
+description: FinOps Framework FOCUS-aligned cost and usage data for Triple Whale
+  e-commerce analytics and attribution platform API consumption.
+version: '1.0'
+url: https://www.triplewhale.com/pricing
+provider: Triple Whale
+currency: USD
+billing_model: subscription
+billing_interval: month
+cost_allocation:
+  - dimension: plan
+    description: Primary cost driver is subscription plan tier (Free, Foundation,
+      Automate, Enterprise).
+    values:
+      - name: Free
+        unit_cost: 0
+        currency: USD
+      - name: Foundation
+        unit_cost: 219
+        currency: USD
+        notes: Starting price; scales with GMV tier
+      - name: Automate
+        unit_cost: 749
+        currency: USD
+        notes: Starting price; scales with GMV tier
+      - name: Enterprise
+        unit_cost: 0
+        currency: USD
+        notes: Custom pricing; contact sales
+  - dimension: gmv_tier
+    description: Subscription price scales based on the brand's last 12 months gross
+      merchandise value (GMV).
+    notes: Exact GMV tier pricing brackets not publicly documented; higher GMV results
+      in higher monthly subscription cost.
+  - dimension: add_on
+    description: Optional add-on modules billed separately on top of the base plan.
+    values:
+      - name: Retention Module
+        unit_cost: 19
+        currency: USD
+        interval: month
+      - name: Conversion Module
+        unit_cost: 79
+        currency: USD
+        interval: month
+      - name: Data Warehouse Sync
+        unit_cost: 0
+        currency: USD
+        notes: Custom pricing
+      - name: Compass (MMM/Incrementality)
+        unit_cost: 0
+        currency: USD
+        notes: Included in Enterprise; custom pricing for lower tiers
+      - name: Moby Concierge
+        unit_cost: 0
+        currency: USD
+        notes: Custom pricing
+usage_metrics:
+  - metric: api_events_ingested
+    description: Number of offline pixel events ingested via the Data-In API.
+    unit: events
+    rate_limit: 1000 per minute
+    notes: High-volume ingestion should be paced to stay within the 1,000 events/minute
+      limit.
+  - metric: data_warehouse_sync
+    description: Volume of data synchronized to external data warehouses (BigQuery,
+      Redshift, Snowflake).
+    unit: records
+    notes: Requires Data Warehouse Sync add-on; pricing custom.
+  - metric: sql_queries
+    description: Custom SQL queries executed via the Data-Out API SQL editor.
+    unit: queries
+    notes: Included in Foundation and above; specific usage limits not publicly documented.
+optimization:
+  - recommendation: Start on Foundation plan and evaluate usage before upgrading to
+      Automate.
+  - recommendation: Use batch order ingestion endpoints to maximize efficiency within
+      rate limits.
+  - recommendation: Pace offline event ingestion to stay within the 1,000 events/minute
+      rate limit to avoid throttling.
+  - recommendation: Use separate API keys per environment (production, staging, development)
+      for accurate cost attribution and security.
+  - recommendation: Evaluate Data Warehouse Sync add-on only when direct SQL access
+      or BI tool integration is needed.
+  - recommendation: For multi-brand or agency scenarios, Enterprise plan with multi-brand
+      reporting may provide better per-brand unit economics.

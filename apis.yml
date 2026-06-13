@@ -1,0 +1,103 @@
+aid: triple-whale
+name: Triple Whale
+description: E-commerce analytics and attribution platform for Shopify brands with
+  a REST API for accessing pixel data, cohort analytics, creative metrics, and blended
+  ROAS. Offers a two-way data highway with Data-In and Data-Out APIs supporting OAuth2
+  and API key authentication.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/triple-whale/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - E-commerce
+  - Analytics
+  - Attribution
+  - Shopify
+  - Pixel Tracking
+  - ROAS
+  - DTC
+  - Marketing
+apis:
+  - aid: triple-whale:triple-whale-summary-api
+    name: Triple Whale Summary API
+    description: Data-Out API for retrieving dashboard summary page metrics for specified
+      timeframes, giving brands access to centralized metrics from 60+ integrated
+      tools including TikTok, Shopify, Klaviyo, and QuickBooks.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+    baseURL: https://api.triplewhale.com
+    tags:
+      - Summary
+      - Metrics
+      - Dashboard
+      - Analytics
+    properties:
+      - type: Documentation
+        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+      - type: GitHubRepository
+        url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - aid: triple-whale:triple-whale-attribution-api
+    name: Triple Whale Attribution API
+    description: Data-Out API for querying customer journey attribution data powered
+      by Triple Whale's proprietary pixel-tracking technology, with support for exporting
+      to Google BigQuery, AWS Redshift, and Snowflake.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+    baseURL: https://api.triplewhale.com
+    tags:
+      - Attribution
+      - Customer Journey
+      - Pixel
+      - Data Warehouse
+    properties:
+      - type: Documentation
+        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+      - type: GitHubRepository
+        url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - aid: triple-whale:triple-whale-data-in-api
+    name: Triple Whale Data-In API
+    description: Ingestion API for pushing external data into Triple Whale from platforms
+      without native integration, including ad records, orders, customers, products,
+      subscriptions, post-purchase survey responses, and offline pixel events.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+    baseURL: https://api.triplewhale.com
+    tags:
+      - Data Ingestion
+      - Orders
+      - Customers
+      - Events
+      - Offline Events
+    properties:
+      - type: Documentation
+        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+      - type: GitHubRepository
+        url: https://github.com/Triple-Whale/triple-whale-public-apis
+common:
+  - type: Website
+    url: https://www.triplewhale.com
+  - type: Documentation
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GitHubOrg
+    url: https://github.com/Triple-Whale
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/triple-whale
+  - type: Blog
+    url: https://www.triplewhale.com/blog
+  - type: Pricing
+    url: https://www.triplewhale.com/pricing
+  - type: StatusPage
+    url: https://status.triplewhale.com
+  - type: X
+    url: https://x.com/triplewhale
+  - type: Plans
+    url: plans/triple-whale-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/triple-whale-rate-limits.yml
+  - type: FinOps
+    url: finops/triple-whale-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

@@ -1,0 +1,98 @@
+name: Triple Whale Plans and Pricing
+description: Pricing plans for Triple Whale e-commerce analytics and attribution platform.
+  Pricing is tiered based on the last 12 months gross merchandise value (GMV) of
+  the brand's business.
+version: '0.1'
+url: https://www.triplewhale.com/pricing
+plans:
+  - name: Free
+    description: Real-time business snapshot with basic tracking and first/last-click
+      attribution for brands getting started.
+    price: 0
+    currency: USD
+    interval: month
+    features:
+      - Real-time business snapshot
+      - Basic tracking
+      - First/last-click attribution
+      - Post-purchase survey
+      - 12-month lookback
+      - Up to 10 users
+      - Founders Dash access
+    api_access: false
+  - name: Foundation
+    description: Full multi-touch attribution, custom dashboards, SQL editor, and
+      Moby AI operator for growing brands. Price varies by GMV tier.
+    price: 219
+    currency: USD
+    interval: month
+    price_notes: Starting price; scales with GMV tier
+    features:
+      - Multi-touch attribution
+      - Custom dashboards
+      - SQL editor
+      - Segment builder
+      - Moby AI operator
+      - Unlimited lookback
+      - Unlimited users
+      - Data-In API access
+      - Data-Out API access
+      - 60+ integrations
+    api_access: true
+  - name: Automate
+    description: Everything in Foundation plus automations, Moby Specialists, creative
+      generation, and campaign actions with guardrails.
+    price: 749
+    currency: USD
+    interval: month
+    price_notes: Starting price; scales with GMV tier
+    features:
+      - Everything in Foundation
+      - Automations
+      - Moby Specialists
+      - Creative generation
+      - Campaign actions with guardrails
+      - Data-In API access
+      - Data-Out API access
+    api_access: true
+  - name: Enterprise
+    description: Full platform access including Compass (MMM, incrementality testing,
+      MTA), multi-brand reporting, SOC 2 Type 2 compliance, SSO, and dedicated success
+      team.
+    price: 0
+    currency: USD
+    interval: month
+    price_notes: Custom pricing; contact sales
+    features:
+      - Everything in Automate
+      - Compass (MMM, incrementality testing, MTA)
+      - Multi-brand reporting
+      - SOC 2 Type 2 compliance
+      - SSO (Single Sign-On)
+      - Dedicated customer success team
+      - Data-In API access
+      - Data-Out API access
+      - Data Warehouse Sync
+      - Full API suite access
+    api_access: true
+add_ons:
+  - name: Retention
+    price: 19
+    currency: USD
+    interval: month
+  - name: Conversion
+    price: 79
+    currency: USD
+    interval: month
+  - name: Data Warehouse Sync
+    price: 0
+    currency: USD
+    price_notes: Custom pricing
+  - name: Compass
+    price: 0
+    currency: USD
+    price_notes: Custom pricing; included in Enterprise
+  - name: Moby Concierge
+    price: 0
+    currency: USD
+    price_notes: Custom pricing
