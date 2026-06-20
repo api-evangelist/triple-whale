@@ -5,7 +5,7 @@ description: E-commerce analytics and attribution platform for Shopify brands wi
   ROAS. Offers a two-way data highway with Data-In and Data-Out APIs supporting OAuth2
   and API key authentication.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/triple-whale/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -25,7 +25,7 @@ apis:
     description: Data-Out API for retrieving dashboard summary page metrics for specified
       timeframes, giving brands access to centralized metrics from 60+ integrated
       tools including TikTok, Shopify, Klaviyo, and QuickBooks.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
     baseURL: https://api.triplewhale.com
     tags:
@@ -45,7 +45,7 @@ apis:
     description: Data-Out API for querying customer journey attribution data powered
       by Triple Whale's proprietary pixel-tracking technology, with support for exporting
       to Google BigQuery, AWS Redshift, and Snowflake.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
     baseURL: https://api.triplewhale.com
     tags:
@@ -65,7 +65,7 @@ apis:
     description: Ingestion API for pushing external data into Triple Whale from platforms
       without native integration, including ad records, orders, customers, products,
       subscriptions, post-purchase survey responses, and offline pixel events.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
     baseURL: https://api.triplewhale.com
     tags:
