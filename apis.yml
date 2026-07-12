@@ -88,6 +88,12 @@ apis:
       - type: Examples
         url: examples/triple-whale-examples.yml
 common:
+  - type: TrustCenter
+    url: security/triple-whale-trust-center.yml
+  - type: DomainSecurity
+    url: security/triple-whale-domain-security.yml
+  - type: Authentication
+    url: authentication/triple-whale-authentication.yml
   - type: Website
     url: https://www.triplewhale.com
   - type: Documentation
