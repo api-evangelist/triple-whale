@@ -1,0 +1,1049 @@
+openapi: 3.0.3
+info:
+  title: Triple Whale API Keys Data Out API
+  version: '1.0'
+  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
+
+    '
+servers:
+- url: https://api.triplewhale.com/api/v2/
+security:
+- apiKeyAuth: []
+tags:
+- name: Data Out
+paths:
+  /orcabase/api/moby:
+    post:
+      summary: Execute Natural Language Query (Moby AI)
+      description: 'Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.
+
+        '
+      operationId: data-out-execute-natural-language-query-moby
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - question
+              - shopId
+              properties:
+                shopId:
+                  type: string
+                  description: 'The shop domain for which you are requesting data  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                question:
+                  type: string
+                  description: 'The natural language input describing the data you want to query. The AI interprets this to generate SQL or directly retrieve relevant data.
+
+                    '
+                  example: 'I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.'
+      responses:
+        '200':
+          description: 'The natural language query was successfully processed, and the response contains the query results in JSON format, grouped by `question` and its respective `answer`.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint. Allowed: no more than 10 requests per second and no more than 60 requests per minute.
+
+                '
+              schema:
+                type: string
+              example: 60;w=60, 10;w=1
+            RateLimit:
+              description: 'The current usage of your rate limit for this endpoint.
+
+                '
+              schema:
+                type: string
+              example: 8/60
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isError:
+                    type: boolean
+                    description: Indicates whether any errors occurred in processing the request.
+                    example: false
+                  error:
+                    type: string
+                    description: 'An optional error field if an error occurred.
+
+                      '
+                    nullable: true
+                  responses:
+                    type: array
+                    description: List of responses to the provided questions.
+                    items:
+                      type: object
+                      properties:
+                        question:
+                          type: string
+                          description: The original user-provided question.
+                        answer:
+                          type: object
+                          description: 'The computed response with structured data. In practice, this object can contain arbitrary fields depending on the question, so it''s declared using additionalProperties.
+
+                            '
+                          additionalProperties:
+                            oneOf:
+                            - type: string
+                            - type: number
+                            - type: boolean
+                            - type: array
+                              items:
+                                oneOf:
+                                - type: string
+                                - type: number
+                                - type: boolean
+                                - type: object
+                                  additionalProperties: true
+                            - type: object
+                              additionalProperties: true
+                        isError:
+                          type: boolean
+                          description: Indicates whether an error occurred in processing the query.
+                          example: false
+                        errorMsg:
+                          type: string
+                          description: 'An optional message describing why an error occurred.
+
+                            '
+                          nullable: true
+                        assistant:
+                          type: string
+                          description: Internal assistant instructions and metadata (hidden from users).
+                  assistantConclusion:
+                    type: string
+                    description: Summary provided by the assistant regarding the processed queries.
+                    example: 'Your data is ready for exploration:
+
+
+                      1. **Blended Spend for the Last 7 Days**: You can view the daily breakdown in the table format.
+
+                      2. **Best Performing Campaigns in the Last 30 Days**: The list of top campaigns is available in the table format.
+
+
+                      If you need further assistance or have more questions, feel free to ask!
+
+                      '
+              example:
+                isError: false
+                error: null
+                responses:
+                - question: What is the blended spend for the last 7 days, broken down by day?
+                  answer:
+                    event_date:
+                    - '2025-02-05'
+                    - '2025-02-04'
+                    - '2025-02-03'
+                    - '2025-02-02'
+                    - '2025-02-01'
+                    - '2025-01-31'
+                    - '2025-01-30'
+                    blended_spend:
+                    - 98169.2413
+                    - 96323.7538
+                    - 99176.6398
+                    - 115385.6991
+                    - 98238.0891
+                    - 79859.6856
+                    - 69779.5765
+                  isError: false
+                  errorMsg: null
+                  assistant: "<!-- Instructions for the Assistant (Hidden from the user) -->\nInstructions to the Assistant:\n1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics, or interpretations.\n2. Inform the user that their data is ready to explore in the visualization type: Table.\n3. If similar reports are provided, let the user know that some similar reports have been found.\n4. Ask the user if there's anything else you can assist with.\n\n<!-- Internal Sections (Hidden from the user) -->\n<<Only for INFO - Forbidden to show to the user>>\n<widget>\n  <data>{\"event_date\":[\"2025-02-05\",\"2025-02-04\",\"2025-02-03\",\"2025-02-02\",\"2025-02-01\",\"2025-01-31\",\"2025-01-30\"],\"blended_spend\":[98169.2413,96323.7538,99176.6398,115385.6991,98238.0891,79859.6856,69779.5765]}</data>\n</widget>\nTotal rows of current <data> without pagination: 7\nHere are details how we got the data: {\"included_platforms\":[\"shopify\",\"amazon\"],\"final_select\":{\"tables_data\":[{\"table_name\":\"blended_stats_tvf\",\"table_alias\":\"bst\"}],\"metrics\":[\"bst.event_date AS event_date\",\"SUM(bst.spend) AS blended_spend\"],\"filters\":[\"bst.event_date BETWEEN '2025-01-30' AND '2025-02-05'\"],\"group_by\":[\"bst.event_date\"],\"order_by\":[\"ORDER BY bst.event_date DESC\"]}}\n\n<<Only for TextToPython - Forbidden to show to the user>>\n<fileName>what_is_the_blended_spend_for_the_last_7_days.json</fileName>\n\nSimilar report: [Web Analysis 360](https://app.triplewhale.com/dashboards/IH53tYJ62E7kDtUmnBP1?shop-id=exampleshop.myshopify.com)\nSimilar report: [CPS ROAS Metrics](https://app.triplewhale.com/dashboards/WvwJU8w8sPvELVM4vSXq?shop-id=exampleshop.myshopify.com)"
+                - question: List the best performing campaigns in the last 30 days.
+                  answer:
+                    event_date:
+                    - '2025-02-02'
+                    - '2025-01-10'
+                    - '2025-01-24'
+                    - '2025-01-14'
+                    - '2025-01-11'
+                    - '2025-01-23'
+                    - '2025-01-13'
+                    - '2025-01-12'
+                    - '2025-02-02'
+                    - '2025-01-24'
+                    - '2025-02-05'
+                    - '2025-02-03'
+                    - '2025-02-03'
+                    - '2025-01-28'
+                    - '2025-01-20'
+                    - '2025-01-27'
+                    - '2025-01-21'
+                    - '2025-01-25'
+                    - '2025-01-27'
+                    - '2025-01-10'
+                    - '2025-01-16'
+                    - '2025-01-17'
+                    - '2025-01-16'
+                    - '2025-01-26'
+                    - '2025-01-15'
+                    - '2025-02-05'
+                    - '2025-02-03'
+                    - '2025-02-01'
+                    - '2025-01-18'
+                    - '2025-01-19'
+                    - '2025-01-31'
+                    - '2025-01-11'
+                    - '2025-02-01'
+                    - '2025-01-11'
+                    - '2025-01-22'
+                    - '2025-01-12'
+                    - '2025-02-04'
+                    - '2025-01-08'
+                    - '2025-01-23'
+                    - '2025-01-30'
+                    - '2025-02-05'
+                    - '2025-01-13'
+                    - '2025-01-12'
+                    - '2025-02-02'
+                    - '2025-01-09'
+                    - '2025-01-14'
+                    - '2025-01-31'
+                    - '2025-01-12'
+                    - '2025-01-23'
+                    - '2025-01-18'
+                    campaign_id:
+                    - 9da48d7a55e4aa02713ff9e2bd6a69e8
+                    - '120214728393150052'
+                    - '501490858035553'
+                    - '120209593687300052'
+                    - 1f0de9e5c6a9c1bb3d5682df245131f4
+                    - '422302067656093'
+                    - '501490858035553'
+                    - '501490858035553'
+                    - '22171659996'
+                    - '367700987853049'
+                    - '471288027443260'
+                    - '22171659996'
+                    - '543707118551857'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '519173100160558'
+                    - 1f0de9e5c6a9c1bb3d5682df245131f4
+                    - '22105299766'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '543707118551857'
+                    - '367700987853049'
+                    - '22171659996'
+                    - '367700987853049'
+                    - '21032301997'
+                    - '367700987853049'
+                    - '429079956350540'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '21032301997'
+                    - '21883477652'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '367700987853049'
+                    - '476483392245163'
+                    - '367700987853049'
+                    - '120214730413560052'
+                    - '22171659996'
+                    - '543707118551857'
+                    - '120215045998770052'
+                    - '485526473928952'
+                    campaign_name:
+                    - ExampleShop_Budget_CPP
+                    - c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing
+                    - ExampleShop_CPP
+                    - Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - All SKUs
+                    - SD_Conversion_Own Brand ASINs_LONG SLEEVE CREW 431a01
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple Crew Neck, 6pck
+                    - ExampleShop_CPP
+                    - c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - All SKUs
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - All SKUs
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All
+                    - All SKUs
+                    - Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic Crew Neck, 6pck
+                    - All SKUs
+                    - All SKUs
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All
+                    - c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - All SKUs
+                    - Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE HENLEY
+                    - All SKUs
+                    - c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_
+                    - c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products
+                    - Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors
+                    - c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC Campaign
+                    - Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck, 6pck
+                    roas:
+                    - 7884.6338
+                    - 246
+                    - 229.4836
+                    - 170.48
+                    - 166.5097
+                    - 127.4314
+                    - 99.99
+                    - 99.99
+                    - 99.9151
+                    - 97.71
+                    - 94.3208
+                    - 93.2286
+                    - 88.2255
+                    - 85.9531
+                    - 82.7707
+                    - 81.6613
+                    - 79.876
+                    - 77.9684
+                    - 76.3282
+                    - 75.5596
+                    - 75.2808
+                    - 75.2316
+                    - 75.2262
+                    - 74.597
+                    - 74.2683
+                    - 72.8411
+                    - 72.2888
+                    - 72.1965
+                    - 71.7091
+                    - 70.9656
+                    - 70.9571
+                    - 70.5765
+                    - 69.6215
+                    - 68.5633
+                    - 68.3214
+                    - 67.9308
+                    - 67.4945
+                    - 67.2915
+                    - 67.2758
+                    - 67.2536
+                    - 65.9382
+                    - 65.8498
+                    - 65.1494
+                    - 63.6273
+                    - 61.4947
+                    - 60.435
+                    - 60.3353
+                    - 59.99
+                    - 57.8311
+                    - 57.7977
+                  isError: false
+                  errorMsg: null
+                  assistant: "<!-- Instructions for the Assistant (Hidden from the user) -->\nInstructions to the Assistant:\n1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics, or interpretations.\n2. Inform the user that their data is ready to explore in the visualization type: Table.\n3. If similar reports are provided, let the user know that some similar reports have been found.\n4. Ask the user if there's anything else you can assist with.\n\n<!-- Internal Sections (Hidden from the user) -->\n<<Only for INFO - Forbidden to show to the user>>\n<widget>\n  <data>{\"event_date\":[\"2025-02-02\",\"2025-01-10\",\"2025-01-24\",\"2025-01-14\",\"2025-01-11\",\"2025-01-23\",\"2025-01-13\",\"2025-01-12\",\"2025-02-02\",\"2025-01-24\",\"2025-02-05\",\"2025-02-03\",\"2025-02-03\",\"2025-01-28\",\"2025-01-20\",\"2025-01-27\",\"2025-01-21\",\"2025-01-25\",\"2025-01-27\",\"2025-01-10\",\"2025-01-16\",\"2025-01-17\",\"2025-01-16\",\"2025-01-26\",\"2025-01-15\",\"2025-02-05\",\"2025-02-03\",\"2025-02-01\",\"2025-01-18\",\"2025-01-19\",\"2025-01-31\",\"2025-01-11\",\"2025-02-01\",\"2025-01-11\",\"2025-01-22\",\"2025-01-12\",\"2025-02-04\",\"2025-01-08\",\"2025-01-23\",\"2025-01-30\",\"2025-02-05\",\"2025-01-13\",\"2025-01-12\",\"2025-02-02\",\"2025-01-09\",\"2025-01-14\",\"2025-01-31\",\"2025-01-12\",\"2025-01-23\",\"2025-01-18\"],\"campaign_id\":[\"9da48d7a55e4aa02713ff9e2bd6a69e8\",\"120214728393150052\",\"501490858035553\",\"120209593687300052\",\"1f0de9e5c6a9c1bb3d5682df245131f4\",\"422302067656093\",\"501490858035553\",\"501490858035553\",\"22171659996\",\"367700987853049\",\"471288027443260\",\"22171659996\",\"543707118551857\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"519173100160558\",\"1f0de9e5c6a9c1bb3d5682df245131f4\",\"22105299766\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"543707118551857\",\"367700987853049\",\"22171659996\",\"367700987853049\",\"21032301997\",\"367700987853049\",\"429079956350540\",\"367700987853049\",\"367700987853049\",\"21032301997\",\"21883477652\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"367700987853049\",\"476483392245163\",\"367700987853049\",\"120214730413560052\",\"22171659996\",\"543707118551857\",\"120215045998770052\",\"485526473928952\"],\"campaign_name\":[\"ExampleShop_Budget_CPP\",\"c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\"c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing\",\"ExampleShop_CPP\",\"Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"All SKUs\",\"SD_Conversion_Own Brand ASINs_LONG SLEEVE CREW 431a01\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple Crew Neck, 6pck\",\"ExampleShop_CPP\",\"c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\"All SKUs\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"All SKUs\",\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\"All SKUs\",\"Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic Crew Neck, 6pck\",\"All SKUs\",\"All SKUs\",\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\"c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"All SKUs\",\"Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE HENLEY\",\"All SKUs\",\"c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_\",\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\"c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC Campaign\",\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck, 6pck\"],\"roas\":[7884.6338,246,229.4836,170.48,166.5097,127.4314,99.99,99.99,99.9151,97.71,94.3208,93.2286,88.2255,85.9531,82.7707,81.6613,79.876,77.9684,76.3282,75.5596,75.2808,75.2316,75.2262,74.597,74.2683,72.8411,72.2888,72.1965,71.7091,70.9656,70.9571,70.5765,69.6215,68.5633,68.3214,67.9308,67.4945,67.2915,67.2758,67.2536,65.9382,65.8498,65.1494,63.6273,61.4947,60.435,60.3353,59.99,57.8311,57.7977]}\n</widget>\nTotal rows of current <data> without pagination: 43246\nHere are details how we got the data: {\"final_select\":{\"tables_data\":[{\"table_name\":\"pixel_joined_tvf\",\"table_alias\":\"pj\"}],\"metrics\":[\"pj.event_date AS event_date\",\"pj.campaign_id AS campaign_id\",\"pj.campaign_name AS campaign_name\",\"SUM(pj.channel_reported_conversion_value) / SUM(pj.spend) AS roas\"],\"filters\":[\"pj.event_date BETWEEN '2025-01-08' AND '2025-02-06'\",\"pj.model = 'Triple Attribution'\"],\"group_by\":[\"pj.event_date\",\"pj.campaign_id\",\"pj.campaign_name\"],\"order_by\":[\"ORDER BY roas DESC\"]}}\n\n<<Only for TextToPython - Forbidden to show to the user>>\n<fileName>list_the_best_performing_campaigns_in_the_last_30_days.json</fileName>\n\nSimilar report: [Activity Tracker](https://app.triplewhale.com/dashboards/O5uAw1DJ0VmuLsmaXMXh?shop-id=exampleshop.myshopify.com)\nSimilar report: [Chase Dimond's Klaviyo Template](https://app.triplewhale.com/dashboards/aGjZT4TwAKIfmGMK34Fo?shop-id=exampleshop.myshopify.com)"
+                assistantConclusion: 'Your data is ready for exploration:
+
+
+                  1. **Blended Spend for the Last 7 Days**: You can view the daily breakdown in the table format.
+
+                  2. **Best Performing Campaigns in the Last 30 Days**: The list of top campaigns is available in the table format.
+
+
+                  If you need further assistance or have more questions, feel free to ask!'
+        '400':
+          description: Invalid request due to missing or malformed parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing why the request failed, including the names of missing or malformed parameters.
+
+                      '
+                    example: 'Missing fields: question'
+        '403':
+          description: Access forbidden due to missing or invalid access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message indicating missing or invalid credentials.
+                    example: Access token is required
+        '429':
+          description: Rate limit exceeded. Too many requests were sent in a short period.
+          headers:
+            Retry-After:
+              description: 'The number of seconds until you can make another request.
+
+                '
+              schema:
+                type: integer
+              example: 10
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing the rate limit issue and suggesting when to retry.
+
+                      '
+                    example: Rate limit exceeded. Please wait 10 seconds before retrying.
+        '500':
+          description: Internal server error. An unexpected issue occurred on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message describing the internal server error.
+                    example: An unexpected error occurred. Please try again later.
+  /orcabase/api/sql:
+    post:
+      summary: Execute Custom SQL Query
+      description: 'Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.
+
+        '
+      operationId: data-out-execute-custom-sql-query
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - query
+              - period
+              - shopId
+              properties:
+                shopId:
+                  type: string
+                  description: 'The shop domain for which you are requesting data  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                query:
+                  type: string
+                  description: 'The SQL query string to execute. Include dynamic `@startDate` AND `@endDate` parameters in your query string, and provide specific start and end values in the request body via `period.startDate` and `period.endDate`.
+
+                    '
+                  example: SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel
+                currency:
+                  type: string
+                  description: The currency for data aggregation (e.g., USD, EUR). Defaults to the currency provided during user account registration.
+                  example: USD
+                period:
+                  type: object
+                  description: The date range for the query period.
+                  required:
+                  - startDate
+                  - endDate
+                  properties:
+                    startDate:
+                      type: string
+                      format: date
+                      description: The start date for the query period (ISO 8601 format).
+                      example: '2025-07-01'
+                    endDate:
+                      type: string
+                      format: date
+                      description: The end date for the query period (ISO 8601 format).
+                      example: '2025-07-31'
+      responses:
+        '200':
+          description: 'The SQL query was executed successfully, and the response contains the query results in a JSON format grouped by `channel` and `event_date`.
+
+            '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: true
+                  message:
+                    type: string
+                    description: A success message indicating the query was executed.
+                    example: The query was executed successfully.
+                  data:
+                    type: array
+                    description: 'The query results as an array of objects, with dynamically generated properties that can include strings, numbers, dates, or other types.
+
+                      '
+                    items:
+                      type: object
+                      additionalProperties:
+                        oneOf:
+                        - type: string
+                        - type: number
+                        - type: boolean
+                        - type: object
+                        - type: array
+                        - type: string
+                          format: date
+                    example:
+                    - channel: facebook-ads
+                      event_date: '2024-12-01'
+                      spend: 345.0
+                      clicks: 1250
+                    - channel: google-ads
+                      event_date: '2024-12-02'
+                      spend: 412.75
+                      clicks: 900
+                    - channel: twitter-ads
+                      event_date: '2024-12-03'
+                      spend: 210.25
+                      clicks: 640
+        '400':
+          description: Invalid request due to missing or malformed parameters.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing why the request failed, including the names of missing or malformed parameters.
+
+                      '
+                    example: 'Missing fields: query, startDate, endDate'
+        '403':
+          description: Access forbidden due to missing or invalid access token.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message indicating missing or invalid credentials.
+                    example: Access token is required
+        '429':
+          description: Rate limit exceeded. Too many requests were sent in a short period.
+          headers:
+            Retry-After:
+              description: 'The number of seconds until you can make another request.
+
+                '
+              schema:
+                type: integer
+                example: 10
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: 'An error message describing the rate limit issue and suggesting when to retry.
+
+                      '
+                    example: Rate limit exceeded. Please wait 10 seconds before retrying.
+        '500':
+          description: Internal server error. An unexpected issue occurred on the server.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    description: Indicates whether the request was successful.
+                    example: false
+                  message:
+                    type: string
+                    description: An error message describing the internal server error.
+                    example: An unexpected error occurred. Please try again later.
+  /attribution/get-orders-with-journeys-v2:
+    post:
+      summary: Get Customer Journey Attribution Data
+      description: 'Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.
+
+        '
+      operationId: get-customer-journey-attribution-data
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              - startDate
+              - endDate
+              properties:
+                shop:
+                  type: string
+                  description: 'The exact Shop URL (e.g., ''example.myshopify.com''). Must match the Shop URL value shown in  [Settings → Store](https://app.triplewhale.com/store-settings/general). The API key owner must  also have access to the shop, otherwise the request will return 403.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                startDate:
+                  type: string
+                  description: 'The start date or timestamp for the requested data period.  Must be in ISO 8601 format.
+
+                    '
+                  example: 2021-01-01T00:00:00.000-0400
+                endDate:
+                  type: string
+                  description: 'The end date or timestamp for the requested data period.  Must be in ISO 8601 format.
+
+                    '
+                  example: 2021-01-01T23:59:59.999-0400
+                page:
+                  type: number
+                  description: 'The page number of results to return, starting from 1.  Use this to paginate through the data.
+
+                    '
+                  minimum: 1
+                  maximum: 10000
+                  example: 2
+                  default: 1
+                pageSize:
+                  type: number
+                  description: 'The number of results per page. Must be between 1 and 100.
+
+                    '
+                  minimum: 1
+                  maximum: 100
+                  example: 25
+                  default: 50
+                excludeJourneyData:
+                  type: boolean
+                  description: 'Set this to `true` to exclude journey data from the response.
+
+                    '
+                  default: false
+                  example: false
+            examples:
+              ExampleRequest:
+                value:
+                  shop: madisonbraids.myshopify.com
+                  startDate: 2021-01-01T00:00:00.000-0400
+                  endDate: 2021-01-01T23:59:59.999-0400
+                  page: 2
+                  pageSize: 25
+                  excludeJourneyData: false
+      responses:
+        '200':
+          description: 'A successful response containing orders, attribution data,  and (optionally) journey events for the requested period.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as {quota};w={window} where  window is in seconds and quota is the allowed number of calls a user can make  per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - totalForRange
+                - count
+                - startDate
+                - endDate
+                - ordersWithJourneys
+                - earliestDate
+                properties:
+                  totalForRange:
+                    type: number
+                    description: 'The total number of orders within the requested date range.
+
+                      '
+                  count:
+                    type: number
+                    description: 'The number of orders returned in the current page of results.
+
+                      '
+                  startDate:
+                    type: string
+                    description: 'The start date or timestamp of the requested period in ISO 8601 format.
+
+                      '
+                    example: 2021-01-01T00:00:00.000-0400
+                  endDate:
+                    type: string
+                    description: 'The end date or timestamp of the requested period in ISO 8601 format.
+
+                      '
+                    example: 2021-01-01T23:59:59.999-0400
+                  page:
+                    type: number
+                    description: 'The page number of the current response. Starts at 1.
+
+                      '
+                  ordersWithJourneys:
+                    type: array
+                    description: 'A list of orders along with their attribution and journey details.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - order_id
+                      - created_at
+                      - order_name
+                      - attribution
+                      - customer_id
+                      - total_price
+                      - currency
+                      - journey
+                      properties:
+                        order_id:
+                          type: number
+                          description: 'The unique identifier for the order.
+
+                            '
+                        created_at:
+                          type: string
+                          description: 'The timestamp when the order was created, in ISO 8601 format.
+
+                            '
+                        order_name:
+                          type: string
+                          description: 'The name of the order as defined in the e-commerce platform.
+
+                            '
+                        attribution:
+                          type: object
+                          description: 'Attribution details for the order.
+
+                            '
+                          properties:
+                            firstClick:
+                              type: array
+                              description: 'A list of First Click attribution records, representing  the initial interaction leading to the order.
+
+                                '
+                              items:
+                                type: object
+                                required:
+                                - source
+                                - campaignId
+                                - adsetId
+                                - adId
+                                - clickDate
+                                properties:
+                                  source:
+                                    type: string
+                                    description: The source of the attribution (e.g., Facebook, Google).
+                                  campaignId:
+                                    type: string
+                                    description: The unique identifier of the campaign.
+                                  adsetId:
+                                    type: string
+                                    description: The unique identifier of the adset.
+                                  adId:
+                                    type: string
+                                    description: The unique identifier of the ad.
+                                  clickDate:
+                                    type: string
+                                    description: The timestamp of the click event.
+                        customer_id:
+                          type: number
+                          description: 'The unique identifier for the customer associated with the order.
+
+                            '
+                        total_price:
+                          type: string
+                          description: 'The total price of the order.
+
+                            '
+                        currency:
+                          type: string
+                          description: 'The currency code for the order (e.g., USD, EUR).
+
+                            '
+                          example: USD
+                        journey:
+                          type: array
+                          description: 'A list of events in the customer journey, such as page views  or add-to-cart events, leading to the order.
+
+                            '
+                          items:
+                            type: object
+                            required:
+                            - time
+                            - event
+                            - path
+                            - productId
+                            properties:
+                              time:
+                                type: string
+                                description: The timestamp of the journey event, in ISO 8601 format.
+                              event:
+                                type: string
+                                description: 'The name of the journey event (e.g., `page loaded` for page views,  `add2c` for add-to-cart actions).
+
+                                  '
+                                enum:
+                                - page loaded
+                                - add2c
+                              path:
+                                type: string
+                                description: 'The URL path of the event (e.g., `/products/product-name`).
+
+                                  '
+                              productId:
+                                type: string
+                                description: 'The unique identifier of the product associated with the event.
+
+                                  '
+                  earliestDate:
+                    type: string
+                    description: 'The earliest date among the orders returned in this response.  Returns `null` if there are no earlier orders.
+
+                      '
+                  error:
+                    type: string
+                    description: 'An error message if the request failed or encountered an issue.
+
+                      '
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+  /summary-page/get-data:
+    post:
+      summary: Get Summary Page Data
+      description: 'Retrieve data from the Summary Page for a specified time period.
+
+        '
+      operationId: get-summary-page-data
+      tags:
+      - Data Out
+      security:
+      - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shopDomain
+              - period
+              - todayHour
+              properties:
+                shopDomain:
+                  type: string
+                  description: 'The domain of the shop for which data is being requested  (e.g., `example.myshopify.com`).
+
+                    '
+                  example: example.myshopify.com
+                period:
+                  type: object
+                  description: 'The time range for the requested data. Specify the start and end dates.
+
+                    '
+                  required:
+                  - start
+                  - end
+                  properties:
+                    start:
+                      type: string
+                      description: 'The start date of the period in ISO 8601 format.
+
+                        '
+                      example: '2023-01-01'
+                    end:
+                      type: string
+                      description: 'The end date of the period in ISO 8601 format.
+
+                        '
+                      example: '2023-01-07'
+                todayHour:
+                  type: number
+                  description: 'The hour of the current day for which data is requested,  base-1 (range: 1–25).
+
+                    '
+                  example: 1
+            examples:
+              ExampleRequest:
+                value:
+                  shopDomain: example.myshopify.com
+                  period:
+                    start: '2023-01-01'
+                    end: '2023-01-07'
+                  todayHour: 1
+      responses:
+        '200':
+          description: 'A successful response containing Summary Page data for the specified shop and period.
+
+            '
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as `{quota};w={window}`  where `window` is in seconds and `quota` is the allowed number of calls  per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  metrics:
+                    type: array
+                    description: 'A list of key metrics and their values for the specified time period.
+
+                      '
+                    items:
+                      type: object
+                      required:
+                      - metricName
+                      - value
+                      properties:
+                        metricName:
+                          type: string
+                          description: 'The name of the metric (e.g., `revenue`, `orders`).
+
+                            '
+                        value:
+                          type: number
+                          description: 'The value of the metric for the requested time period.
+
+                            '
+              examples:
+                SuccessResponse:
+                  value:
+                    metrics:
+                    - metricName: revenue
+                      value: 12345.67
+                    - metricName: orders
+                      value: 345
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Invalid request. Please ensure all required fields are correctly populated.
+              examples:
+                BadRequestExample:
+                  value:
+                    success: false
+                    message: Invalid request. Please ensure all required fields are correctly populated.
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

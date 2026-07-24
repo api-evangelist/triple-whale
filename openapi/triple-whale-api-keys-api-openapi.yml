@@ -1,0 +1,78 @@
+openapi: 3.0.3
+info:
+  title: Triple Whale API Keys API
+  version: '1.0'
+  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
+
+    '
+servers:
+- url: https://api.triplewhale.com/api/v2/
+security:
+- apiKeyAuth: []
+tags:
+- name: API Keys
+paths:
+  /users/api-keys/me:
+    get:
+      summary: Validate Your Triple Whale API Key
+      description: 'Enter your API key in Credentials > Header to the right and click "Try it!" to test its validity.
+
+        '
+      operationId: validate-your-triple-whale-api-key
+      tags:
+      - API Keys
+      security:
+      - apiKeyAuth: []
+      parameters: []
+      responses:
+        '200':
+          description: A successful response
+          headers:
+            RateLimit-Policy:
+              description: 'The rate limit policy for this endpoint, given as `{quota};w={window}` where `window` is in seconds and `quota` is the allowed number of calls a user can make per window.
+
+                '
+              schema:
+                type: string
+              example: 100;w=60
+            RateLimit:
+              description: 'Information about the user''s rate limit usage for this endpoint.
+
+                '
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Result:
+                  value: '{}'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              examples:
+                Result:
+                  value: '{}'
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: 'The number of seconds until the user can make another request.
+
+                '
+              schema:
+                type: string
+              example: '60'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

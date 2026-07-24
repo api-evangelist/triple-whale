@@ -1,0 +1,126 @@
+openapi: 3.0.3
+info:
+  title: Triple Whale API Keys Compliance API
+  version: '1.0'
+  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
+
+    '
+servers:
+- url: https://api.triplewhale.com/api/v2/
+security:
+- apiKeyAuth: []
+tags:
+- name: Compliance
+paths:
+  /compliance/requests/create-request:
+    post:
+      summary: Create Compliance Data Deletion Request
+      description: 'Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).
+
+        '
+      operationId: create-compliance-request
+      tags:
+      - Compliance
+      security:
+      - apiKeyAuth:
+        - compliance:write
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - shop
+              properties:
+                shop:
+                  type: string
+                  description: 'The shop domain. The API key owner must have access to this shop.
+
+                    '
+                  example: madisonbraids.myshopify.com
+                emails:
+                  type: array
+                  description: Customer email addresses to include in the request.
+                  items:
+                    type: string
+                    format: email
+                  default: []
+                  example:
+                  - john.smith@gmail.com
+                phones:
+                  type: array
+                  description: Customer phone numbers to include in the request.
+                  items:
+                    type: string
+                  default: []
+                  example:
+                  - +1-555-123-4567
+      responses:
+        '200':
+          description: Request created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Request created successfully
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Shop ID is required
+        '403':
+          description: Forbidden
+        '429':
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: The number of seconds until the user can make another request.
+              schema:
+                type: string
+              example: '60'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                - success
+                - message
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: An unknown error occurred
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
