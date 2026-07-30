@@ -5,7 +5,20 @@ description: E-commerce analytics and attribution platform for Shopify brands wi
   ROAS. Offers a two-way data highway with Data-In and Data-Out APIs supporting OAuth2
   and API key authentication.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/triple-whale.png
 url: https://raw.githubusercontent.com/api-evangelist/triple-whale/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -20,74 +33,89 @@ tags:
   - DTC
   - Marketing
 apis:
-  - aid: triple-whale:triple-whale-summary-api
-    name: Triple Whale Summary API
-    description: Data-Out API for retrieving dashboard summary page metrics for specified
-      timeframes, giving brands access to centralized metrics from 60+ integrated
-      tools including TikTok, Shopify, Klaviyo, and QuickBooks.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-    baseURL: https://api.triplewhale.com
-    tags:
-      - Summary
-      - Metrics
-      - Dashboard
-      - Analytics
-    properties:
-      - type: Documentation
-        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-      - type: GitHubRepository
-        url: https://github.com/Triple-Whale/triple-whale-public-apis
-      - type: OpenAPI
-        url: openapi/triple-whale-openapi.yml
-  - aid: triple-whale:triple-whale-attribution-api
-    name: Triple Whale Attribution API
-    description: Data-Out API for querying customer journey attribution data powered
-      by Triple Whale's proprietary pixel-tracking technology, with support for exporting
-      to Google BigQuery, AWS Redshift, and Snowflake.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-    baseURL: https://api.triplewhale.com
-    tags:
-      - Attribution
-      - Customer Journey
-      - Pixel
-      - Data Warehouse
-    properties:
-      - type: Documentation
-        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-      - type: GitHubRepository
-        url: https://github.com/Triple-Whale/triple-whale-public-apis
-      - type: OpenAPI
-        url: openapi/triple-whale-openapi.yml
-  - aid: triple-whale:triple-whale-data-in-api
-    name: Triple Whale Data-In API
-    description: Ingestion API for pushing external data into Triple Whale from platforms
-      without native integration, including ad records, orders, customers, products,
-      subscriptions, post-purchase survey responses, and offline pixel events.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-    baseURL: https://api.triplewhale.com
-    tags:
-      - Data Ingestion
-      - Orders
-      - Customers
-      - Events
-      - Offline Events
-    properties:
-      - type: Documentation
-        url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
-      - type: GitHubRepository
-        url: https://github.com/Triple-Whale/triple-whale-public-apis
-      - type: OpenAPI
-        url: openapi/triple-whale-openapi.yml
-      - type: JSONSchema
-        url: json-schema/triple-whale-order.json
-      - type: JSONSchema
-        url: json-schema/triple-whale-ad.json
-      - type: Examples
-        url: examples/triple-whale-examples.yml
+- aid: triple-whale:triple-whale-api-keys-api
+  name: Triple Whale API Keys API
+  description: The API Keys API from Triple Whale — 1 operation(s) for api keys.
+  humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  baseURL: https://api.triplewhale.com
+  tags:
+  - API Keys
+  properties:
+  - type: OpenAPI
+    url: openapi/triple-whale-api-keys-api-openapi.yml
+  - type: Documentation
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GitHubRepository
+    url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - type: JSONSchema
+    url: json-schema/triple-whale-order.json
+  - type: JSONSchema
+    url: json-schema/triple-whale-ad.json
+  - type: Examples
+    url: examples/triple-whale-examples.yml
+- aid: triple-whale:triple-whale-compliance-api
+  name: Triple Whale Compliance API
+  description: The Compliance API from Triple Whale — 1 operation(s) for compliance.
+  humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  baseURL: https://api.triplewhale.com
+  tags:
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/triple-whale-compliance-api-openapi.yml
+  - type: Documentation
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GitHubRepository
+    url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - type: JSONSchema
+    url: json-schema/triple-whale-order.json
+  - type: JSONSchema
+    url: json-schema/triple-whale-ad.json
+  - type: Examples
+    url: examples/triple-whale-examples.yml
+- aid: triple-whale:triple-whale-data-in-api
+  name: Triple Whale Data In API
+  description: The Data In API from Triple Whale — 10 operation(s) for data in.
+  humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  baseURL: https://api.triplewhale.com
+  tags:
+  - Data In
+  properties:
+  - type: OpenAPI
+    url: openapi/triple-whale-data-in-api-openapi.yml
+  - type: Documentation
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GitHubRepository
+    url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - type: JSONSchema
+    url: json-schema/triple-whale-order.json
+  - type: JSONSchema
+    url: json-schema/triple-whale-ad.json
+  - type: Examples
+    url: examples/triple-whale-examples.yml
+- aid: triple-whale:triple-whale-data-out-api
+  name: Triple Whale Data Out API
+  description: The Data Out API from Triple Whale — 4 operation(s) for data out.
+  humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  baseURL: https://api.triplewhale.com
+  tags:
+  - Data Out
+  properties:
+  - type: OpenAPI
+    url: openapi/triple-whale-data-out-api-openapi.yml
+  - type: Documentation
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GitHubRepository
+    url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - type: JSONSchema
+    url: json-schema/triple-whale-order.json
+  - type: JSONSchema
+    url: json-schema/triple-whale-ad.json
+  - type: Examples
+    url: examples/triple-whale-examples.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/triple-whale/overview
   - type: AgenticAccess
     url: agentic-access/triple-whale-agentic-access.yml
   - type: TrustCenter
