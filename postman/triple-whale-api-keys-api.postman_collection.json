@@ -1,0 +1,271 @@
+{
+  "info": {
+    "_postman_id": "8b2d0c90-a892-41eb-8bd6-a1723822c267",
+    "name": "Triple Whale API Keys API",
+    "description": "Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:19:23.000Z",
+    "updatedAt": "2026-07-28T03:19:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8b2d0c90-a892-41eb-8bd6-a1723822c267"
+  },
+  "item": [
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "api-keys",
+          "item": [
+            {
+              "name": "me",
+              "item": [
+                {
+                  "name": "Validate Your Triple Whale API Key",
+                  "id": "fd85f2c7-6ed7-480a-bc95-e8d374c0d52a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-api-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/users/api-keys/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "users",
+                        "api-keys",
+                        "me"
+                      ]
+                    },
+                    "description": "Enter your API key in Credentials > Header to the right and click \"Try it!\" to test its validity.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "ea0a9cdb-dfa0-4a5f-87b4-3d8b6847ea3e",
+                      "name": "A successful response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/api-keys/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "api-keys",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The rate limit policy for this endpoint, given as `{quota};w={window}` where `window` is in seconds and `quota` is the allowed number of calls a user can make per window.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Policy",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Information about the user's rate limit usage for this endpoint.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T03:19:24.000Z",
+                      "updatedAt": "2026-07-28T03:19:24.000Z",
+                      "uid": "35240-ea0a9cdb-dfa0-4a5f-87b4-3d8b6847ea3e"
+                    },
+                    {
+                      "id": "60780937-edff-4fcd-b83d-c8ec18138d04",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/api-keys/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "api-keys",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-07-28T03:19:24.000Z",
+                      "updatedAt": "2026-07-28T03:19:24.000Z",
+                      "uid": "35240-60780937-edff-4fcd-b83d-c8ec18138d04"
+                    },
+                    {
+                      "id": "72bc3c34-81a7-46b6-89b1-a7afdc6aa08f",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/users/api-keys/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "users",
+                            "api-keys",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The number of seconds until the user can make another request.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:19:24.000Z",
+                      "updatedAt": "2026-07-28T03:19:24.000Z",
+                      "uid": "35240-72bc3c34-81a7-46b6-89b1-a7afdc6aa08f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:19:24.000Z",
+                  "updatedAt": "2026-07-28T03:19:24.000Z",
+                  "uid": "35240-fd85f2c7-6ed7-480a-bc95-e8d374c0d52a"
+                }
+              ],
+              "id": "b5c03c74-126a-44e3-9f8e-07e1dc59186b",
+              "createdAt": "2026-07-28T03:19:24.000Z",
+              "updatedAt": "2026-07-28T03:19:24.000Z",
+              "uid": "35240-b5c03c74-126a-44e3-9f8e-07e1dc59186b"
+            }
+          ],
+          "id": "25fa6643-788e-43b4-b44a-cdaa184e5824",
+          "createdAt": "2026-07-28T03:19:24.000Z",
+          "updatedAt": "2026-07-28T03:19:24.000Z",
+          "uid": "35240-25fa6643-788e-43b4-b44a-cdaa184e5824"
+        }
+      ],
+      "id": "30de20e4-0237-4e3d-8bc0-3b6ef5ae6fb0",
+      "createdAt": "2026-07-28T03:19:24.000Z",
+      "updatedAt": "2026-07-28T03:19:24.000Z",
+      "uid": "35240-30de20e4-0237-4e3d-8bc0-3b6ef5ae6fb0"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.triplewhale.com/api/v2/"
+    }
+  ]
+}

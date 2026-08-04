@@ -1,0 +1,20 @@
+{
+  "provider": "triple-whale",
+  "sources": [
+    "triple-whale-api-keys-api-openapi.yml",
+    "triple-whale-compliance-api-openapi.yml",
+    "triple-whale-data-in-api-openapi.yml",
+    "triple-whale-data-out-api-openapi.yml"
+  ],
+  "outputs": [
+    "triple-whale-api-keys-api-openapi.yml",
+    "triple-whale-compliance-api-openapi.yml",
+    "triple-whale-data-in-api-openapi.yml",
+    "triple-whale-data-out-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,416 @@
+{
+  "info": {
+    "_postman_id": "6d2e2814-0598-48be-8612-bca42f4ae9d0",
+    "name": "Triple Whale API Keys Compliance API",
+    "description": "Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:19:24.000Z",
+    "updatedAt": "2026-07-28T03:19:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6d2e2814-0598-48be-8612-bca42f4ae9d0"
+  },
+  "item": [
+    {
+      "name": "compliance",
+      "item": [
+        {
+          "name": "requests",
+          "item": [
+            {
+              "name": "create-request",
+              "item": [
+                {
+                  "name": "Create Compliance Data Deletion Request",
+                  "id": "2daf37f5-5392-4ea8-a322-d9b6c19a91ce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-api-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shop\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/compliance/requests/create-request",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "compliance",
+                        "requests",
+                        "create-request"
+                      ]
+                    },
+                    "description": "Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).\n"
+                  },
+                  "response": [
+                    {
+                      "id": "5af77c7a-b9fd-45d3-8938-ecad233d55ae",
+                      "name": "Request created successfully.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shop\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/requests/create-request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "requests",
+                            "create-request"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:25.000Z",
+                      "updatedAt": "2026-07-28T03:19:25.000Z",
+                      "uid": "35240-5af77c7a-b9fd-45d3-8938-ecad233d55ae"
+                    },
+                    {
+                      "id": "91f6376c-0862-4b40-83b9-65dec3c20d6d",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shop\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/requests/create-request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "requests",
+                            "create-request"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:25.000Z",
+                      "updatedAt": "2026-07-28T03:19:25.000Z",
+                      "uid": "35240-91f6376c-0862-4b40-83b9-65dec3c20d6d"
+                    },
+                    {
+                      "id": "7dba129e-7a4d-4bb7-89f5-697386411945",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shop\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/requests/create-request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "requests",
+                            "create-request"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:19:25.000Z",
+                      "updatedAt": "2026-07-28T03:19:25.000Z",
+                      "uid": "35240-7dba129e-7a4d-4bb7-89f5-697386411945"
+                    },
+                    {
+                      "id": "7d49859f-5ec2-443f-83d2-3e5146ddde55",
+                      "name": "Too Many Requests",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shop\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/requests/create-request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "requests",
+                            "create-request"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The number of seconds until the user can make another request.",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:19:25.000Z",
+                      "updatedAt": "2026-07-28T03:19:25.000Z",
+                      "uid": "35240-7d49859f-5ec2-443f-83d2-3e5146ddde55"
+                    },
+                    {
+                      "id": "21bcd57e-55fc-4781-97ff-464f04fd803a",
+                      "name": "Internal Server Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"shop\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/compliance/requests/create-request",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "compliance",
+                            "requests",
+                            "create-request"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:25.000Z",
+                      "updatedAt": "2026-07-28T03:19:25.000Z",
+                      "uid": "35240-21bcd57e-55fc-4781-97ff-464f04fd803a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:19:25.000Z",
+                  "updatedAt": "2026-07-28T03:19:25.000Z",
+                  "uid": "35240-2daf37f5-5392-4ea8-a322-d9b6c19a91ce"
+                }
+              ],
+              "id": "2ccd3d27-1a51-4b84-897e-88797ea1809b",
+              "createdAt": "2026-07-28T03:19:25.000Z",
+              "updatedAt": "2026-07-28T03:19:25.000Z",
+              "uid": "35240-2ccd3d27-1a51-4b84-897e-88797ea1809b"
+            }
+          ],
+          "id": "5fdcf774-0d7c-49dc-8a7a-7350559a78b0",
+          "createdAt": "2026-07-28T03:19:25.000Z",
+          "updatedAt": "2026-07-28T03:19:25.000Z",
+          "uid": "35240-5fdcf774-0d7c-49dc-8a7a-7350559a78b0"
+        }
+      ],
+      "id": "50ebb19e-d89e-4bc0-be18-bafa5b3e51f4",
+      "createdAt": "2026-07-28T03:19:25.000Z",
+      "updatedAt": "2026-07-28T03:19:25.000Z",
+      "uid": "35240-50ebb19e-d89e-4bc0-be18-bafa5b3e51f4"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.triplewhale.com/api/v2/"
+    }
+  ]
+}

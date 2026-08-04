@@ -1,0 +1,1317 @@
+{
+  "info": {
+    "_postman_id": "9df9f40e-2a8d-4749-b7d7-7d385a3592cc",
+    "name": "Triple Whale API Keys Data Out API",
+    "description": "Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.\n",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:19:27.000Z",
+    "updatedAt": "2026-07-28T03:19:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9df9f40e-2a8d-4749-b7d7-7d385a3592cc"
+  },
+  "item": [
+    {
+      "name": "orcabase",
+      "item": [
+        {
+          "name": "api",
+          "item": [
+            {
+              "name": "moby",
+              "item": [
+                {
+                  "name": "Execute Natural Language Query (Moby AI)",
+                  "id": "08358363-bcde-4971-a946-bb7952dc972b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-api-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orcabase/api/moby",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orcabase",
+                        "api",
+                        "moby"
+                      ]
+                    },
+                    "description": "Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "59bd7e4a-3258-4d23-9e1e-705d243524d0",
+                      "name": "The natural language query was successfully processed, and the response contains the query results in JSON format, grouped by `question` and its respective `answer`.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/moby",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "moby"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The rate limit policy for this endpoint. Allowed: no more than 10 requests per second and no more than 60 requests per minute.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit-Policy",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The current usage of your rate limit for this endpoint.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimit",
+                          "value": "<string>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"isError\": \"<boolean>\",\n  \"error\": \"<string>\",\n  \"responses\": [\n    {\n      \"question\": \"<string>\",\n      \"answer\": {\n        \"consectetur_052\": \"<string>\",\n        \"et23\": \"<string>\",\n        \"qui_52\": \"<string>\"\n      },\n      \"isError\": \"<boolean>\",\n      \"errorMsg\": \"<string>\",\n      \"assistant\": \"<string>\"\n    },\n    {\n      \"question\": \"<string>\",\n      \"answer\": {\n        \"cupidatat_4\": \"<string>\",\n        \"irurefcf\": \"<string>\",\n        \"do_f\": \"<string>\"\n      },\n      \"isError\": \"<boolean>\",\n      \"errorMsg\": \"<string>\",\n      \"assistant\": \"<string>\"\n    }\n  ],\n  \"assistantConclusion\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-59bd7e4a-3258-4d23-9e1e-705d243524d0"
+                    },
+                    {
+                      "id": "f53392da-4a1d-4c70-aedf-6c509edd97c2",
+                      "name": "Invalid request due to missing or malformed parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/moby",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "moby"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-f53392da-4a1d-4c70-aedf-6c509edd97c2"
+                    },
+                    {
+                      "id": "a13d260a-fcd9-4696-93a2-bfc0a1a06799",
+                      "name": "Access forbidden due to missing or invalid access token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/moby",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "moby"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-a13d260a-fcd9-4696-93a2-bfc0a1a06799"
+                    },
+                    {
+                      "id": "46569c80-4a3c-4bdd-bbc1-0a397fda37fd",
+                      "name": "Rate limit exceeded. Too many requests were sent in a short period.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/moby",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "moby"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The number of seconds until you can make another request.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-46569c80-4a3c-4bdd-bbc1-0a397fda37fd"
+                    },
+                    {
+                      "id": "b0f65ba3-748c-48a5-8a35-80d187360231",
+                      "name": "Internal server error. An unexpected issue occurred on the server.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/moby",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "moby"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-b0f65ba3-748c-48a5-8a35-80d187360231"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-08358363-bcde-4971-a946-bb7952dc972b"
+                }
+              ],
+              "id": "3f26e7c4-19a1-4564-a98e-c6fc3422c310",
+              "createdAt": "2026-07-28T03:19:27.000Z",
+              "updatedAt": "2026-07-28T03:19:27.000Z",
+              "uid": "35240-3f26e7c4-19a1-4564-a98e-c6fc3422c310"
+            },
+            {
+              "name": "sql",
+              "item": [
+                {
+                  "name": "Execute Custom SQL Query",
+                  "id": "c96e580d-ed3d-4228-97f6-48ee5ac5f593",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "x-api-key",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/orcabase/api/sql",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orcabase",
+                        "api",
+                        "sql"
+                      ]
+                    },
+                    "description": "Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "ce952f33-5bc3-4c26-acd7-1cb36a901968",
+                      "name": "The SQL query was executed successfully, and the response contains the query results in a JSON format grouped by `channel` and `event_date`.\n",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/sql",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "sql"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\",\n  \"data\": [\n    {\n      \"veniam6\": \"<string>\"\n    },\n    {\n      \"culpae1e\": \"<string>\",\n      \"anim_9b9\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-ce952f33-5bc3-4c26-acd7-1cb36a901968"
+                    },
+                    {
+                      "id": "38ca5683-eec1-4b38-b9a4-4b60083be6c0",
+                      "name": "Invalid request due to missing or malformed parameters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/sql",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "sql"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-38ca5683-eec1-4b38-b9a4-4b60083be6c0"
+                    },
+                    {
+                      "id": "a26074c5-4cc0-4fbe-ae34-320a9fd2abcf",
+                      "name": "Access forbidden due to missing or invalid access token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/sql",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "sql"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-a26074c5-4cc0-4fbe-ae34-320a9fd2abcf"
+                    },
+                    {
+                      "id": "748a0b0e-68bf-4852-b2a6-4a29f603d6f7",
+                      "name": "Rate limit exceeded. Too many requests were sent in a short period.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/sql",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "sql"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "The number of seconds until you can make another request.\n",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": "<integer>"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-748a0b0e-68bf-4852-b2a6-4a29f603d6f7"
+                    },
+                    {
+                      "id": "93db5f8a-96b3-4154-8fed-cadda758408f",
+                      "name": "Internal server error. An unexpected issue occurred on the server.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "x-api-key",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/orcabase/api/sql",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "orcabase",
+                            "api",
+                            "sql"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:19:27.000Z",
+                      "updatedAt": "2026-07-28T03:19:27.000Z",
+                      "uid": "35240-93db5f8a-96b3-4154-8fed-cadda758408f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-c96e580d-ed3d-4228-97f6-48ee5ac5f593"
+                }
+              ],
+              "id": "4b0ce12d-563a-445e-bade-164ebdd3ada6",
+              "createdAt": "2026-07-28T03:19:27.000Z",
+              "updatedAt": "2026-07-28T03:19:27.000Z",
+              "uid": "35240-4b0ce12d-563a-445e-bade-164ebdd3ada6"
+            }
+          ],
+          "id": "eaeb0dba-e4eb-4684-b621-b008b7845270",
+          "createdAt": "2026-07-28T03:19:27.000Z",
+          "updatedAt": "2026-07-28T03:19:27.000Z",
+          "uid": "35240-eaeb0dba-e4eb-4684-b621-b008b7845270"
+        }
+      ],
+      "id": "2be53259-3d00-4f4f-b857-447f9740b0ca",
+      "createdAt": "2026-07-28T03:19:27.000Z",
+      "updatedAt": "2026-07-28T03:19:27.000Z",
+      "uid": "35240-2be53259-3d00-4f4f-b857-447f9740b0ca"
+    },
+    {
+      "name": "attribution",
+      "item": [
+        {
+          "name": "get-orders-with-journeys-v2",
+          "item": [
+            {
+              "name": "Get Customer Journey Attribution Data",
+              "id": "2fb8ef61-deeb-4620-879c-78a50c659fda",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-api-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"excludeJourneyData\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/attribution/get-orders-with-journeys-v2",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attribution",
+                    "get-orders-with-journeys-v2"
+                  ]
+                },
+                "description": "Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.\n"
+              },
+              "response": [
+                {
+                  "id": "9fe69d00-4139-42a8-adbe-463e4ada6f6c",
+                  "name": "A successful response containing orders, attribution data,  and (optionally) journey events for the requested period.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shop\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"excludeJourneyData\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/attribution/get-orders-with-journeys-v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "attribution",
+                        "get-orders-with-journeys-v2"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The rate limit policy for this endpoint, given as {quota};w={window} where  window is in seconds and quota is the allowed number of calls a user can make  per window.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Information about the user's rate limit usage for this endpoint.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"totalForRange\": \"<number>\",\n  \"count\": \"<number>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"ordersWithJourneys\": [\n    {\n      \"order_id\": \"<number>\",\n      \"created_at\": \"<string>\",\n      \"order_name\": \"<string>\",\n      \"attribution\": {\n        \"firstClick\": [\n          {\n            \"source\": \"<string>\",\n            \"campaignId\": \"<string>\",\n            \"adsetId\": \"<string>\",\n            \"adId\": \"<string>\",\n            \"clickDate\": \"<string>\"\n          },\n          {\n            \"source\": \"<string>\",\n            \"campaignId\": \"<string>\",\n            \"adsetId\": \"<string>\",\n            \"adId\": \"<string>\",\n            \"clickDate\": \"<string>\"\n          }\n        ]\n      },\n      \"customer_id\": \"<number>\",\n      \"total_price\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"journey\": [\n        {\n          \"time\": \"<string>\",\n          \"event\": \"add2c\",\n          \"path\": \"<string>\",\n          \"productId\": \"<string>\"\n        },\n        {\n          \"time\": \"<string>\",\n          \"event\": \"page loaded\",\n          \"path\": \"<string>\",\n          \"productId\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"order_id\": \"<number>\",\n      \"created_at\": \"<string>\",\n      \"order_name\": \"<string>\",\n      \"attribution\": {\n        \"firstClick\": [\n          {\n            \"source\": \"<string>\",\n            \"campaignId\": \"<string>\",\n            \"adsetId\": \"<string>\",\n            \"adId\": \"<string>\",\n            \"clickDate\": \"<string>\"\n          },\n          {\n            \"source\": \"<string>\",\n            \"campaignId\": \"<string>\",\n            \"adsetId\": \"<string>\",\n            \"adId\": \"<string>\",\n            \"clickDate\": \"<string>\"\n          }\n        ]\n      },\n      \"customer_id\": \"<number>\",\n      \"total_price\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"journey\": [\n        {\n          \"time\": \"<string>\",\n          \"event\": \"add2c\",\n          \"path\": \"<string>\",\n          \"productId\": \"<string>\"\n        },\n        {\n          \"time\": \"<string>\",\n          \"event\": \"page loaded\",\n          \"path\": \"<string>\",\n          \"productId\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"earliestDate\": \"<string>\",\n  \"page\": \"<number>\",\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-9fe69d00-4139-42a8-adbe-463e4ada6f6c"
+                },
+                {
+                  "id": "f7d32a37-eaad-4bcd-bda2-675fae8facea",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shop\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"excludeJourneyData\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/attribution/get-orders-with-journeys-v2",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "attribution",
+                        "get-orders-with-journeys-v2"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of seconds until the user can make another request.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-f7d32a37-eaad-4bcd-bda2-675fae8facea"
+                }
+              ],
+              "createdAt": "2026-07-28T03:19:27.000Z",
+              "updatedAt": "2026-07-28T03:19:27.000Z",
+              "uid": "35240-2fb8ef61-deeb-4620-879c-78a50c659fda"
+            }
+          ],
+          "id": "4641b03f-3c3f-43fb-809b-c04f42f8025f",
+          "createdAt": "2026-07-28T03:19:27.000Z",
+          "updatedAt": "2026-07-28T03:19:27.000Z",
+          "uid": "35240-4641b03f-3c3f-43fb-809b-c04f42f8025f"
+        }
+      ],
+      "id": "c79d980b-3c8f-4e77-80db-37448e28d34c",
+      "createdAt": "2026-07-28T03:19:27.000Z",
+      "updatedAt": "2026-07-28T03:19:27.000Z",
+      "uid": "35240-c79d980b-3c8f-4e77-80db-37448e28d34c"
+    },
+    {
+      "name": "summary-page",
+      "item": [
+        {
+          "name": "get-data",
+          "item": [
+            {
+              "name": "Get Summary Page Data",
+              "id": "8368c672-668c-4149-89b2-17c11a73c9fd",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "x-api-key",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopDomain\": \"<string>\",\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\"\n  },\n  \"todayHour\": \"<number>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/summary-page/get-data",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "summary-page",
+                    "get-data"
+                  ]
+                },
+                "description": "Retrieve data from the Summary Page for a specified time period.\n"
+              },
+              "response": [
+                {
+                  "id": "930860b5-a648-467a-ac8f-31ee9b9f79b5",
+                  "name": "A successful response containing Summary Page data for the specified shop and period.\n",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shopDomain\": \"<string>\",\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\"\n  },\n  \"todayHour\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/summary-page/get-data",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "summary-page",
+                        "get-data"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The rate limit policy for this endpoint, given as `{quota};w={window}`  where `window` is in seconds and `quota` is the allowed number of calls  per window.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit-Policy",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Information about the user's rate limit usage for this endpoint.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimit",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"metrics\": [\n    {\n      \"metricName\": \"<string>\",\n      \"value\": \"<number>\"\n    },\n    {\n      \"metricName\": \"<string>\",\n      \"value\": \"<number>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-930860b5-a648-467a-ac8f-31ee9b9f79b5"
+                },
+                {
+                  "id": "daab1da8-4eaa-4955-b047-aeead0a74120",
+                  "name": "Bad Request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shopDomain\": \"<string>\",\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\"\n  },\n  \"todayHour\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/summary-page/get-data",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "summary-page",
+                        "get-data"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"success\": \"<boolean>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-daab1da8-4eaa-4955-b047-aeead0a74120"
+                },
+                {
+                  "id": "19af286a-433c-4113-8b1d-72324b0dc033",
+                  "name": "Too Many Requests",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "x-api-key",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"shopDomain\": \"<string>\",\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\"\n  },\n  \"todayHour\": \"<number>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/summary-page/get-data",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "summary-page",
+                        "get-data"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "The number of seconds until the user can make another request.\n",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": "<string>"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:19:27.000Z",
+                  "updatedAt": "2026-07-28T03:19:27.000Z",
+                  "uid": "35240-19af286a-433c-4113-8b1d-72324b0dc033"
+                }
+              ],
+              "createdAt": "2026-07-28T03:19:27.000Z",
+              "updatedAt": "2026-07-28T03:19:27.000Z",
+              "uid": "35240-8368c672-668c-4149-89b2-17c11a73c9fd"
+            }
+          ],
+          "id": "3c4aa546-2df9-41a9-87b1-114fe8469caa",
+          "createdAt": "2026-07-28T03:19:27.000Z",
+          "updatedAt": "2026-07-28T03:19:27.000Z",
+          "uid": "35240-3c4aa546-2df9-41a9-87b1-114fe8469caa"
+        }
+      ],
+      "id": "29770a09-818e-47e6-95c7-e5de7acf5d5d",
+      "createdAt": "2026-07-28T03:19:27.000Z",
+      "updatedAt": "2026-07-28T03:19:27.000Z",
+      "uid": "35240-29770a09-818e-47e6-95c7-e5de7acf5d5d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.triplewhale.com/api/v2/"
+    }
+  ]
+}
