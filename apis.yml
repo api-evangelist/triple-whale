@@ -146,8 +146,6 @@ common:
     url: rate-limits/triple-whale-rate-limits.yml
   - type: FinOps
     url: finops/triple-whale-finops.yml
-  - type: Vocabulary
-    url: vocabulary/triple-whale-vocabulary.yml
   - type: JSONLDContext
     url: json-ld/triple-whale-context.jsonld
 maintainers:
