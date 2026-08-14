@@ -21,7 +21,12 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/triple-whale.png
 url: https://raw.githubusercontent.com/api-evangelist/triple-whale/refs/heads/main/apis.yml
 created: '2026-06-13'
-modified: '2026-06-13'
+modified: '2026-08-13'
+x-enrichment:
+  date: '2026-08-13'
+  status: enriched
+  artifacts_added: 27
+  pass: local-v1
 specificationVersion: '0.19'
 tags:
   - E-commerce
@@ -113,6 +118,27 @@ apis:
     url: json-schema/triple-whale-ad.json
   - type: Examples
     url: examples/triple-whale-examples.yml
+- aid: triple-whale:triple-whale-benchmarks-api
+  name: Triple Whale Benchmarks API
+  description: >-
+    An unauthenticated e-commerce advertising benchmarks API from Triple Whale —
+    aggregate CTR, CPM, CPC, ROAS and MER for Facebook, Google, TikTok, Snapchat
+    and Pinterest, segmentable by shop industry, monthly ad spend band and average
+    order value band. Discovered live at
+    https://api.triplewhale.com/api/v2/ai/swagger.json, the document Triple Whale's
+    own /.well-known/ai-plugin.json manifest points at.
+  humanURL: https://www.triplewhale.com/api
+  baseURL: https://api.triplewhale.com
+  tags:
+  - Benchmarks
+  - Advertising
+  properties:
+  - type: OpenAPI
+    url: openapi/triple-whale-bi-benchmarks-openapi.json
+  - type: Overlay
+    url: overlays/triple-whale-bi-benchmarks-overlay.yaml
+  - type: AIPlugin
+    url: well-known/triple-whale-ai-plugin.json
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/triple-whale/overview
@@ -148,6 +174,66 @@ common:
     url: finops/triple-whale-finops.yml
   - type: JSONLDContext
     url: json-ld/triple-whale-context.jsonld
+  - type: DeveloperPortal
+    url: https://developers.triplewhale.com/
+  - type: APIReference
+    url: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  - type: GettingStarted
+    url: https://triplewhale.readme.io/reference/api-setup-guide-for-custom-sales-platform
+  - type: HelpCenter
+    url: https://kb.triplewhale.com/
+  - type: SignUp
+    url: https://app.triplewhale.com/signup-free
+  - type: TermsOfService
+    url: https://www.triplewhale.com/pages/terms-of-service
+  - type: PrivacyPolicy
+    url: https://www.triplewhale.com/pages/privacy-notice
+  - type: GitHubOrganization
+    url: https://github.com/Triple-Whale
+  - type: GitHubRepository
+    url: https://github.com/Triple-Whale/triple-whale-public-apis
+  - type: Packages
+    url: packages/triple-whale-packages.yml
+  - type: SDKs
+    url: packages/triple-whale-packages.yml
+  - type: CLI
+    url: cli/triple-whale-cli.yml
+  - type: MCPServer
+    url: mcp/triple-whale-mcp.yml
+  - type: ToolCrosswalk
+    url: mcp/triple-whale-tool-crosswalk.yml
+  - type: LLMsTxt
+    url: llms/triple-whale-llms.txt
+  - type: WellKnown
+    url: well-known/triple-whale-well-known.yml
+  - type: OAuthScopes
+    url: scopes/triple-whale-scopes.yml
+  - type: Conventions
+    url: conventions/triple-whale-conventions.yml
+  - type: Idempotency
+    url: conventions/triple-whale-conventions.yml
+  - type: ErrorCatalog
+    url: errors/triple-whale-problem-types.yml
+  - type: Lifecycle
+    url: lifecycle/triple-whale-lifecycle.yml
+  - type: ChangeLog
+    url: changelog/triple-whale-changelog.yml
+  - type: Conformance
+    url: conformance/triple-whale-conformance.yml
+  - type: Compliance
+    url: https://trust.triplewhale.com/
+  - type: DataModel
+    url: data-model/triple-whale-data-model.yml
+  - type: AgentSkill
+    url: skills/_index.yml
+  - type: Overlay
+    url: overlays/triple-whale-api-keys-api-overlay.yaml
+  - type: Overlay
+    url: overlays/triple-whale-compliance-api-overlay.yaml
+  - type: Overlay
+    url: overlays/triple-whale-data-in-api-overlay.yaml
+  - type: Overlay
+    url: overlays/triple-whale-data-out-api-overlay.yaml
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
