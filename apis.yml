@@ -27,7 +27,7 @@ x-enrichment:
   status: enriched
   artifacts_added: 27
   pass: local-v1
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 tags:
   - E-commerce
   - Analytics
