@@ -1,15 +1,89 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/triple-whale-openapi.yml
+generated: '2026-08-13'
+method: searched
+source:
+- https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys
+- https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+- https://mcp.triplewhale.com/.well-known/oauth-authorization-server
+derived_from:
+- openapi/triple-whale-api-keys-api-openapi.yml
+- openapi/triple-whale-compliance-api-openapi.yml
+- openapi/triple-whale-data-in-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+docs: https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys
+
 summary:
-  types:
-  - apiKey
-  api_key_in:
-  - header
+  types: [apiKey, oauth2]
+  api_key_in: [header]
+  oauth2_flows: [authorizationCode]
+  note: >-
+    The REST API is API-key only — every published operation is secured by
+    apiKeyAuth (x-api-key) and no OpenAPI declares an oauth2 scheme. OAuth 2.1
+    appears only on the hosted MCP server, which is a separate surface.
+
 schemes:
 - name: apiKeyAuth
   type: apiKey
   in: header
   parameter: x-api-key
+  surface: rest
   sources:
-  - openapi/triple-whale-openapi.yml
+  - openapi/triple-whale-api-keys-api-openapi.yml
+  - openapi/triple-whale-compliance-api-openapi.yml
+  - openapi/triple-whale-data-in-api-openapi.yml
+  - openapi/triple-whale-data-out-api-openapi.yml
+  issuance:
+    console: https://app.triplewhale.com/api-keys
+    path: Data > APIs > Generate
+    shown_once: true
+    revocable: true
+    revocation_irreversible: true
+  scoped: true
+  scopes: scopes/triple-whale-scopes.yml
+  verification:
+    operation: validate-your-triple-whale-api-key
+    request: GET https://api.triplewhale.com/api/v2/users/api-keys/me
+    note: Returns the scopes attached to the presented key.
+  constraints:
+  - Shopify session JWTs and other token types are explicitly not accepted.
+  - >-
+    Keys are bound to the user who created them; if that user loses workspace
+    access, the key stops working.
+  - Separate keys are recommended per environment (production, testing, development).
+  failure_mode:
+    status: 401
+    causes: [missing header, revoked or expired key, missing scope, wrong token type]
+
+- name: mcpOAuth
+  type: oauth2
+  surface: mcp
+  resource: https://mcp.triplewhale.com/sse
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://mcp.triplewhale.com/authorize
+    tokenUrl: https://mcp.triplewhale.com/token
+    registrationUrl: https://mcp.triplewhale.com/register
+    code_challenge_methods: [S256]
+    grant_types: [authorization_code, refresh_token]
+    scopes: [moby:read, offline, offline_access]
+  token_endpoint_auth_methods: [none]
+  bearer_methods: [header]
+  discovery:
+  - https://mcp.triplewhale.com/.well-known/oauth-authorization-server
+  - https://mcp.triplewhale.com/.well-known/oauth-protected-resource
+  files:
+  - well-known/triple-whale-oauth-authorization-server.json
+  - well-known/triple-whale-oauth-protected-resource.json
+  method: probed
+  probed: '2026-08-13'
+  note: >-
+    Public client with dynamic client registration and PKCE; no client secret
+    (token_endpoint_auth_methods is ["none"]). An "MCP: Read" API key is the
+    alternative, non-OAuth path documented for the same server.
+
+anonymous_surfaces:
+- endpoint: GET https://api.triplewhale.com/api/v2/bi/avg
+  auth: none
+  spec: openapi/triple-whale-bi-benchmarks-openapi.json
+  evidence: >-
+    https://api.triplewhale.com/.well-known/ai-plugin.json declares auth type
+    "none" for this API.

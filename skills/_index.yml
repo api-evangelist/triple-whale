@@ -1,0 +1,34 @@
+generated: '2026-08-13'
+method: generated
+source: >-
+  Grounded in operationIds verified present in openapi/*.yml, plus
+  conventions/triple-whale-conventions.yml and errors/triple-whale-problem-types.yml.
+  No provider-published AGENTS.md or skill files were found on any Triple Whale host.
+skills:
+- file: triple-whale-ingest-custom-sales-platform.md
+  name: Ingest orders from a custom sales platform into Triple Whale
+  api: openapi/triple-whale-data-in-api-openapi.yml
+  operations:
+  - validate-your-triple-whale-api-key
+  - create-order-record
+  - bulk-create-order-records
+  - create-customer-record
+  - create-product-record
+  - create-subscription-record
+- file: triple-whale-query-analytics.md
+  name: Query Triple Whale analytics with SQL, Moby or the Summary Page
+  api: openapi/triple-whale-data-out-api-openapi.yml
+  operations:
+  - validate-your-triple-whale-api-key
+  - data-out-execute-custom-sql-query
+  - data-out-execute-natural-language-query-moby
+  - get-summary-page-data
+  - get-customer-journey-attribution-data
+- file: triple-whale-offline-events-and-compliance.md
+  name: Send offline pixel events and handle PII deletion requests
+  api: openapi/triple-whale-data-in-api-openapi.yml
+  operations:
+  - validate-your-triple-whale-api-key
+  - enrich-pixel-with-offline-events
+  - create-pps-record
+  - create-compliance-request

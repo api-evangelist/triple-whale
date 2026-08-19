@@ -1,0 +1,99 @@
+generated: '2026-08-13'
+method: derived
+source: >-
+  mcp/triple-whale-mcp.yml (tool list read from the @triplewhale/mcp-server-triplewhale
+  npm package) bound against openapi/triple-whale-data-out-api-openapi.yml,
+  openapi/triple-whale-data-in-api-openapi.yml,
+  openapi/triple-whale-api-keys-api-openapi.yml,
+  openapi/triple-whale-compliance-api-openapi.yml and
+  openapi/triple-whale-bi-benchmarks-openapi.json
+
+surfaces:
+  openapi:
+  - file: openapi/triple-whale-api-keys-api-openapi.yml
+    operations: 1
+  - file: openapi/triple-whale-compliance-api-openapi.yml
+    operations: 1
+  - file: openapi/triple-whale-data-in-api-openapi.yml
+    operations: 10
+  - file: openapi/triple-whale-data-out-api-openapi.yml
+    operations: 4
+  - file: openapi/triple-whale-bi-benchmarks-openapi.json
+    operations: 1
+    note: harvested from https://api.triplewhale.com/api/v2/ai/swagger.json; unauthenticated
+  graphql: none
+  mcp:
+  - url: https://mcp.triplewhale.com/sse
+    gated: true
+    note: tools/list returns 401 anonymously; remote tool inventory not observable
+  - package: '@triplewhale/mcp-server-triplewhale'
+    gated: false
+    note: tool definitions read directly from the published npm tarball
+
+crosswalk:
+- tool: moby
+  category: analytics-query
+  rest:
+  - data-out-execute-natural-language-query-moby
+  binding: rest
+  confidence: medium
+  note: >-
+    Semantic match, not a path match. The MCP tool posts to
+    https://api.triplewhale.com/willy/moby-chat (operationId answerMobyQuestion in
+    the spec fragment embedded in the package), while the documented public
+    Data-Out operation is POST /api/v2/orcabase/api/moby. Both take a natural
+    language question plus a shop identifier and return Moby's answer, so the
+    agent-facing capability is the same even though the two surfaces do not share
+    an endpoint. Confidence is medium because the tool's real backing path is not
+    in any published Triple Whale OpenAPI.
+
+mcp_only: []
+
+rest_only:
+- capability: Data-In ingestion
+  operations:
+  - create-order-record
+  - bulk-create-order-records
+  - create-product-record
+  - create-subscription-record
+  - create-customer-record
+  - create-ad-record
+  - create-pps-record
+  - enrich-orders-data
+  - enrich-products-data
+  - enrich-pixel-with-offline-events
+  reason: >-
+    The MCP surface is read-only (scope moby:read). No write path is exposed as a
+    tool; every ingestion operation is REST-only.
+- capability: Data-Out structured retrieval
+  operations:
+  - data-out-execute-custom-sql-query
+  - get-customer-journey-attribution-data
+  - get-summary-page-data
+  reason: >-
+    Only the natural-language surface is exposed as an MCP tool by the local
+    package. SQL, attribution export and summary retrieval have no corresponding
+    tool in the published server.
+- capability: Key and compliance management
+  operations:
+  - validate-your-triple-whale-api-key
+  - create-compliance-request
+  reason: Administrative operations with no agent-facing tool.
+- capability: Industry benchmarks
+  operations:
+  - bi-avg-get
+  reason: >-
+    Exposed to LLMs through the OpenAI-plugin manifest at
+    /.well-known/ai-plugin.json rather than through MCP.
+
+coverage:
+  tools_named: 1
+  tools_bound: 1
+  mcp_only: 0
+  rest_operations_total: 17
+  rest_operations_with_tool: 1
+  remote_tools_unobserved: true
+  note: >-
+    Counts describe the local stdio server only. The hosted server at
+    mcp.triplewhale.com may expose more tools; that inventory is auth-gated and is
+    deliberately not estimated.

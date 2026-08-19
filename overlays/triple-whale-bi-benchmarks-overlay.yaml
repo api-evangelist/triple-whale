@@ -1,0 +1,33 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Bi
+  version: 1.0.0
+extends: openapi/triple-whale-bi-benchmarks-openapi.json
+x-generated: '2026-08-13'
+x-method: generated
+x-source: apis.yml + repo artifacts (conventions, errors, authentication, scopes, lifecycle, rate-limits)
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: triple-whale
+    x-apievangelist-conventions: conventions/triple-whale-conventions.yml
+    x-apievangelist-errors: errors/triple-whale-problem-types.yml
+    x-apievangelist-authentication: authentication/triple-whale-authentication.yml
+    x-apievangelist-scopes: scopes/triple-whale-scopes.yml
+    x-apievangelist-lifecycle: lifecycle/triple-whale-lifecycle.yml
+    x-apievangelist-rate-limits: rate-limits/triple-whale-rate-limits.yml
+    x-apievangelist-data-model: data-model/triple-whale-data-model.yml
+- target: $
+  update:
+    x-apievangelist-notes:
+    - Every REST operation is secured by the x-api-key header; key scopes are selected per key in the
+      Triple Whale app.
+    - A shop identifier is required on every request, but the field name varies by endpoint (shopId /
+      shop / shopDomain).
+    - Errors are plain application/json, not RFC 9457 problem+json.
+    - 429 responses carry Retry-After; some operations also return RateLimit-Policy and RateLimit.
+    - No deprecation policy or Sunset header support is published.
+- target: $.info
+  update:
+    x-apievangelist-discovery: https://api.triplewhale.com/.well-known/ai-plugin.json
+    x-apievangelist-auth: none (declared in the plugin manifest)

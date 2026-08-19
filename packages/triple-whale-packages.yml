@@ -1,0 +1,108 @@
+generated: '2026-08-13'
+method: searched
+source: >-
+  registry.npmjs.org, repo1.maven.org, github.com/Triple-Whale releases, and
+  https://triplewhale.readme.io/reference/mobile-sdk-installation.md
+note: >-
+  Triple Whale publishes no server-side REST client library for the Data-In /
+  Data-Out APIs in any language — the docs demonstrate raw HTTP plus the code
+  samples in github.com/Triple-Whale/triple-whale-public-apis (Node and Python
+  examples, not distributed packages). What it does publish is the Triple Pixel
+  Mobile SDK across three ecosystems, an MCP server, and a pixel-installation CLI.
+  PyPI, RubyGems, crates.io, Packagist and NuGet were checked and carry no
+  first-party Triple Whale package.
+
+packages:
+- language: javascript
+  registry: npm
+  name: '@triplewhale/react-native-triple-pixel'
+  url: https://www.npmjs.com/package/@triplewhale/react-native-triple-pixel
+  install: npm install @triplewhale/react-native-triple-pixel
+  official: true
+  version: 0.1.4
+  published: '2026-06-04'
+  description: React Native bridge for the Triple Whale Triple Pixel tracking SDK
+  docs: https://triplewhale.readme.io/reference/mobile-sdk-installation
+  note: >-
+    Bundles pre-built native binaries for Android and iOS; autolinked. Requires
+    React Native 0.71+, Node 18+, Android minSdk 24, iOS 14.0.
+
+- language: swift
+  registry: swift-package-manager
+  name: TriplePixelSDK
+  url: https://github.com/Triple-Whale/triple-pixel-sdk-spm
+  install: '.package(url: "https://github.com/Triple-Whale/triple-pixel-sdk-spm", from: "0.1.2")'
+  official: true
+  version: 0.1.4
+  published: '2026-06-04'
+  description: Triple Pixel iOS SDK distributed as a Swift package (statically linked XCFramework)
+  docs: https://triplewhale.readme.io/reference/mobile-sdk-installation
+  note: >-
+    SPM has no central metadata endpoint; version and date read from the GitHub
+    release feed for the repository (tag 0.1.4, published 2026-06-04). A manual
+    TriplePixelSDK.xcframework.zip is attached to each release for teams that
+    cannot use SPM.
+
+- language: kotlin
+  registry: maven-central
+  name: com.triplewhale.pixel:shared
+  url: https://repo1.maven.org/maven2/com/triplewhale/pixel/shared/
+  install: implementation("com.triplewhale.pixel:shared:0.1.4")
+  official: true
+  version: 0.1.4
+  published: '2026-06-04'
+  description: Triple Pixel Android SDK (Kotlin Multiplatform shared artifact)
+  docs: https://triplewhale.readme.io/reference/mobile-sdk-installation
+  note: >-
+    Version and date read from maven-metadata.xml (release 0.1.4, lastUpdated
+    20260604231529). The installation docs still pin 0.1.2.
+
+- language: javascript
+  registry: npm
+  name: '@triplewhale/mcp-server-triplewhale'
+  url: https://www.npmjs.com/package/@triplewhale/mcp-server-triplewhale
+  install: npx -y @triplewhale/mcp-server-triplewhale init $TRIPLEWHALE_API_KEY
+  official: true
+  version: 0.0.6
+  published: '2025-03-05'
+  description: MCP server for interacting with the Triple Whale API (stdio transport, MIT)
+  note: >-
+    Last published 2025-03-05, roughly seventeen months before this scan, and it
+    exposes a single tool (moby). The hosted server at mcp.triplewhale.com is the
+    actively maintained surface; this package has not tracked it.
+
+- language: javascript
+  registry: npm
+  name: '@triplewhale/pixel-cli'
+  url: https://www.npmjs.com/package/@triplewhale/pixel-cli
+  install: npx @triplewhale/pixel-cli
+  official: true
+  version: 0.1.3
+  published: '2026-03-19'
+  description: >-
+    AI-powered CLI that automates Triple Pixel installation for headless and custom
+    e-commerce stores
+  bin: triple-whale
+  repository: https://github.com/Triple-Whale/triplewhale-pixel-installation
+  note: See cli/triple-whale-cli.yml for the command surface.
+
+checked_no_result:
+- registry: pypi
+  queries: [triplewhale, triple-whale, tw-api]
+  result: 404
+- registry: rubygems
+  result: no first-party package
+- registry: crates.io
+  result: no first-party package
+- registry: packagist
+  result: no first-party package
+- registry: nuget
+  result: no first-party package
+
+third_party_seen:
+- name: '@mseep/mcp-triple-whale'
+  registry: npm
+  version: 1.0.0
+  published: '2025-04-15'
+  official: false
+  note: community MCP server, publisher skydeckai — not Triple Whale

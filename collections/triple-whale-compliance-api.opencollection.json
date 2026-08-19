@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Triple Whale API Keys Compliance API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compliance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Compliance Data Deletion Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/compliance/requests/create-request",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,3 +1,41 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+- https://triplewhale.readme.io/reference/enrich-pixel-with-offline-events
+- openapi/triple-whale-api-keys-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+limit_count: 3
+response_headers:
+- header: Retry-After
+  unit: seconds
+  scope: all endpoints
+  description: Present on every 429 response; the wait before retrying.
+  declared_in:
+  - openapi/triple-whale-api-keys-api-openapi.yml
+  - openapi/triple-whale-compliance-api-openapi.yml
+  - openapi/triple-whale-data-in-api-openapi.yml
+  - openapi/triple-whale-data-out-api-openapi.yml
+- header: RateLimit-Policy
+  format: '{quota};w={window}'
+  example: 100;w=60
+  description: >-
+    The rate limit policy for the endpoint, where window is in seconds and quota is
+    the allowed number of calls per window.
+  declared_in:
+  - openapi/triple-whale-api-keys-api-openapi.yml
+  - openapi/triple-whale-data-out-api-openapi.yml
+- header: RateLimit
+  description: The caller's current rate limit usage for the endpoint.
+  declared_in:
+  - openapi/triple-whale-api-keys-api-openapi.yml
+  - openapi/triple-whale-data-out-api-openapi.yml
+status_on_exhaustion: 429
+backoff_guidance: >-
+  Triple Whale documents exponential backoff, splitting wide date ranges into
+  smaller chunks, and spacing out bulk calls. RateLimit-Remaining and RateLimit-Reset
+  are not emitted, so a client must read RateLimit-Policy plus Retry-After rather
+  than a remaining counter.
 name: Triple Whale API Rate Limits
 description: Rate limits and payload constraints for Triple Whale's Data-In and Data-Out
   APIs.

@@ -1,0 +1,138 @@
+generated: '2026-08-13'
+method: searched
+source: https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+derived_from:
+- openapi/triple-whale-api-keys-api-openapi.yml
+- openapi/triple-whale-compliance-api-openapi.yml
+- openapi/triple-whale-data-in-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+format: json
+format_note: >-
+  NOT RFC 9457. Triple Whale returns a plain application/json error body; no
+  operation in any published spec declares application/problem+json, and no
+  type/title/detail/instance envelope is documented. Statuses carry the meaning.
+envelope:
+  content_type: application/json
+  note: >-
+    The docs quote message strings directly (e.g. the 403 body reads "Access token
+    is required"), but no field-level schema for the error object is published.
+base_url: https://api.triplewhale.com/api/v2/
+
+problems:
+- status: 401
+  title: Unauthorized
+  meaning: The request could not be authenticated or authorized. Almost always the API key.
+  causes:
+  - Missing x-api-key header
+  - API key deleted, expired or revoked
+  - Key is valid but lacks the scope the endpoint requires
+  - A Shopify session JWT was sent instead of a Triple Whale API key
+  remediation: >-
+    Send the key as x-api-key. Confirm it is active under Data > APIs in the app.
+    Verify scopes with GET /api/v2/users/api-keys/me. Regenerate and retest if
+    needed, updating every script using the old key.
+  source_docs: https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+
+- status: 403
+  title: Access Denied
+  meaning: >-
+    Most often a missing or malformed shopId on the Custom SQL and Moby endpoints —
+    not an account entitlement problem. All paid plans include access to the
+    endpoints they are entitled to.
+  causes:
+  - shopId absent from the request body
+  - Shop domain malformed (extra slashes, URL-wrapped, special characters)
+  remediation: >-
+    Send shopId as a plain string, e.g. "yourstore.myshopify.com". The response
+    message reads "Access token is required" but the real cause on SQL/Moby is the
+    missing shopId; Triple Whale documents a clearer message as roadmap work.
+  source_operations:
+  - openapi/triple-whale-data-out-api-openapi.yml#data-out-execute-natural-language-query-moby
+  - openapi/triple-whale-compliance-api-openapi.yml#create-compliance-request
+
+- status: 404
+  title: Not Found
+  meaning: The endpoint URL could not be matched.
+  causes:
+  - Typo in the path
+  - Endpoint renamed or removed
+  - Wrong HTTP method (GET where POST is required, or vice versa)
+  - 'Data-In only: referenced order does not exist (PPS records)'
+  remediation: >-
+    Check the path against the API reference. SQL is POST /api/v2/orcabase/api/sql;
+    Moby natural-language is POST /api/v2/orcabase/api/moby.
+  source_operations:
+  - openapi/triple-whale-data-in-api-openapi.yml#create-pps-record
+
+- status: 400
+  title: Bad Request
+  meaning: The request reached the API but could not be processed.
+  causes:
+  - >-
+    Missing shop identifier — the field name varies by endpoint: shopId (SQL,
+    Moby), shop (Customer Journey Attribution and all Data-In endpoints),
+    shopDomain (Summary Page)
+  - Other required body fields absent (SQL requires query, period.startDate, period.endDate, shopId)
+  - snake_case / camelCase mismatch
+  - SQL syntax error, or a column/table that cannot be resolved
+  - Malformed dates, or startDate after endDate
+  remediation: >-
+    The in-app SQL Builder uses snake_case (@start_date / @end_date) but the API
+    expects camelCase (@startDate / @endDate) inside the SQL string and
+    period.startDate / period.endDate in the JSON body. Use YYYY-MM-DD dates.
+    Validate queries in the SQL Builder first. Avoid SELECT * — schemas are dynamic.
+  partial_success_note: >-
+    bulk-create-order-records returns 400 when one or more orders fail validation,
+    but valid orders in the same request are still processed. Treat this 400 as
+    partial success, not a whole-batch failure.
+  source_operations:
+  - openapi/triple-whale-api-keys-api-openapi.yml#validate-your-triple-whale-api-key
+  - openapi/triple-whale-data-in-api-openapi.yml#bulk-create-order-records
+  - openapi/triple-whale-data-out-api-openapi.yml#data-out-execute-natural-language-query-moby
+
+- status: 413
+  title: Payload Too Large
+  meaning: An offline pixel event exceeded the maximum payload size.
+  causes:
+  - Event body larger than 3 KB
+  remediation: Trim custom properties; the offline events endpoint caps payloads at 3 KB.
+  source_operations:
+  - openapi/triple-whale-data-in-api-openapi.yml#enrich-pixel-with-offline-events
+
+- status: 429
+  title: Rate Limit Exceeded
+  meaning: Too many requests in a short period. Limits vary by endpoint.
+  response_headers:
+  - Retry-After
+  - RateLimit-Policy
+  - RateLimit
+  remediation: >-
+    Every 429 carries Retry-After in seconds. Implement exponential backoff, split
+    wide date ranges into smaller chunks, and space out bulk calls.
+  source_operations:
+  - openapi/triple-whale-api-keys-api-openapi.yml#validate-your-triple-whale-api-key
+  - openapi/triple-whale-data-in-api-openapi.yml#create-ad-record
+  - openapi/triple-whale-data-out-api-openapi.yml#data-out-execute-natural-language-query-moby
+
+- status: 500
+  title: Internal Server Error
+  meaning: The request failed server-side, but is often triggered by something fixable client-side.
+  causes:
+  - Shop identifier does not match a store connected to the Triple Whale account
+  - Transient backend failure
+  remediation: >-
+    Confirm the shop identifier exactly matches a connected store. Retry once —
+    transient errors usually clear in seconds. If it persists, capture the full
+    response body and contact support with the shop domain, endpoint and redacted payload.
+  source_operations:
+  - openapi/triple-whale-compliance-api-openapi.yml#create-compliance-request
+  - openapi/triple-whale-data-out-api-openapi.yml#data-out-execute-natural-language-query-moby
+
+preflight_checklist:
+- Is the API key valid, active, and sent as x-api-key?
+- Does the key carry the scope the endpoint requires?
+- Is the shop identifier (shopId / shop / shopDomain) present, correctly formatted, and tied to a connected store?
+- Are all required body fields included?
+- Are dates YYYY-MM-DD with startDate on or before endDate?
+- Correct path and HTTP method?
+- 'For SQL: was the query validated in the in-app SQL Builder first?'

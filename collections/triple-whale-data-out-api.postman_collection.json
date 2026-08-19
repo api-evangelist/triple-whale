@@ -1,0 +1,1153 @@
+{
+  "item": [
+    {
+      "id": "a15d84da-5fe0-4ebe-a411-eaa296cc1e59",
+      "name": "Data Out",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "331511a8-ecb3-4185-be7c-6fae8529f1f3",
+          "name": "Execute Natural Language Query (Moby AI)",
+          "request": {
+            "name": "Execute Natural Language Query (Moby AI)",
+            "description": {
+              "content": "Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orcabase",
+                "api",
+                "moby"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"<string>\",\n  \"shopId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fd0852bf-8992-46b8-be8d-1f978c95dc26",
+              "name": "The natural language query was successfully processed, and the response contains the query results in JSON format, grouped by `question` and its respective `answer`.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "moby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.\",\n  \"shopId\": \"example.myshopify.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The rate limit policy for this endpoint. Allowed: no more than 10 requests per second and no more than 60 requests per minute.\n",
+                  "key": "RateLimit-Policy",
+                  "value": "60;w=60, 10;w=1"
+                },
+                {
+                  "disabled": false,
+                  "description": "The current usage of your rate limit for this endpoint.\n",
+                  "key": "RateLimit",
+                  "value": "8/60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isError\": false,\n  \"error\": null,\n  \"responses\": [\n    {\n      \"question\": \"What is the blended spend for the last 7 days, broken down by day?\",\n      \"answer\": {\n        \"event_date\": [\n          \"2025-02-05\",\n          \"2025-02-04\",\n          \"2025-02-03\",\n          \"2025-02-02\",\n          \"2025-02-01\",\n          \"2025-01-31\",\n          \"2025-01-30\"\n        ],\n        \"blended_spend\": [\n          98169.2413,\n          96323.7538,\n          99176.6398,\n          115385.6991,\n          98238.0891,\n          79859.6856,\n          69779.5765\n        ]\n      },\n      \"isError\": false,\n      \"errorMsg\": null,\n      \"assistant\": \"<!-- Instructions for the Assistant (Hidden from the user) -->\\nInstructions to the Assistant:\\n1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics, or interpretations.\\n2. Inform the user that their data is ready to explore in the visualization type: Table.\\n3. If similar reports are provided, let the user know that some similar reports have been found.\\n4. Ask the user if there's anything else you can assist with.\\n\\n<!-- Internal Sections (Hidden from the user) -->\\n<<Only for INFO - Forbidden to show to the user>>\\n<widget>\\n  <data>{\\\"event_date\\\":[\\\"2025-02-05\\\",\\\"2025-02-04\\\",\\\"2025-02-03\\\",\\\"2025-02-02\\\",\\\"2025-02-01\\\",\\\"2025-01-31\\\",\\\"2025-01-30\\\"],\\\"blended_spend\\\":[98169.2413,96323.7538,99176.6398,115385.6991,98238.0891,79859.6856,69779.5765]}</data>\\n</widget>\\nTotal rows of current <data> without pagination: 7\\nHere are details how we got the data: {\\\"included_platforms\\\":[\\\"shopify\\\",\\\"amazon\\\"],\\\"final_select\\\":{\\\"tables_data\\\":[{\\\"table_name\\\":\\\"blended_stats_tvf\\\",\\\"table_alias\\\":\\\"bst\\\"}],\\\"metrics\\\":[\\\"bst.event_date AS event_date\\\",\\\"SUM(bst.spend) AS blended_spend\\\"],\\\"filters\\\":[\\\"bst.event_date BETWEEN '2025-01-30' AND '2025-02-05'\\\"],\\\"group_by\\\":[\\\"bst.event_date\\\"],\\\"order_by\\\":[\\\"ORDER BY bst.event_date DESC\\\"]}}\\n\\n<<Only for TextToPython - Forbidden to show to the user>>\\n<fileName>what_is_the_blended_spend_for_the_last_7_days.json</fileName>\\n\\nSimilar report: [Web Analysis 360](https://app.triplewhale.com/dashboards/IH53tYJ62E7kDtUmnBP1?shop-id=exampleshop.myshopify.com)\\nSimilar report: [CPS ROAS Metrics](https://app.triplewhale.com/dashboards/WvwJU8w8sPvELVM4vSXq?shop-id=exampleshop.myshopify.com)\"\n    },\n    {\n      \"question\": \"List the best performing campaigns in the last 30 days.\",\n      \"answer\": {\n        \"event_date\": [\n          \"2025-02-02\",\n          \"2025-01-10\",\n          \"2025-01-24\",\n          \"2025-01-14\",\n          \"2025-01-11\",\n          \"2025-01-23\",\n          \"2025-01-13\",\n          \"2025-01-12\",\n          \"2025-02-02\",\n          \"2025-01-24\",\n          \"2025-02-05\",\n          \"2025-02-03\",\n          \"2025-02-03\",\n          \"2025-01-28\",\n          \"2025-01-20\",\n          \"2025-01-27\",\n          \"2025-01-21\",\n          \"2025-01-25\",\n          \"2025-01-27\",\n          \"2025-01-10\",\n          \"2025-01-16\",\n          \"2025-01-17\",\n          \"2025-01-16\",\n          \"2025-01-26\",\n          \"2025-01-15\",\n          \"2025-02-05\",\n          \"2025-02-03\",\n          \"2025-02-01\",\n          \"2025-01-18\",\n          \"2025-01-19\",\n          \"2025-01-31\",\n          \"2025-01-11\",\n          \"2025-02-01\",\n          \"2025-01-11\",\n          \"2025-01-22\",\n          \"2025-01-12\",\n          \"2025-02-04\",\n          \"2025-01-08\",\n          \"2025-01-23\",\n          \"2025-01-30\",\n          \"2025-02-05\",\n          \"2025-01-13\",\n          \"2025-01-12\",\n          \"2025-02-02\",\n          \"2025-01-09\",\n          \"2025-01-14\",\n          \"2025-01-31\",\n          \"2025-01-12\",\n          \"2025-01-23\",\n          \"2025-01-18\"\n        ],\n        \"campaign_id\": [\n          \"9da48d7a55e4aa02713ff9e2bd6a69e8\",\n          \"120214728393150052\",\n          \"501490858035553\",\n          \"120209593687300052\",\n          \"1f0de9e5c6a9c1bb3d5682df245131f4\",\n          \"422302067656093\",\n          \"501490858035553\",\n          \"501490858035553\",\n          \"22171659996\",\n          \"367700987853049\",\n          \"471288027443260\",\n          \"22171659996\",\n          \"543707118551857\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"519173100160558\",\n          \"1f0de9e5c6a9c1bb3d5682df245131f4\",\n          \"22105299766\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"543707118551857\",\n          \"367700987853049\",\n          \"22171659996\",\n          \"367700987853049\",\n          \"21032301997\",\n          \"367700987853049\",\n          \"429079956350540\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"21032301997\",\n          \"21883477652\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"367700987853049\",\n          \"476483392245163\",\n          \"367700987853049\",\n          \"120214730413560052\",\n          \"22171659996\",\n          \"543707118551857\",\n          \"120215045998770052\",\n          \"485526473928952\"\n        ],\n        \"campaign_name\": [\n          \"ExampleShop_Budget_CPP\",\n          \"c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_\",\n          \"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\n          \"c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing\",\n          \"ExampleShop_CPP\",\n          \"Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants\",\n          \"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\n          \"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\",\n          \"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\n          \"All SKUs\",\n          \"SD_Conversion_Own Brand ASINs_LONG SLEEVE CREW 431a01\",\n          \"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\n          \"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple Crew Neck, 6pck\",\n          \"ExampleShop_CPP\",\n          \"c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\n          \"All SKUs\",\n          \"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\n          \"All SKUs\",\n          \"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\n          \"All SKUs\",\n          \"Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic Crew Neck, 6pck\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\",\n          \"c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"All SKUs\",\n          \"Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE HENLEY\",\n          \"All SKUs\",\n          \"c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_\",\n          \"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\",\n          \"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\",\n          \"c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC Campaign\",\n          \"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck, 6pck\"\n        ],\n        \"roas\": [\n          7884.6338,\n          246,\n          229.4836,\n          170.48,\n          166.5097,\n          127.4314,\n          99.99,\n          99.99,\n          99.9151,\n          97.71,\n          94.3208,\n          93.2286,\n          88.2255,\n          85.9531,\n          82.7707,\n          81.6613,\n          79.876,\n          77.9684,\n          76.3282,\n          75.5596,\n          75.2808,\n          75.2316,\n          75.2262,\n          74.597,\n          74.2683,\n          72.8411,\n          72.2888,\n          72.1965,\n          71.7091,\n          70.9656,\n          70.9571,\n          70.5765,\n          69.6215,\n          68.5633,\n          68.3214,\n          67.9308,\n          67.4945,\n          67.2915,\n          67.2758,\n          67.2536,\n          65.9382,\n          65.8498,\n          65.1494,\n          63.6273,\n          61.4947,\n          60.435,\n          60.3353,\n          59.99,\n          57.8311,\n          57.7977\n        ]\n      },\n      \"isError\": false,\n      \"errorMsg\": null,\n      \"assistant\": \"<!-- Instructions for the Assistant (Hidden from the user) -->\\nInstructions to the Assistant:\\n1. Do not mention or summarize any data from <data>. Avoid including specific data points, statistics, or interpretations.\\n2. Inform the user that their data is ready to explore in the visualization type: Table.\\n3. If similar reports are provided, let the user know that some similar reports have been found.\\n4. Ask the user if there's anything else you can assist with.\\n\\n<!-- Internal Sections (Hidden from the user) -->\\n<<Only for INFO - Forbidden to show to the user>>\\n<widget>\\n  <data>{\\\"event_date\\\":[\\\"2025-02-02\\\",\\\"2025-01-10\\\",\\\"2025-01-24\\\",\\\"2025-01-14\\\",\\\"2025-01-11\\\",\\\"2025-01-23\\\",\\\"2025-01-13\\\",\\\"2025-01-12\\\",\\\"2025-02-02\\\",\\\"2025-01-24\\\",\\\"2025-02-05\\\",\\\"2025-02-03\\\",\\\"2025-02-03\\\",\\\"2025-01-28\\\",\\\"2025-01-20\\\",\\\"2025-01-27\\\",\\\"2025-01-21\\\",\\\"2025-01-25\\\",\\\"2025-01-27\\\",\\\"2025-01-10\\\",\\\"2025-01-16\\\",\\\"2025-01-17\\\",\\\"2025-01-16\\\",\\\"2025-01-26\\\",\\\"2025-01-15\\\",\\\"2025-02-05\\\",\\\"2025-02-03\\\",\\\"2025-02-01\\\",\\\"2025-01-18\\\",\\\"2025-01-19\\\",\\\"2025-01-31\\\",\\\"2025-01-11\\\",\\\"2025-02-01\\\",\\\"2025-01-11\\\",\\\"2025-01-22\\\",\\\"2025-01-12\\\",\\\"2025-02-04\\\",\\\"2025-01-08\\\",\\\"2025-01-23\\\",\\\"2025-01-30\\\",\\\"2025-02-05\\\",\\\"2025-01-13\\\",\\\"2025-01-12\\\",\\\"2025-02-02\\\",\\\"2025-01-09\\\",\\\"2025-01-14\\\",\\\"2025-01-31\\\",\\\"2025-01-12\\\",\\\"2025-01-23\\\",\\\"2025-01-18\\\"],\\\"campaign_id\\\":[\\\"9da48d7a55e4aa02713ff9e2bd6a69e8\\\",\\\"120214728393150052\\\",\\\"501490858035553\\\",\\\"120209593687300052\\\",\\\"1f0de9e5c6a9c1bb3d5682df245131f4\\\",\\\"422302067656093\\\",\\\"501490858035553\\\",\\\"501490858035553\\\",\\\"22171659996\\\",\\\"367700987853049\\\",\\\"471288027443260\\\",\\\"22171659996\\\",\\\"543707118551857\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"519173100160558\\\",\\\"1f0de9e5c6a9c1bb3d5682df245131f4\\\",\\\"22105299766\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"543707118551857\\\",\\\"367700987853049\\\",\\\"22171659996\\\",\\\"367700987853049\\\",\\\"21032301997\\\",\\\"367700987853049\\\",\\\"429079956350540\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"21032301997\\\",\\\"21883477652\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"367700987853049\\\",\\\"476483392245163\\\",\\\"367700987853049\\\",\\\"120214730413560052\\\",\\\"22171659996\\\",\\\"543707118551857\\\",\\\"120215045998770052\\\",\\\"485526473928952\\\"],\\\"campaign_name\\\":[\\\"ExampleShop_Budget_CPP\\\",\\\"c:FB_b:US_a:ASC_g:ACQ_NewYearNewYou_d:W&S_y:Evergreen_L:CTC_\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"c:FB_b:US_a:ABO_d:LC / NC / TubeScience TS / Creative Testing\\\",\\\"ExampleShop_CPP\\\",\\\"Example Shop|EX4703|1PACK|SP|KW|PHRASE|Sweatpants\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|PHRASE|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\\\",\\\"All SKUs\\\",\\\"SD_Conversion_Own Brand ASINs_LONG SLEEVE CREW 431a01\\\",\\\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-MENS T SHIRTS|PV|Staple Crew Neck, 6pck\\\",\\\"ExampleShop_CPP\\\",\\\"c:Google_b:INTL_a:NB_y:SCH_h:UK_i:Mixed_o:Henley\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"All SKUs\\\",\\\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\\\",\\\"All SKUs\\\",\\\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\\\",\\\"All SKUs\\\",\\\"Example Shop|EX4000|6PACK|B0CLWS8VX1|SP|KW|TPK|NB|EXACT|Classic Crew Neck, 6pck\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"c:Google_b:INTL_a:BR_y:Shopping_h:UK_i:PLA_o:All\\\",\\\"c:Google_b:INTL_a:BR_y:Shopping_h:SP_o:All\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"All SKUs\\\",\\\"Example Shop|EX4203|1PACK|SP|KW|CAT-MEN'S HENLEY SHIRTS|LONG SLEEVE HENLEY\\\",\\\"All SKUs\\\",\\\"c:FB_b:US_a:ASC_g:ACQ_Activewear_d:W&S_y:Evergreen_L:CTC_\\\",\\\"c:Google_b:US_a:BR_y:Pmax_i:BOF_f:tROAS_o:All_Top 50 Products\\\",\\\"Example Shop|EX4000|6PACK|SP|KW|EXACT|B|COLORS|Classic Crew Neck Multicolors\\\",\\\"c:FB_b:US_a:ASC_g:ACQ_Sweaters&Outerwear_d:W&S_y:Evergreen_L:CTC_7DC Campaign\\\",\\\"Example Shop|EX4000|6PACK|B0BJZ8WJ86|SBV|KW|CAT-CAMISETAS PARA HOMBRE|PV|Classic Crew Neck, 6pck\\\"],\\\"roas\\\":[7884.6338,246,229.4836,170.48,166.5097,127.4314,99.99,99.99,99.9151,97.71,94.3208,93.2286,88.2255,85.9531,82.7707,81.6613,79.876,77.9684,76.3282,75.5596,75.2808,75.2316,75.2262,74.597,74.2683,72.8411,72.2888,72.1965,71.7091,70.9656,70.9571,70.5765,69.6215,68.5633,68.3214,67.9308,67.4945,67.2915,67.2758,67.2536,65.9382,65.8498,65.1494,63.6273,61.4947,60.435,60.3353,59.99,57.8311,57.7977]}\\n</widget>\\nTotal rows of current <data> without pagination: 43246\\nHere are details how we got the data: {\\\"final_select\\\":{\\\"tables_data\\\":[{\\\"table_name\\\":\\\"pixel_joined_tvf\\\",\\\"table_alias\\\":\\\"pj\\\"}],\\\"metrics\\\":[\\\"pj.event_date AS event_date\\\",\\\"pj.campaign_id AS campaign_id\\\",\\\"pj.campaign_name AS campaign_name\\\",\\\"SUM(pj.channel_reported_conversion_value) / SUM(pj.spend) AS roas\\\"],\\\"filters\\\":[\\\"pj.event_date BETWEEN '2025-01-08' AND '2025-02-06'\\\",\\\"pj.model = 'Triple Attribution'\\\"],\\\"group_by\\\":[\\\"pj.event_date\\\",\\\"pj.campaign_id\\\",\\\"pj.campaign_name\\\"],\\\"order_by\\\":[\\\"ORDER BY roas DESC\\\"]}}\\n\\n<<Only for TextToPython - Forbidden to show to the user>>\\n<fileName>list_the_best_performing_campaigns_in_the_last_30_days.json</fileName>\\n\\nSimilar report: [Activity Tracker](https://app.triplewhale.com/dashboards/O5uAw1DJ0VmuLsmaXMXh?shop-id=exampleshop.myshopify.com)\\nSimilar report: [Chase Dimond's Klaviyo Template](https://app.triplewhale.com/dashboards/aGjZT4TwAKIfmGMK34Fo?shop-id=exampleshop.myshopify.com)\"\n    }\n  ],\n  \"assistantConclusion\": \"Your data is ready for exploration:\\n\\n1. **Blended Spend for the Last 7 Days**: You can view the daily breakdown in the table format.\\n2. **Best Performing Campaigns in the Last 30 Days**: The list of top campaigns is available in the table format.\\n\\nIf you need further assistance or have more questions, feel free to ask!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab51ab04-c44d-4d53-aaa2-639e238642c8",
+              "name": "Invalid request due to missing or malformed parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "moby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.\",\n  \"shopId\": \"example.myshopify.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Missing fields: question\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f28f0fc9-195e-45a1-87aa-e3dc78c3cbb6",
+              "name": "Access forbidden due to missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "moby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.\",\n  \"shopId\": \"example.myshopify.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Access token is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4586de0-8b25-4371-bfc9-8862bef3fa10",
+              "name": "Rate limit exceeded. Too many requests were sent in a short period.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "moby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.\",\n  \"shopId\": \"example.myshopify.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until you can make another request.\n",
+                  "key": "Retry-After",
+                  "value": "10"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Please wait 10 seconds before retrying.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2ae1aa4f-2f18-4f24-b22a-685fa2014629",
+              "name": "Internal server error. An unexpected issue occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "moby"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"question\": \"I have 2 questions: 1. What is my blended spend for the last 7 days, breaking down by day, and 2. Give me the best performing campaigns list for the last 30 days.\",\n  \"shopId\": \"example.myshopify.com\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"An unexpected error occurred. Please try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56f88146-18a9-4677-a378-5191c28c4bbd",
+          "name": "Execute Custom SQL Query",
+          "request": {
+            "name": "Execute Custom SQL Query",
+            "description": {
+              "content": "Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orcabase",
+                "api",
+                "sql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"period\": {\n    \"startDate\": \"<date>\",\n    \"endDate\": \"<date>\"\n  },\n  \"shopId\": \"<string>\",\n  \"currency\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "135d7bcc-0ba4-4df2-a7ae-532bb495aea3",
+              "name": "The SQL query was executed successfully, and the response contains the query results in a JSON format grouped by `channel` and `event_date`.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel\",\n  \"period\": {\n    \"startDate\": \"2025-07-01\",\n    \"endDate\": \"2025-07-31\"\n  },\n  \"shopId\": \"example.myshopify.com\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"The query was executed successfully.\",\n  \"data\": [\n    {\n      \"key_0\": \"string\",\n      \"key_1\": \"string\"\n    },\n    {\n      \"key_0\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4d40055-db45-49c0-9566-074501a61e8e",
+              "name": "Invalid request due to missing or malformed parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel\",\n  \"period\": {\n    \"startDate\": \"2025-07-01\",\n    \"endDate\": \"2025-07-31\"\n  },\n  \"shopId\": \"example.myshopify.com\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Missing fields: query, startDate, endDate\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0d2d5b9-aef7-407c-8806-252237ff7ede",
+              "name": "Access forbidden due to missing or invalid access token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel\",\n  \"period\": {\n    \"startDate\": \"2025-07-01\",\n    \"endDate\": \"2025-07-31\"\n  },\n  \"shopId\": \"example.myshopify.com\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Access token is required\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa8c38d7-b29a-45ad-b464-c6560391841d",
+              "name": "Rate limit exceeded. Too many requests were sent in a short period.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel\",\n  \"period\": {\n    \"startDate\": \"2025-07-01\",\n    \"endDate\": \"2025-07-31\"\n  },\n  \"shopId\": \"example.myshopify.com\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until you can make another request.\n",
+                  "key": "Retry-After",
+                  "value": "10"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Please wait 10 seconds before retrying.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdd2e764-4bef-479f-a431-71e9ef690085",
+              "name": "Internal server error. An unexpected issue occurred on the server.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orcabase",
+                    "api",
+                    "sql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"SELECT SUM(spend) AS spend, channel FROM ads_table a WHERE event_date BETWEEN @startDate AND @endDate GROUP BY channel\",\n  \"period\": {\n    \"startDate\": \"2025-07-01\",\n    \"endDate\": \"2025-07-31\"\n  },\n  \"shopId\": \"example.myshopify.com\",\n  \"currency\": \"USD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"An unexpected error occurred. Please try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "92d9819c-0e54-46eb-bd81-64be73765403",
+          "name": "Get Customer Journey Attribution Data",
+          "request": {
+            "name": "Get Customer Journey Attribution Data",
+            "description": {
+              "content": "Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "attribution",
+                "get-orders-with-journeys-v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"startDate\": \"<string>\",\n  \"endDate\": \"<string>\",\n  \"page\": 1,\n  \"pageSize\": 50,\n  \"excludeJourneyData\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e97692f9-3e4a-4534-8852-b958ef747960",
+              "name": "A successful response containing orders, attribution data,  and (optionally) journey events for the requested period.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attribution",
+                    "get-orders-with-journeys-v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"startDate\": \"2021-01-01T00:00:00.000-0400\",\n  \"endDate\": \"2021-01-01T23:59:59.999-0400\",\n  \"page\": 2,\n  \"pageSize\": 25,\n  \"excludeJourneyData\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The rate limit policy for this endpoint, given as {quota};w={window} where  window is in seconds and quota is the allowed number of calls a user can make  per window.\n",
+                  "key": "RateLimit-Policy",
+                  "value": "100;w=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "Information about the user's rate limit usage for this endpoint.\n",
+                  "key": "RateLimit",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalForRange\": 3309.2563170916146,\n  \"count\": 5629.249006652367,\n  \"startDate\": \"2021-01-01T00:00:00.000-0400\",\n  \"endDate\": \"2021-01-01T23:59:59.999-0400\",\n  \"ordersWithJourneys\": [\n    {\n      \"order_id\": 8336.749415814516,\n      \"created_at\": \"string\",\n      \"order_name\": \"string\",\n      \"attribution\": {\n        \"firstClick\": [\n          {\n            \"source\": \"string\",\n            \"campaignId\": \"string\",\n            \"adsetId\": \"string\",\n            \"adId\": \"string\",\n            \"clickDate\": \"string\"\n          },\n          {\n            \"source\": \"string\",\n            \"campaignId\": \"string\",\n            \"adsetId\": \"string\",\n            \"adId\": \"string\",\n            \"clickDate\": \"string\"\n          }\n        ]\n      },\n      \"customer_id\": 188.89685419176794,\n      \"total_price\": \"string\",\n      \"currency\": \"USD\",\n      \"journey\": [\n        {\n          \"time\": \"string\",\n          \"event\": \"add2c\",\n          \"path\": \"string\",\n          \"productId\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"event\": \"page loaded\",\n          \"path\": \"string\",\n          \"productId\": \"string\"\n        }\n      ]\n    },\n    {\n      \"order_id\": 4094.3270293434243,\n      \"created_at\": \"string\",\n      \"order_name\": \"string\",\n      \"attribution\": {\n        \"firstClick\": [\n          {\n            \"source\": \"string\",\n            \"campaignId\": \"string\",\n            \"adsetId\": \"string\",\n            \"adId\": \"string\",\n            \"clickDate\": \"string\"\n          },\n          {\n            \"source\": \"string\",\n            \"campaignId\": \"string\",\n            \"adsetId\": \"string\",\n            \"adId\": \"string\",\n            \"clickDate\": \"string\"\n          }\n        ]\n      },\n      \"customer_id\": 7606.617873407126,\n      \"total_price\": \"string\",\n      \"currency\": \"USD\",\n      \"journey\": [\n        {\n          \"time\": \"string\",\n          \"event\": \"page loaded\",\n          \"path\": \"string\",\n          \"productId\": \"string\"\n        },\n        {\n          \"time\": \"string\",\n          \"event\": \"page loaded\",\n          \"path\": \"string\",\n          \"productId\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"earliestDate\": \"string\",\n  \"page\": 1282.7213033521834,\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba4fe3ee-3ef7-4bea-b8bf-06c1a4798e1f",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attribution",
+                    "get-orders-with-journeys-v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"startDate\": \"2021-01-01T00:00:00.000-0400\",\n  \"endDate\": \"2021-01-01T23:59:59.999-0400\",\n  \"page\": 2,\n  \"pageSize\": 25,\n  \"excludeJourneyData\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.\n",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a9929819-1c34-410c-b04a-0264df7b3727",
+          "name": "Get Summary Page Data",
+          "request": {
+            "name": "Get Summary Page Data",
+            "description": {
+              "content": "Retrieve data from the Summary Page for a specified time period.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "summary-page",
+                "get-data"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shopDomain\": \"<string>\",\n  \"period\": {\n    \"start\": \"<string>\",\n    \"end\": \"<string>\"\n  },\n  \"todayHour\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67b88d9d-a04e-4830-b9f4-8064cd4daf29",
+              "name": "A successful response containing Summary Page data for the specified shop and period.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary-page",
+                    "get-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopDomain\": \"example.myshopify.com\",\n  \"period\": {\n    \"start\": \"2023-01-01\",\n    \"end\": \"2023-01-07\"\n  },\n  \"todayHour\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The rate limit policy for this endpoint, given as `{quota};w={window}`  where `window` is in seconds and `quota` is the allowed number of calls  per window.\n",
+                  "key": "RateLimit-Policy",
+                  "value": "100;w=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "Information about the user's rate limit usage for this endpoint.\n",
+                  "key": "RateLimit",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metrics\": [\n    {\n      \"metricName\": \"revenue\",\n      \"value\": 12345.67\n    },\n    {\n      \"metricName\": \"orders\",\n      \"value\": 345\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1ea6973a-1064-4d2b-a923-30c60b76d20c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary-page",
+                    "get-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopDomain\": \"example.myshopify.com\",\n  \"period\": {\n    \"start\": \"2023-01-01\",\n    \"end\": \"2023-01-07\"\n  },\n  \"todayHour\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid request. Please ensure all required fields are correctly populated.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc7e8b50-280c-4afb-9fec-9fe83e035245",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "summary-page",
+                    "get-data"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shopDomain\": \"example.myshopify.com\",\n  \"period\": {\n    \"start\": \"2023-01-01\",\n    \"end\": \"2023-01-07\"\n  },\n  \"todayHour\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.\n",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.triplewhale.com/api/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3b72bf0b-2b71-48d7-bc82-2580019c38fb",
+    "name": "Triple Whale API Keys Data Out API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.\n",
+      "type": "text/plain"
+    }
+  }
+}

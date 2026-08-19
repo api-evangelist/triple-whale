@@ -1,0 +1,107 @@
+generated: '2026-08-13'
+method: searched
+source: live GET probes of /.well-known/* on every Triple Whale host in apis.yml + OpenAPI servers[]
+note: >-
+  Three real documents were served. api.triplewhale.com serves an OpenAI-plugin
+  manifest (ai-plugin.json) that points at a live OpenAPI document at
+  https://api.triplewhale.com/api/v2/ai/swagger.json — that spec was harvested to
+  openapi/triple-whale-bi-benchmarks-openapi.json. mcp.triplewhale.com serves RFC
+  8414 authorization-server metadata and RFC 9728 protected-resource metadata for
+  the hosted Moby MCP server. No security.txt, no OpenID Connect discovery, no
+  api-catalog and no A2A agent card were found on any reachable host.
+  app.triplewhale.com refused the probe connection entirely and is recorded as
+  unreachable rather than as a hit or a miss.
+hosts:
+- host: https://api.triplewhale.com
+  documents:
+  - path: /.well-known/ai-plugin.json
+    status: 200
+    content_type: application/json
+    file: triple-whale-ai-plugin.json
+    note: OpenAI plugin manifest; api.url points at /api/v2/ai/swagger.json (auth type none)
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://mcp.triplewhale.com
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    content_type: application/json
+    file: triple-whale-oauth-authorization-server.json
+    note: RFC 8414; authorization_code + refresh_token, PKCE S256, dynamic client registration
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    content_type: application/json
+    file: triple-whale-oauth-protected-resource.json
+    note: RFC 9728; resource https://mcp.triplewhale.com/sse, scopes moby:read/offline/offline_access
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/mcp.json
+    status: 404
+- host: https://www.triplewhale.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://triplewhale.readme.io
+  documents:
+  - path: /llms.txt
+    status: 200
+    content_type: text/plain
+    file: ../llms/triple-whale-llms.txt
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+- host: https://app.triplewhale.com
+  reachable: false
+  note: >-
+    The customer application host refused every connection from the probe (curl
+    exit before any HTTP status; no response received). No /.well-known/ result
+    can be asserted for this host either way.
+  documents:
+  - path: /.well-known/agent-card.json
+    status: null
+    result: unreachable
+  - path: /.well-known/agent.json
+    status: null
+    result: unreachable
+  - path: /.well-known/security.txt
+    status: null
+    result: unreachable
+- host: https://developers.triplewhale.com
+  documents:
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /llms.txt
+    status: 404

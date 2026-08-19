@@ -1,0 +1,77 @@
+generated: '2026-08-13'
+method: searched
+source: https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys
+docs: https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys
+note: >-
+  Two independent scope systems exist and they are not the same vocabulary. The
+  REST API uses named scopes attached to an API key at creation time in the app
+  (Data > APIs); the hosted MCP server uses OAuth 2.1 scopes advertised in its
+  RFC 9728 protected-resource metadata. Neither appears in any published OpenAPI —
+  the derive pass over openapi/ found zero oauth2 security schemes, so every scope
+  below was read from the provider's own documentation or from live metadata.
+
+api_key_scopes:
+  mechanism: named scopes bound to an API key
+  issuance: https://app.triplewhale.com/api-keys
+  verification_endpoint: GET /api/v2/users/api-keys/me
+  scopes:
+  - scope: 'Summary Page: Read'
+    description: Retrieve data from the Summary Page endpoint.
+    operations: [get-summary-page-data]
+  - scope: 'Pixel Attribution: Read'
+    description: Access customer journey data from the Attribution endpoint.
+    operations: [get-customer-journey-attribution-data]
+  - scope: 'MCP: Read'
+    description: Access Triple Whale data through the Model Context Protocol server.
+    operations: []
+    surface: mcp
+  - scope: 'Ads: Write'
+    description: Upload ad records to the Ads Data-In endpoint.
+    operations: [create-ad-record]
+  - scope: 'Orders: Write'
+    description: >-
+      Upload order records to the Orders Data-In endpoint, or enrich order records
+      via the Enrich Orders Data endpoint.
+    operations: [create-order-record, bulk-create-order-records, enrich-orders-data]
+  - scope: 'Customers: Write'
+    description: Upload customer records to the Customers Data-In endpoint.
+    operations: [create-customer-record]
+  - scope: 'Products: Write'
+    description: Upload product records to the Products Data-In endpoint.
+    operations: [create-product-record, enrich-products-data]
+  - scope: 'PPS: Write'
+    description: Upload post-purchase survey records to the PPS Data-In endpoint.
+    operations: [create-pps-record]
+  - scope: 'Subscriptions: Write'
+    description: Upload subscription records to the Subscriptions Data-In endpoint.
+    operations: [create-subscription-record]
+  - scope: 'Compliance: Write'
+    description: Submit data deletion requests to the Compliance endpoint.
+    operations: [create-compliance-request]
+  undocumented_scope_note: >-
+    The troubleshooting guide also references a "Data Out" scope covering the SQL
+    and Moby endpoints, but that name does not appear in the scope-selection list on
+    the key-creation page. Recorded as an inconsistency rather than resolved.
+
+oauth2:
+  surface: https://mcp.triplewhale.com/sse
+  metadata:
+    authorization_server: https://mcp.triplewhale.com/.well-known/oauth-authorization-server
+    protected_resource: https://mcp.triplewhale.com/.well-known/oauth-protected-resource
+    file: well-known/triple-whale-oauth-authorization-server.json
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://mcp.triplewhale.com/authorize
+    tokenUrl: https://mcp.triplewhale.com/token
+    registrationUrl: https://mcp.triplewhale.com/register
+    pkce: S256
+  grant_types: [authorization_code, refresh_token]
+  scopes:
+  - scope: moby:read
+    description: Read access to Triple Whale data through the Moby MCP server.
+  - scope: offline
+    description: Issue a refresh token.
+  - scope: offline_access
+    description: Issue a refresh token (RFC 6749 / OIDC spelling).
+  method: probed
+  probed: '2026-08-13'

@@ -1,0 +1,110 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Triple Whale API Keys Data Out API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data Out",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute Natural Language Query (Moby AI)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/orcabase/api/moby",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.\n"
+        },
+        {
+          "info": {
+            "name": "Execute Custom SQL Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/orcabase/api/sql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.\n"
+        },
+        {
+          "info": {
+            "name": "Get Customer Journey Attribution Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/attribution/get-orders-with-journeys-v2",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.\n"
+        },
+        {
+          "info": {
+            "name": "Get Summary Page Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/summary-page/get-data",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve data from the Summary Page for a specified time period.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

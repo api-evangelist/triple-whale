@@ -1,0 +1,173 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.triplewhale.com/product-updates
+url: https://www.triplewhale.com/product-updates
+scheme: dated-product-updates
+current_version: v2
+note: >-
+  Triple Whale publishes product release notes, not an API changelog. Entries are
+  dated, carry an availability state (General Availability / Limited Availability /
+  Coming Soon) and a category — one of which is "APIs" — but they do not record
+  endpoint additions, field changes or breaking changes at the contract level. No
+  changelog exists on the developer docs host; readme.io pages carry an updatedAt
+  timestamp per page instead. Recent window captured below; the live page is the
+  source of truth.
+availability_states: [General Availability, Limited Availability, Coming Soon]
+categories:
+- Industry Benchmarks
+- Sonar
+- Operations add-on
+- Conversion add-on
+- Retention add-on
+- APIs
+- Accounts & Settings
+- Post-Purchase Survey
+- Customer Segmentation
+- Business Intelligence
+- Dashboard Templates
+- Integrations
+- Moby AI
+- Moby Agents
+- Moby Chat
+- Marketing Measurement
+
+entries:
+- date: '2026-07-28'
+  category: Moby AI
+  availability: General Availability
+  title: Moby Actions for Media Buying
+  summary: Moby connects to ad platforms and takes media buying actions on the user's behalf.
+  breaking: false
+- date: '2026-07-28'
+  category: Moby AI
+  availability: General Availability
+  title: Moby Automations
+  summary: Recurring work on autopilot — morning reports, daily media-buying actions, weekly performance checks.
+  breaking: false
+- date: '2026-07-28'
+  category: Marketing Measurement
+  availability: Coming Soon
+  title: YouTube Attribution Breakout
+  summary: View YouTube separately from other Google campaign types in attribution.
+  breaking: false
+- date: '2026-07-28'
+  category: Sonar
+  availability: General Availability
+  title: Sonar Optimize for Realize
+  summary: Sonar Optimize extended to Realize for targeting and campaign optimization.
+  breaking: false
+- date: '2026-07-28'
+  category: Sonar
+  availability: General Availability
+  title: Sonar Optimize for ChatGPT Ads
+  summary: Sonar Optimize extended to ChatGPT Ads.
+  breaking: false
+- date: '2026-07-28'
+  category: Sonar
+  availability: General Availability
+  title: Sonar Optimize for Reddit
+  summary: Connect Reddit to Sonar Optimize and send conversion events server-side via CAPI.
+  breaking: false
+- date: '2026-07-28'
+  category: Moby AI
+  availability: General Availability
+  title: Moby Creative Studio
+  summary: Edit creative and copy in Triple Whale, then test and publish without leaving the platform.
+  breaking: false
+- date: '2026-07-28'
+  category: Customer Segmentation
+  availability: Beta
+  title: Import Klaviyo Audiences (Beta)
+  summary: Import Klaviyo segments into Triple Whale and sync updated audiences back to Klaviyo or other ad channels.
+  breaking: false
+- date: '2026-07-28'
+  category: Marketing Measurement
+  availability: General Availability
+  title: Expanded Global Coverage for TikTok in C&DV
+  summary: Broader international TikTok coverage, improved impression matching, additional historical data.
+  breaking: false
+- date: '2026-07-28'
+  category: Integrations
+  availability: General Availability
+  title: Walmart Connect Ads Integration
+  summary: Walmart Connect performance data flows into Triple Whale.
+  breaking: false
+- date: '2026-07-28'
+  category: Business Intelligence
+  availability: General Availability
+  title: Triple Pixel Mobile SDK
+  summary: >-
+    Triple Pixel extended into mobile apps to capture behavior across web and app.
+    Corresponds to the React Native, Swift and Android packages in
+    packages/triple-whale-packages.yml.
+  breaking: false
+  additions: [mobile-sdk]
+- date: '2026-07-28'
+  category: Industry Benchmarks
+  availability: General Availability
+  title: Ads Benchmarks in Attribution
+  summary: Peer-group performance comparison surfaced on the Attribution page.
+  breaking: false
+- date: '2026-07-28'
+  category: Moby AI
+  availability: General Availability
+  title: Shopify Landing Pages
+  summary: Build conversion-optimized landing pages with Moby and publish directly to Shopify.
+  breaking: false
+- date: '2026-05-19'
+  category: Sonar
+  availability: Limited Availability
+  title: Sonar Optimize Meta Attribution Passback Beta
+  summary: Use Triple Whale first-party attribution data with Meta's Custom Attribution.
+  breaking: false
+- date: '2026-05-19'
+  category: Marketing Measurement
+  availability: General Availability
+  title: AppLovin Supported in Clicks & Deterministic Views Attribution
+  summary: AppLovin added as a supported channel for verified view-through attribution.
+  breaking: false
+- date: '2026-05-19'
+  category: Marketing Measurement
+  availability: General Availability
+  title: Vibe Supported in Clicks & Deterministic Views Attribution
+  summary: Vibe added as a supported CTV channel for deterministic view-through attribution.
+  breaking: false
+- date: '2026-05-19'
+  category: Marketing Measurement
+  availability: General Availability
+  title: Compass
+  summary: Unified measurement bringing first-party attribution, MMM and incrementality into one Command Center interface.
+  breaking: false
+- date: '2026-05-19'
+  category: Moby AI
+  availability: General Availability
+  title: Moby 2
+  summary: Rebuilt AI layer that analyzes real-time e-commerce data and takes action.
+  breaking: false
+- date: '2026-04-22'
+  category: Moby AI
+  availability: Limited Availability
+  title: Moby 2 Early Access
+  summary: Early access to the rebuilt Moby.
+  breaking: false
+- date: '2026-04-22'
+  category: Accounts & Settings / Marketing Measurement
+  availability: General Availability
+  title: Pixel Events Manager
+  summary: Single view of pixel tracking with real-time event monitoring, hourly breakdowns and device segmentation.
+  breaking: false
+- date: '2026-04-22'
+  category: Integrations / Accounts & Settings
+  availability: General Availability
+  title: Updated Data Refresh Button
+  summary: On-demand refresh across every integration with live progress.
+  breaking: false
+- date: '2026-04-22'
+  category: Accounts & Settings
+  availability: General Availability
+  title: Automated Pixel Installation for Headless & Custom Stores
+  summary: >-
+    Automates Triple Pixel installation on headless or custom storefronts.
+    Corresponds to the @triplewhale/pixel-cli CLI in cli/triple-whale-cli.yml.
+  breaking: false
+  additions: [pixel-cli]

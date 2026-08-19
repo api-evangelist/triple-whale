@@ -1,0 +1,236 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Triple Whale API Keys Data In API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Data In",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Ad Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/ads",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest ad data into Triple Whale. This endpoint allows users to upload  detailed ad information, including campaign, adset, ad details, and  performance metrics.\n"
+        },
+        {
+          "info": {
+            "name": "Create Order Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest order data into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload  detailed order information,  including customer details, product information, transaction totals,  discounts, refunds, and shipping details.\n"
+        },
+        {
+          "info": {
+            "name": "Bulk Create Order Records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/bulk-orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest multiple order records into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload batches of order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.\n"
+        },
+        {
+          "info": {
+            "name": "Create Subscription Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/subscriptions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription information, including customer details, items, status, and metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Create Product Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/products",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information, including variants, tags, collections, and images.\n"
+        },
+        {
+          "info": {
+            "name": "Create Post-Purchase Survey (PPS) Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/pps",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest PPS data into Triple Whale. This endpoint allows users to upload  detailed post-purchase survey information, including order-related data, questions, and responses.\n"
+        },
+        {
+          "info": {
+            "name": "Create Customer Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information — including contact details, address, consent status, and purchase history metadata.\n"
+        },
+        {
+          "info": {
+            "name": "Enrich Orders Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/orders-enrichment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags.  Note: Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full order via the [Orders](https://triplewhale.readme.io/reference/create-order-record) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Enrich Products Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/products-enrichment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Use this endpoint to enrich existing products—such as adding cost data from external systems.  Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full product record via the  [Products](https://triplewhale.readme.io/reference/create-product-record) endpoint.\n"
+        },
+        {
+          "info": {
+            "name": "Enrich Pixel With Offline Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.triplewhale.com/api/v2/data-in/event",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-api-key",
+              "value": "{{x-api-key}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events, or fully custom events—into Triple Whale.  Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`, you can add additional properties of type **Number, Float, String, Boolean, or Date**.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2943 @@
+{
+  "item": [
+    {
+      "id": "17ad8d8c-ebec-4363-87ef-d1845e599832",
+      "name": "Data In",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9bb4c22e-5d6c-480a-9aae-cce5e4e23f9c",
+          "name": "Create Ad Record",
+          "request": {
+            "name": "Create Ad Record",
+            "description": {
+              "content": "Ingest ad data into Triple Whale. This endpoint allows users to upload  detailed ad information, including campaign, adset, ad details, and  performance metrics.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "ads"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"channel\": \"<string>\",\n  \"event_date\": \"<date>\",\n  \"currency\": \"<string>\",\n  \"channel_account_id\": \"CUSTOM_CHANNEL\",\n  \"campaign\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"adset\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\"\n  },\n  \"ad\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"status\": \"<string>\",\n    \"thumbnail\": \"<string>\"\n  },\n  \"metrics\": {\n    \"clicks\": 0,\n    \"conversions\": 0,\n    \"conversion_value\": 0,\n    \"impressions\": 0,\n    \"spend\": 0,\n    \"visits\": 0\n  },\n  \"updated_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d366e39-5177-47eb-855d-a42012cd53c2",
+              "name": "Ad record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"channel\": \"facebook-ads\",\n  \"event_date\": \"2024-11-28\",\n  \"currency\": \"USD\",\n  \"channel_account_id\": \"example_fb_account\",\n  \"campaign\": {\n    \"id\": \"campaign_example_id\",\n    \"name\": \"Example Campaign\",\n    \"status\": \"ACTIVE\"\n  },\n  \"adset\": {\n    \"id\": \"adset_example_id\",\n    \"name\": \"Example Adset\",\n    \"status\": \"ACTIVE\"\n  },\n  \"ad\": {\n    \"id\": \"ad_example_id\",\n    \"name\": \"Example Ad\",\n    \"status\": \"ACTIVE\",\n    \"thumbnail\": \"https://example.com/placeholder.jpg\"\n  },\n  \"metrics\": {\n    \"clicks\": 1500,\n    \"conversions\": 75,\n    \"conversion_value\": 3750.5,\n    \"impressions\": 25000,\n    \"spend\": 500,\n    \"visits\": 2000\n  },\n  \"updated_at\": \"2024-11-28T15:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Ad received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d379bcc1-cc31-47df-8557-b6055b7fd3fe",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"channel\": \"facebook-ads\",\n  \"event_date\": \"2024-11-28\",\n  \"currency\": \"USD\",\n  \"channel_account_id\": \"example_fb_account\",\n  \"campaign\": {\n    \"id\": \"campaign_example_id\",\n    \"name\": \"Example Campaign\",\n    \"status\": \"ACTIVE\"\n  },\n  \"adset\": {\n    \"id\": \"adset_example_id\",\n    \"name\": \"Example Adset\",\n    \"status\": \"ACTIVE\"\n  },\n  \"ad\": {\n    \"id\": \"ad_example_id\",\n    \"name\": \"Example Ad\",\n    \"status\": \"ACTIVE\",\n    \"thumbnail\": \"https://example.com/placeholder.jpg\"\n  },\n  \"metrics\": {\n    \"clicks\": 1500,\n    \"conversions\": 75,\n    \"conversion_value\": 3750.5,\n    \"impressions\": 25000,\n    \"spend\": 500,\n    \"visits\": 2000\n  },\n  \"updated_at\": \"2024-11-28T15:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid ad data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6fb8d594-69d4-4908-8d50-aacfac15d5b2",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"channel\": \"facebook-ads\",\n  \"event_date\": \"2024-11-28\",\n  \"currency\": \"USD\",\n  \"channel_account_id\": \"example_fb_account\",\n  \"campaign\": {\n    \"id\": \"campaign_example_id\",\n    \"name\": \"Example Campaign\",\n    \"status\": \"ACTIVE\"\n  },\n  \"adset\": {\n    \"id\": \"adset_example_id\",\n    \"name\": \"Example Adset\",\n    \"status\": \"ACTIVE\"\n  },\n  \"ad\": {\n    \"id\": \"ad_example_id\",\n    \"name\": \"Example Ad\",\n    \"status\": \"ACTIVE\",\n    \"thumbnail\": \"https://example.com/placeholder.jpg\"\n  },\n  \"metrics\": {\n    \"clicks\": 1500,\n    \"conversions\": 75,\n    \"conversion_value\": 3750.5,\n    \"impressions\": 25000,\n    \"spend\": 500,\n    \"visits\": 2000\n  },\n  \"updated_at\": \"2024-11-28T15:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca92ef85-29e3-4256-aa89-f2fc68e47403",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "ads"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"channel\": \"facebook-ads\",\n  \"event_date\": \"2024-11-28\",\n  \"currency\": \"USD\",\n  \"channel_account_id\": \"example_fb_account\",\n  \"campaign\": {\n    \"id\": \"campaign_example_id\",\n    \"name\": \"Example Campaign\",\n    \"status\": \"ACTIVE\"\n  },\n  \"adset\": {\n    \"id\": \"adset_example_id\",\n    \"name\": \"Example Adset\",\n    \"status\": \"ACTIVE\"\n  },\n  \"ad\": {\n    \"id\": \"ad_example_id\",\n    \"name\": \"Example Ad\",\n    \"status\": \"ACTIVE\",\n    \"thumbnail\": \"https://example.com/placeholder.jpg\"\n  },\n  \"metrics\": {\n    \"clicks\": 1500,\n    \"conversions\": 75,\n    \"conversion_value\": 3750.5,\n    \"impressions\": 25000,\n    \"spend\": 500,\n    \"visits\": 2000\n  },\n  \"updated_at\": \"2024-11-28T15:30:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing ad\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "568f6075-5fd3-47de-9ad8-fdc643868a8f",
+          "name": "Create Order Record",
+          "request": {
+            "name": "Create Order Record",
+            "description": {
+              "content": "Ingest order data into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload  detailed order information,  including customer details, product information, transaction totals,  discounts, refunds, and shipping details.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"currency\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email\": \"<string>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"order_revenue\": \"<number>\",\n  \"platform\": \"custom-msp\",\n  \"platform_account_id\": \"custom-msp\",\n  \"custom_expenses\": \"<number>\",\n  \"discount_codes\": [\n    {\n      \"code\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"code\": \"<string>\",\n      \"amount\": \"<number>\",\n      \"type\": \"<string>\"\n    }\n  ],\n  \"line_items\": [\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"variant_id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"product_name\": \"<string>\",\n      \"variant_name\": \"<string>\",\n      \"sku\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"quantity\": \"<integer>\",\n      \"price\": \"<number>\",\n      \"variant_id\": \"<string>\",\n      \"product_id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"product_name\": \"<string>\",\n      \"variant_name\": \"<string>\",\n      \"sku\": \"<string>\"\n    }\n  ],\n  \"name\": \"<string>\",\n  \"payment_gateway_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"refunds\": [\n    {\n      \"refund_id\": \"<string>\",\n      \"refunded_at\": \"<dateTime>\",\n      \"total_refund\": \"<number>\",\n      \"line_items\": [\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"line_item_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"currency\": \"<string>\",\n          \"total_discount\": \"<number>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"line_item_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"currency\": \"<string>\",\n          \"total_discount\": \"<number>\"\n        }\n      ],\n      \"total_tax_refund\": \"<number>\",\n      \"total_shipping_refund\": \"<number>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"void\": false\n    },\n    {\n      \"refund_id\": \"<string>\",\n      \"refunded_at\": \"<dateTime>\",\n      \"total_refund\": \"<number>\",\n      \"line_items\": [\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"line_item_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"currency\": \"<string>\",\n          \"total_discount\": \"<number>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"line_item_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"currency\": \"<string>\",\n          \"total_discount\": \"<number>\"\n        }\n      ],\n      \"total_tax_refund\": \"<number>\",\n      \"total_shipping_refund\": \"<number>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"void\": false\n    }\n  ],\n  \"shipping_address\": {\n    \"address_1\": \"<string>\",\n    \"address_2\": \"<string>\",\n    \"zip\": \"<string>\",\n    \"city\": \"<string>\",\n    \"country\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"province_code\": \"<string>\"\n  },\n  \"shipping_lines\": [\n    {\n      \"shipping_discounted_price\": \"<number>\",\n      \"shipping_price\": \"<number>\",\n      \"source\": \"<string>\",\n      \"title\": \"<string>\"\n    },\n    {\n      \"shipping_discounted_price\": \"<number>\",\n      \"shipping_price\": \"<number>\",\n      \"source\": \"<string>\",\n      \"title\": \"<string>\"\n    }\n  ],\n  \"shipping_price\": \"<number>\",\n  \"shipping_costs\": \"<number>\",\n  \"source_name\": \"<string>\",\n  \"subscription_id\": \"<string>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"taxes_included\": false,\n  \"total_discounts\": \"<number>\",\n  \"taxes\": \"<number>\",\n  \"status\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"void\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0383b582-4c0d-4803-8507-f4e1a629c62b",
+              "name": "Order record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"customer\": {\n    \"id\": \"customer_123\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"order_revenue\": 150.75,\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"custom_expenses\": 25,\n  \"discount_codes\": [\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"line_items\": [\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    },\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    }\n  ],\n  \"name\": \"Order #12345\",\n  \"payment_gateway_names\": [\n    \"paypal\"\n  ],\n  \"refunds\": [\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    },\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    }\n  ],\n  \"shipping_address\": {\n    \"address_1\": \"123 Main Street\",\n    \"address_2\": \"Apt 4B\",\n    \"zip\": \"10001\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"country_code\": \"US\",\n    \"province_code\": \"NY\"\n  },\n  \"shipping_lines\": [\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    },\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    }\n  ],\n  \"shipping_price\": 15,\n  \"shipping_costs\": 15,\n  \"source_name\": \"web\",\n  \"subscription_id\": \"sub_12345\",\n  \"tags\": [\n    \"holiday_sale\",\n    \"staff_order\"\n  ],\n  \"taxes_included\": false,\n  \"total_discounts\": 15.5,\n  \"taxes\": 8.25,\n  \"status\": \"completed\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\",\n  \"void\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Order received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ab4e709-2bcf-4c46-88ea-db91fd54a41f",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"customer\": {\n    \"id\": \"customer_123\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"order_revenue\": 150.75,\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"custom_expenses\": 25,\n  \"discount_codes\": [\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"line_items\": [\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    },\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    }\n  ],\n  \"name\": \"Order #12345\",\n  \"payment_gateway_names\": [\n    \"paypal\"\n  ],\n  \"refunds\": [\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    },\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    }\n  ],\n  \"shipping_address\": {\n    \"address_1\": \"123 Main Street\",\n    \"address_2\": \"Apt 4B\",\n    \"zip\": \"10001\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"country_code\": \"US\",\n    \"province_code\": \"NY\"\n  },\n  \"shipping_lines\": [\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    },\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    }\n  ],\n  \"shipping_price\": 15,\n  \"shipping_costs\": 15,\n  \"source_name\": \"web\",\n  \"subscription_id\": \"sub_12345\",\n  \"tags\": [\n    \"holiday_sale\",\n    \"staff_order\"\n  ],\n  \"taxes_included\": false,\n  \"total_discounts\": 15.5,\n  \"taxes\": 8.25,\n  \"status\": \"completed\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\",\n  \"void\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid order data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a034c5b5-8ac9-41d3-909f-8a92d6e7394b",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"customer\": {\n    \"id\": \"customer_123\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"order_revenue\": 150.75,\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"custom_expenses\": 25,\n  \"discount_codes\": [\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"line_items\": [\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    },\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    }\n  ],\n  \"name\": \"Order #12345\",\n  \"payment_gateway_names\": [\n    \"paypal\"\n  ],\n  \"refunds\": [\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    },\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    }\n  ],\n  \"shipping_address\": {\n    \"address_1\": \"123 Main Street\",\n    \"address_2\": \"Apt 4B\",\n    \"zip\": \"10001\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"country_code\": \"US\",\n    \"province_code\": \"NY\"\n  },\n  \"shipping_lines\": [\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    },\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    }\n  ],\n  \"shipping_price\": 15,\n  \"shipping_costs\": 15,\n  \"source_name\": \"web\",\n  \"subscription_id\": \"sub_12345\",\n  \"tags\": [\n    \"holiday_sale\",\n    \"staff_order\"\n  ],\n  \"taxes_included\": false,\n  \"total_discounts\": 15.5,\n  \"taxes\": 8.25,\n  \"status\": \"completed\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\",\n  \"void\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1b3446d0-cf27-4aec-8a5f-79f062218693",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"customer\": {\n    \"id\": \"customer_123\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"order_revenue\": 150.75,\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"custom_expenses\": 25,\n  \"discount_codes\": [\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    },\n    {\n      \"code\": \"BLACKFRIDAY\",\n      \"amount\": 15.5,\n      \"type\": \"percentage\"\n    }\n  ],\n  \"line_items\": [\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    },\n    {\n      \"id\": \"line_item_1\",\n      \"quantity\": 2,\n      \"price\": 20,\n      \"variant_id\": \"variant_456\",\n      \"product_id\": \"product_123\",\n      \"name\": \"Line Item 1\",\n      \"product_name\": \"T-shirt\",\n      \"variant_name\": \"Red T-shirt (Large)\",\n      \"sku\": \"sku_123\"\n    }\n  ],\n  \"name\": \"Order #12345\",\n  \"payment_gateway_names\": [\n    \"paypal\"\n  ],\n  \"refunds\": [\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    },\n    {\n      \"refund_id\": \"refund_1\",\n      \"refunded_at\": \"2024-11-29T11:00:00Z\",\n      \"total_refund\": 40,\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 1,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"line_item_id\": \"line_item_1\",\n          \"product_id\": \"product_123\",\n          \"currency\": \"USD\",\n          \"total_discount\": 0\n        }\n      ],\n      \"total_tax_refund\": 3,\n      \"total_shipping_refund\": 5,\n      \"tags\": [\n        \"damaged_item\",\n        \"damaged_item\"\n      ],\n      \"void\": false\n    }\n  ],\n  \"shipping_address\": {\n    \"address_1\": \"123 Main Street\",\n    \"address_2\": \"Apt 4B\",\n    \"zip\": \"10001\",\n    \"city\": \"New York\",\n    \"country\": \"USA\",\n    \"country_code\": \"US\",\n    \"province_code\": \"NY\"\n  },\n  \"shipping_lines\": [\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    },\n    {\n      \"shipping_discounted_price\": 5,\n      \"shipping_price\": 10,\n      \"source\": \"standard_shipping\",\n      \"title\": \"Standard Shipping\"\n    }\n  ],\n  \"shipping_price\": 15,\n  \"shipping_costs\": 15,\n  \"source_name\": \"web\",\n  \"subscription_id\": \"sub_12345\",\n  \"tags\": [\n    \"holiday_sale\",\n    \"staff_order\"\n  ],\n  \"taxes_included\": false,\n  \"total_discounts\": 15.5,\n  \"taxes\": 8.25,\n  \"status\": \"completed\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\",\n  \"void\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing order\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "db0406d8-0664-49c8-8b89-9ec3fe4f1ace",
+          "name": "Bulk Create Order Records",
+          "request": {
+            "name": "Bulk Create Order Records",
+            "description": {
+              "content": "Ingest multiple order records into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload batches of order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "bulk-orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"orders\": [\n    {\n      \"order_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"currency\": \"<string>\",\n      \"customer\": {\n        \"id\": \"<string>\",\n        \"email\": \"<string>\",\n        \"phone\": \"<string>\",\n        \"first_name\": \"<string>\",\n        \"last_name\": \"<string>\"\n      },\n      \"order_revenue\": \"<number>\",\n      \"shop\": \"<string>\",\n      \"platform\": \"custom-msp\",\n      \"platform_account_id\": \"custom-msp\",\n      \"custom_expenses\": \"<number>\",\n      \"discount_codes\": [\n        {\n          \"code\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"type\": \"<string>\"\n        },\n        {\n          \"code\": \"<string>\",\n          \"amount\": \"<number>\",\n          \"type\": \"<string>\"\n        }\n      ],\n      \"line_items\": [\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"product_name\": \"<string>\",\n          \"variant_name\": \"<string>\",\n          \"sku\": \"<string>\"\n        },\n        {\n          \"id\": \"<string>\",\n          \"quantity\": \"<integer>\",\n          \"price\": \"<number>\",\n          \"variant_id\": \"<string>\",\n          \"product_id\": \"<string>\",\n          \"name\": \"<string>\",\n          \"product_name\": \"<string>\",\n          \"variant_name\": \"<string>\",\n          \"sku\": \"<string>\"\n        }\n      ],\n      \"name\": \"<string>\",\n      \"payment_gateway_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"refunds\": [\n        {\n          \"refund_id\": \"<string>\",\n          \"refunded_at\": \"<dateTime>\",\n          \"total_refund\": \"<number>\",\n          \"line_items\": [\n            {\n              \"id\": \"<string>\",\n              \"quantity\": \"<integer>\",\n              \"price\": \"<number>\",\n              \"variant_id\": \"<string>\",\n              \"line_item_id\": \"<string>\",\n              \"product_id\": \"<string>\",\n              \"currency\": \"<string>\",\n              \"total_discount\": \"<number>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"quantity\": \"<integer>\",\n              \"price\": \"<number>\",\n              \"variant_id\": \"<string>\",\n              \"line_item_id\": \"<string>\",\n              \"product_id\": \"<string>\",\n              \"currency\": \"<string>\",\n              \"total_discount\": \"<number>\"\n            }\n          ],\n          \"total_tax_refund\": \"<number>\",\n          \"total_shipping_refund\": \"<number>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"void\": false\n        },\n        {\n          \"refund_id\": \"<string>\",\n          \"refunded_at\": \"<dateTime>\",\n          \"total_refund\": \"<number>\",\n          \"line_items\": [\n            {\n              \"id\": \"<string>\",\n              \"quantity\": \"<integer>\",\n              \"price\": \"<number>\",\n              \"variant_id\": \"<string>\",\n              \"line_item_id\": \"<string>\",\n              \"product_id\": \"<string>\",\n              \"currency\": \"<string>\",\n              \"total_discount\": \"<number>\"\n            },\n            {\n              \"id\": \"<string>\",\n              \"quantity\": \"<integer>\",\n              \"price\": \"<number>\",\n              \"variant_id\": \"<string>\",\n              \"line_item_id\": \"<string>\",\n              \"product_id\": \"<string>\",\n              \"currency\": \"<string>\",\n              \"total_discount\": \"<number>\"\n            }\n          ],\n          \"total_tax_refund\": \"<number>\",\n          \"total_shipping_refund\": \"<number>\",\n          \"tags\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"void\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"address_1\": \"<string>\",\n        \"address_2\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"city\": \"<string>\",\n        \"country\": \"<string>\",\n        \"country_code\": \"<string>\",\n        \"province_code\": \"<string>\"\n      },\n      \"shipping_lines\": [\n        {\n          \"shipping_discounted_price\": \"<number>\",\n          \"shipping_price\": \"<number>\",\n          \"source\": \"<string>\",\n          \"title\": \"<string>\"\n        },\n        {\n          \"shipping_discounted_price\": \"<number>\",\n          \"shipping_price\": \"<number>\",\n          \"source\": \"<string>\",\n          \"title\": \"<string>\"\n        }\n      ],\n      \"shipping_price\": \"<number>\",\n      \"shipping_costs\": \"<number>\",\n      \"source_name\": \"<string>\",\n      \"subscription_id\": \"<string>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"taxes_included\": false,\n      \"total_discounts\": \"<number>\",\n      \"taxes\": \"<number>\",\n      \"status\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"void\": false\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c45dd895-6174-43d4-914d-6b66af299426",
+              "name": "Order records successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "bulk-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"orders\": [\n    {\n      \"order_id\": \"order_12345\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"currency\": \"USD\",\n      \"customer\": {\n        \"id\": \"customer_123\",\n        \"email\": \"customer@example.com\",\n        \"phone\": \"+1234567890\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"order_revenue\": 150.75,\n      \"shop\": \"madisonbraids.myshopify.com\",\n      \"platform\": \"magento\",\n      \"platform_account_id\": \"shop_account_123\",\n      \"custom_expenses\": 25,\n      \"discount_codes\": [\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        },\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        }\n      ],\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        }\n      ],\n      \"name\": \"Order #12345\",\n      \"payment_gateway_names\": [\n        \"paypal\"\n      ],\n      \"refunds\": [\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        },\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"address_1\": \"123 Main Street\",\n        \"address_2\": \"Apt 4B\",\n        \"zip\": \"10001\",\n        \"city\": \"New York\",\n        \"country\": \"USA\",\n        \"country_code\": \"US\",\n        \"province_code\": \"NY\"\n      },\n      \"shipping_lines\": [\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        },\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        }\n      ],\n      \"shipping_price\": 15,\n      \"shipping_costs\": 15,\n      \"source_name\": \"web\",\n      \"subscription_id\": \"sub_12345\",\n      \"tags\": [\n        \"holiday_sale\",\n        \"staff_order\"\n      ],\n      \"taxes_included\": false,\n      \"total_discounts\": 15.5,\n      \"taxes\": 8.25,\n      \"status\": \"completed\",\n      \"updated_at\": \"2024-11-29T10:00:00Z\",\n      \"void\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"1000 orders received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd28fb8f-94c2-495c-a41e-a0894ca43335",
+              "name": "Bad Request. Returned if one or more orders fail validation. Valid orders in the same request are still processed even when this response is returned.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "bulk-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"orders\": [\n    {\n      \"order_id\": \"order_12345\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"currency\": \"USD\",\n      \"customer\": {\n        \"id\": \"customer_123\",\n        \"email\": \"customer@example.com\",\n        \"phone\": \"+1234567890\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"order_revenue\": 150.75,\n      \"shop\": \"madisonbraids.myshopify.com\",\n      \"platform\": \"magento\",\n      \"platform_account_id\": \"shop_account_123\",\n      \"custom_expenses\": 25,\n      \"discount_codes\": [\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        },\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        }\n      ],\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        }\n      ],\n      \"name\": \"Order #12345\",\n      \"payment_gateway_names\": [\n        \"paypal\"\n      ],\n      \"refunds\": [\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        },\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"address_1\": \"123 Main Street\",\n        \"address_2\": \"Apt 4B\",\n        \"zip\": \"10001\",\n        \"city\": \"New York\",\n        \"country\": \"USA\",\n        \"country_code\": \"US\",\n        \"province_code\": \"NY\"\n      },\n      \"shipping_lines\": [\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        },\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        }\n      ],\n      \"shipping_price\": 15,\n      \"shipping_costs\": 15,\n      \"source_name\": \"web\",\n      \"subscription_id\": \"sub_12345\",\n      \"tags\": [\n        \"holiday_sale\",\n        \"staff_order\"\n      ],\n      \"taxes_included\": false,\n      \"total_discounts\": 15.5,\n      \"taxes\": 8.25,\n      \"status\": \"completed\",\n      \"updated_at\": \"2024-11-29T10:00:00Z\",\n      \"void\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Validation errors\",\n  \"errors\": [\n    {\n      \"order_id\": \"737052615\",\n      \"error\": \"id is required\"\n    },\n    {\n      \"order_id\": \"737052615\",\n      \"error\": \"id is required\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b5afb2b-f84d-4c27-b947-7ffb8731ebb4",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "bulk-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"orders\": [\n    {\n      \"order_id\": \"order_12345\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"currency\": \"USD\",\n      \"customer\": {\n        \"id\": \"customer_123\",\n        \"email\": \"customer@example.com\",\n        \"phone\": \"+1234567890\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"order_revenue\": 150.75,\n      \"shop\": \"madisonbraids.myshopify.com\",\n      \"platform\": \"magento\",\n      \"platform_account_id\": \"shop_account_123\",\n      \"custom_expenses\": 25,\n      \"discount_codes\": [\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        },\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        }\n      ],\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        }\n      ],\n      \"name\": \"Order #12345\",\n      \"payment_gateway_names\": [\n        \"paypal\"\n      ],\n      \"refunds\": [\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        },\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"address_1\": \"123 Main Street\",\n        \"address_2\": \"Apt 4B\",\n        \"zip\": \"10001\",\n        \"city\": \"New York\",\n        \"country\": \"USA\",\n        \"country_code\": \"US\",\n        \"province_code\": \"NY\"\n      },\n      \"shipping_lines\": [\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        },\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        }\n      ],\n      \"shipping_price\": 15,\n      \"shipping_costs\": 15,\n      \"source_name\": \"web\",\n      \"subscription_id\": \"sub_12345\",\n      \"tags\": [\n        \"holiday_sale\",\n        \"staff_order\"\n      ],\n      \"taxes_included\": false,\n      \"total_discounts\": 15.5,\n      \"taxes\": 8.25,\n      \"status\": \"completed\",\n      \"updated_at\": \"2024-11-29T10:00:00Z\",\n      \"void\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "743edc34-fd3b-41dd-8106-eeb8aa203a7b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "bulk-orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"orders\": [\n    {\n      \"order_id\": \"order_12345\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"currency\": \"USD\",\n      \"customer\": {\n        \"id\": \"customer_123\",\n        \"email\": \"customer@example.com\",\n        \"phone\": \"+1234567890\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Doe\"\n      },\n      \"order_revenue\": 150.75,\n      \"shop\": \"madisonbraids.myshopify.com\",\n      \"platform\": \"magento\",\n      \"platform_account_id\": \"shop_account_123\",\n      \"custom_expenses\": 25,\n      \"discount_codes\": [\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        },\n        {\n          \"code\": \"BLACKFRIDAY\",\n          \"amount\": 15.5,\n          \"type\": \"percentage\"\n        }\n      ],\n      \"line_items\": [\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        },\n        {\n          \"id\": \"line_item_1\",\n          \"quantity\": 2,\n          \"price\": 20,\n          \"variant_id\": \"variant_456\",\n          \"product_id\": \"product_123\",\n          \"name\": \"Line Item 1\",\n          \"product_name\": \"T-shirt\",\n          \"variant_name\": \"Red T-shirt (Large)\",\n          \"sku\": \"sku_123\"\n        }\n      ],\n      \"name\": \"Order #12345\",\n      \"payment_gateway_names\": [\n        \"paypal\"\n      ],\n      \"refunds\": [\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        },\n        {\n          \"refund_id\": \"refund_1\",\n          \"refunded_at\": \"2024-11-29T11:00:00Z\",\n          \"total_refund\": 40,\n          \"line_items\": [\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            },\n            {\n              \"id\": \"line_item_1\",\n              \"quantity\": 1,\n              \"price\": 20,\n              \"variant_id\": \"variant_456\",\n              \"line_item_id\": \"line_item_1\",\n              \"product_id\": \"product_123\",\n              \"currency\": \"USD\",\n              \"total_discount\": 0\n            }\n          ],\n          \"total_tax_refund\": 3,\n          \"total_shipping_refund\": 5,\n          \"tags\": [\n            \"damaged_item\",\n            \"damaged_item\"\n          ],\n          \"void\": false\n        }\n      ],\n      \"shipping_address\": {\n        \"address_1\": \"123 Main Street\",\n        \"address_2\": \"Apt 4B\",\n        \"zip\": \"10001\",\n        \"city\": \"New York\",\n        \"country\": \"USA\",\n        \"country_code\": \"US\",\n        \"province_code\": \"NY\"\n      },\n      \"shipping_lines\": [\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        },\n        {\n          \"shipping_discounted_price\": 5,\n          \"shipping_price\": 10,\n          \"source\": \"standard_shipping\",\n          \"title\": \"Standard Shipping\"\n        }\n      ],\n      \"shipping_price\": 15,\n      \"shipping_costs\": 15,\n      \"source_name\": \"web\",\n      \"subscription_id\": \"sub_12345\",\n      \"tags\": [\n        \"holiday_sale\",\n        \"staff_order\"\n      ],\n      \"taxes_included\": false,\n      \"total_discounts\": 15.5,\n      \"taxes\": 8.25,\n      \"status\": \"completed\",\n      \"updated_at\": \"2024-11-29T10:00:00Z\",\n      \"void\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing order\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad0c5eea-4f29-4546-93e2-ccaa2ca95204",
+          "name": "Create Subscription Record",
+          "request": {
+            "name": "Create Subscription Record",
+            "description": {
+              "content": "Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription information, including customer details, items, status, and metadata.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"subscription_id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"currency\": \"<string>\",\n  \"status\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"first_name\": \"<string>\",\n    \"last_name\": \"<string>\"\n  },\n  \"subscription_items\": [\n    {\n      \"subscription_item_id\": \"<string>\",\n      \"created_at\": \"<dateTime>\",\n      \"status\": \"<string>\",\n      \"interval\": \"<string>\",\n      \"interval_count\": \"<integer>\",\n      \"price\": \"<float>\",\n      \"quantity\": \"<integer>\",\n      \"canceled_at\": \"<dateTime>\",\n      \"ended_at\": \"<dateTime>\",\n      \"product_id\": \"<string>\",\n      \"variant_id\": \"<string>\",\n      \"discount\": {}\n    }\n  ],\n  \"platform\": \"custom_subscription_platform\",\n  \"platform_account_id\": \"custom_platform_account\",\n  \"canceled_at\": \"<dateTime>\",\n  \"ended_at\": \"<dateTime>\",\n  \"cancellation_reason\": \"<string>\",\n  \"cancellation_comments\": \"<string>\",\n  \"metadata\": \"<string>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4d6e6b1-8044-4a7d-8e5a-2966e30ba760",
+              "name": "Subscription record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"subscription_id\": \"sub-123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"customer\": {\n    \"id\": \"cust-789\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"subscription_items\": [\n    {\n      \"subscription_item_id\": \"sub-item-001\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"status\": \"active\",\n      \"interval\": \"month\",\n      \"interval_count\": 1,\n      \"price\": 19.99,\n      \"quantity\": 1,\n      \"canceled_at\": \"2024-12-01T10:00:00Z\",\n      \"ended_at\": \"2024-12-15T12:00:00Z\",\n      \"product_id\": \"prod-123\",\n      \"variant_id\": \"variant-123\",\n      \"discount\": {}\n    }\n  ],\n  \"platform\": \"custom_subscription_platform\",\n  \"platform_account_id\": \"acct-456\",\n  \"canceled_at\": \"2024-12-01T10:00:00Z\",\n  \"ended_at\": \"2024-12-15T12:00:00Z\",\n  \"cancellation_reason\": \"Customer Request\",\n  \"cancellation_comments\": \"Dissatisfaction with service.\",\n  \"metadata\": \"Preferred customer\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Subscription received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b0ba7607-7f0b-4835-b96a-7a1a792a0d12",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"subscription_id\": \"sub-123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"customer\": {\n    \"id\": \"cust-789\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"subscription_items\": [\n    {\n      \"subscription_item_id\": \"sub-item-001\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"status\": \"active\",\n      \"interval\": \"month\",\n      \"interval_count\": 1,\n      \"price\": 19.99,\n      \"quantity\": 1,\n      \"canceled_at\": \"2024-12-01T10:00:00Z\",\n      \"ended_at\": \"2024-12-15T12:00:00Z\",\n      \"product_id\": \"prod-123\",\n      \"variant_id\": \"variant-123\",\n      \"discount\": {}\n    }\n  ],\n  \"platform\": \"custom_subscription_platform\",\n  \"platform_account_id\": \"acct-456\",\n  \"canceled_at\": \"2024-12-01T10:00:00Z\",\n  \"ended_at\": \"2024-12-15T12:00:00Z\",\n  \"cancellation_reason\": \"Customer Request\",\n  \"cancellation_comments\": \"Dissatisfaction with service.\",\n  \"metadata\": \"Preferred customer\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid subscription data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8593fc6-fe4e-4f7f-a68b-894291be5370",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"subscription_id\": \"sub-123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"customer\": {\n    \"id\": \"cust-789\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"subscription_items\": [\n    {\n      \"subscription_item_id\": \"sub-item-001\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"status\": \"active\",\n      \"interval\": \"month\",\n      \"interval_count\": 1,\n      \"price\": 19.99,\n      \"quantity\": 1,\n      \"canceled_at\": \"2024-12-01T10:00:00Z\",\n      \"ended_at\": \"2024-12-15T12:00:00Z\",\n      \"product_id\": \"prod-123\",\n      \"variant_id\": \"variant-123\",\n      \"discount\": {}\n    }\n  ],\n  \"platform\": \"custom_subscription_platform\",\n  \"platform_account_id\": \"acct-456\",\n  \"canceled_at\": \"2024-12-01T10:00:00Z\",\n  \"ended_at\": \"2024-12-15T12:00:00Z\",\n  \"cancellation_reason\": \"Customer Request\",\n  \"cancellation_comments\": \"Dissatisfaction with service.\",\n  \"metadata\": \"Preferred customer\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6af92ce6-2c06-4d8c-8ad6-b2c310daf9a9",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"subscription_id\": \"sub-123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"currency\": \"USD\",\n  \"status\": \"active\",\n  \"customer\": {\n    \"id\": \"cust-789\",\n    \"email\": \"customer@example.com\",\n    \"phone\": \"+1234567890\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\"\n  },\n  \"subscription_items\": [\n    {\n      \"subscription_item_id\": \"sub-item-001\",\n      \"created_at\": \"2022-06-15T19:26:30.000Z\",\n      \"status\": \"active\",\n      \"interval\": \"month\",\n      \"interval_count\": 1,\n      \"price\": 19.99,\n      \"quantity\": 1,\n      \"canceled_at\": \"2024-12-01T10:00:00Z\",\n      \"ended_at\": \"2024-12-15T12:00:00Z\",\n      \"product_id\": \"prod-123\",\n      \"variant_id\": \"variant-123\",\n      \"discount\": {}\n    }\n  ],\n  \"platform\": \"custom_subscription_platform\",\n  \"platform_account_id\": \"acct-456\",\n  \"canceled_at\": \"2024-12-01T10:00:00Z\",\n  \"ended_at\": \"2024-12-15T12:00:00Z\",\n  \"cancellation_reason\": \"Customer Request\",\n  \"cancellation_comments\": \"Dissatisfaction with service.\",\n  \"metadata\": \"Preferred customer\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing subscription\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a08e007f-47c4-4faa-bf4c-15383063df09",
+          "name": "Create Product Record",
+          "request": {
+            "name": "Create Product Record",
+            "description": {
+              "content": "Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information, including variants, tags, collections, and images.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"product_title\": \"<string>\",\n  \"variants\": [\n    {\n      \"variant_id\": \"<string>\",\n      \"variant_title\": \"<string>\",\n      \"variant_price\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"variant_cost\": \"<number>\",\n      \"handling_fee\": \"<number>\",\n      \"inventory_quantity\": \"<number>\",\n      \"image_src\": \"<string>\",\n      \"compare_at_price\": \"<number>\"\n    },\n    {\n      \"variant_id\": \"<string>\",\n      \"variant_title\": \"<string>\",\n      \"variant_price\": \"<number>\",\n      \"sku\": \"<string>\",\n      \"variant_cost\": \"<number>\",\n      \"handling_fee\": \"<number>\",\n      \"inventory_quantity\": \"<number>\",\n      \"image_src\": \"<string>\",\n      \"compare_at_price\": \"<number>\"\n    }\n  ],\n  \"platform\": \"custom-msp\",\n  \"platform_account_id\": \"custom-msp\",\n  \"vendor\": \"<string>\",\n  \"product_status\": \"active\",\n  \"product_tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"product_type\": \"<string>\",\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58b0caae-5f5e-460b-8db4-e91c3c961dd3",
+              "name": "Product record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"product_title\": \"Triple Whale T-Shirt\",\n  \"variants\": [\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    },\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    }\n  ],\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"vendor\": \"Triple Whale\",\n  \"product_status\": \"active\",\n  \"product_tags\": [\n    \"discount_eligible\",\n    \"Upsell\"\n  ],\n  \"product_type\": \"Clothing\",\n  \"collections\": [\n    \"Summer Collection\",\n    \"T-Shirts\"\n  ],\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"product received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56998103-26ef-41b5-a752-32abad29b7b3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"product_title\": \"Triple Whale T-Shirt\",\n  \"variants\": [\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    },\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    }\n  ],\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"vendor\": \"Triple Whale\",\n  \"product_status\": \"active\",\n  \"product_tags\": [\n    \"discount_eligible\",\n    \"Upsell\"\n  ],\n  \"product_type\": \"Clothing\",\n  \"collections\": [\n    \"Summer Collection\",\n    \"T-Shirts\"\n  ],\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid product data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8ae64af-9239-4ed9-8b85-2a19959200e6",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"product_title\": \"Triple Whale T-Shirt\",\n  \"variants\": [\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    },\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    }\n  ],\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"vendor\": \"Triple Whale\",\n  \"product_status\": \"active\",\n  \"product_tags\": [\n    \"discount_eligible\",\n    \"Upsell\"\n  ],\n  \"product_type\": \"Clothing\",\n  \"collections\": [\n    \"Summer Collection\",\n    \"T-Shirts\"\n  ],\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a41130f-24ce-4269-998e-239b196c6f24",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"product_title\": \"Triple Whale T-Shirt\",\n  \"variants\": [\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    },\n    {\n      \"variant_id\": \"variant-123\",\n      \"variant_title\": \"Blue / Medium\",\n      \"variant_price\": 19.99,\n      \"sku\": \"SKU12345\",\n      \"variant_cost\": 8.5,\n      \"handling_fee\": 5.5,\n      \"inventory_quantity\": 74,\n      \"image_src\": \"https://example.com/variant-image.jpg\",\n      \"compare_at_price\": 29.99\n    }\n  ],\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"vendor\": \"Triple Whale\",\n  \"product_status\": \"active\",\n  \"product_tags\": [\n    \"discount_eligible\",\n    \"Upsell\"\n  ],\n  \"product_type\": \"Clothing\",\n  \"collections\": [\n    \"Summer Collection\",\n    \"T-Shirts\"\n  ],\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"updated_at\": \"2024-11-29T10:00:00Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing product\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b1125d90-2cce-42a4-8f35-19209b29f0f1",
+          "name": "Create Post-Purchase Survey (PPS) Record",
+          "request": {
+            "name": "Create Post-Purchase Survey (PPS) Record",
+            "description": {
+              "content": "Ingest PPS data into Triple Whale. This endpoint allows users to upload  detailed post-purchase survey information, including order-related data, questions, and responses.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "pps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"custom_platform_account\",\n  \"created_at\": \"<dateTime>\",\n  \"total_price\": \"<number>\",\n  \"question_id\": \"<string>\",\n  \"question_text\": \"<string>\",\n  \"response_id\": \"<string>\",\n  \"response\": \"<string>\",\n  \"include_in_attribution\": \"<boolean>\",\n  \"source\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7227f336-700a-4444-a200-c0fbeaa7de62",
+              "name": "PPS record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "pps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order-123\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"platform_account_123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"total_price\": 150.75,\n  \"question_id\": \"question-001\",\n  \"question_text\": \"How did you hear about us?\",\n  \"response_id\": \"response-001\",\n  \"response\": \"Recommended by a friend\",\n  \"include_in_attribution\": true,\n  \"source\": \"facebook-ads\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"pps received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3d30338-64c6-4941-abb4-d65e028166af",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "pps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order-123\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"platform_account_123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"total_price\": 150.75,\n  \"question_id\": \"question-001\",\n  \"question_text\": \"How did you hear about us?\",\n  \"response_id\": \"response-001\",\n  \"response\": \"Recommended by a friend\",\n  \"include_in_attribution\": true,\n  \"source\": \"facebook-ads\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid PPS data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2329ebf-fdb3-41c5-b194-441ddb084ca0",
+              "name": "Order Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "pps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order-123\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"platform_account_123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"total_price\": 150.75,\n  \"question_id\": \"question-001\",\n  \"question_text\": \"How did you hear about us?\",\n  \"response_id\": \"response-001\",\n  \"response\": \"Recommended by a friend\",\n  \"include_in_attribution\": true,\n  \"source\": \"facebook-ads\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Order not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "809049cc-0a51-4dc4-8e90-b20e34b328a4",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "pps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order-123\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"platform_account_123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"total_price\": 150.75,\n  \"question_id\": \"question-001\",\n  \"question_text\": \"How did you hear about us?\",\n  \"response_id\": \"response-001\",\n  \"response\": \"Recommended by a friend\",\n  \"include_in_attribution\": true,\n  \"source\": \"facebook-ads\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78586af1-787f-41ae-b4fe-f23610fba84e",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "pps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order-123\",\n  \"platform\": \"custom_pps_platform\",\n  \"platform_account_id\": \"platform_account_123\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"total_price\": 150.75,\n  \"question_id\": \"question-001\",\n  \"question_text\": \"How did you hear about us?\",\n  \"response_id\": \"response-001\",\n  \"response\": \"Recommended by a friend\",\n  \"include_in_attribution\": true,\n  \"source\": \"facebook-ads\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing pps\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d825aee-0766-411b-8fb7-26004d4dbc31",
+          "name": "Create Customer Record",
+          "request": {
+            "name": "Create Customer Record",
+            "description": {
+              "content": "Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information — including contact details, address, consent status, and purchase history metadata.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"customer_id\": \"<string>\",\n  \"platform\": \"custom-msp\",\n  \"platform_account_id\": \"custom-msp\",\n  \"address1\": \"<string>\",\n  \"address2\": \"<string>\",\n  \"amount_spent\": \"<number>\",\n  \"city\": \"<string>\",\n  \"country\": \"<string>\",\n  \"country_code\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"display_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"email_marketing_consent_collected_from\": \"<string>\",\n  \"email_marketing_consent_opt_in_level\": \"<string>\",\n  \"email_marketing_consent_status\": \"<string>\",\n  \"email_marketing_consent_updated_at\": \"<dateTime>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"last_order_id\": \"<string>\",\n  \"latitude\": \"<number>\",\n  \"locale\": \"<string>\",\n  \"longitude\": \"<number>\",\n  \"note\": \"<string>\",\n  \"number_of_orders\": \"<integer>\",\n  \"phone\": \"<string>\",\n  \"product_subscriber_status\": \"<string>\",\n  \"sms_marketing_consent_collected_from\": \"<string>\",\n  \"sms_marketing_consent_opt_in_level\": \"<string>\",\n  \"sms_marketing_consent_updated_at\": \"<dateTime>\",\n  \"state\": \"<string>\",\n  \"state_code\": \"<string>\",\n  \"status\": \"<string>\",\n  \"tax_exempt\": false,\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caed58f7-69e4-400e-a113-f92261bc8948",
+              "name": "Customer record successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"customer_id\": \"5209503793328\",\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"address1\": \"764 Example Dr\",\n  \"address2\": \"Apt 603\",\n  \"amount_spent\": 1250.75,\n  \"city\": \"San Francisco\",\n  \"country\": \"United States\",\n  \"country_code\": \"US\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"customer_tags\": [\n    \"Active Subscriber\",\n    \"PayPal_user\",\n    \"Login with FB\"\n  ],\n  \"display_name\": \"John Doe\",\n  \"email_address\": \"customer@example.com\",\n  \"email_marketing_consent_collected_from\": \"website_signup\",\n  \"email_marketing_consent_opt_in_level\": \"SINGLE_OPT_IN\",\n  \"email_marketing_consent_status\": \"SUBSCRIBED\",\n  \"email_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"last_order_id\": \"4930225799243\",\n  \"latitude\": 34.1413713,\n  \"locale\": \"en-US\",\n  \"longitude\": -118.8639169,\n  \"note\": \"VIP customer\",\n  \"number_of_orders\": 15,\n  \"phone\": \"18005550199\",\n  \"product_subscriber_status\": \"ACTIVE\",\n  \"sms_marketing_consent_collected_from\": \"checkout\",\n  \"sms_marketing_consent_opt_in_level\": \"CONFIRMED_OPT_IN\",\n  \"sms_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"state\": \"Oregon\",\n  \"state_code\": \"OR\",\n  \"status\": \"ENABLED\",\n  \"tax_exempt\": false,\n  \"zip\": \"48104\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"customer received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37a2cbb0-b4fa-43c1-8124-64724613403d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"customer_id\": \"5209503793328\",\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"address1\": \"764 Example Dr\",\n  \"address2\": \"Apt 603\",\n  \"amount_spent\": 1250.75,\n  \"city\": \"San Francisco\",\n  \"country\": \"United States\",\n  \"country_code\": \"US\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"customer_tags\": [\n    \"Active Subscriber\",\n    \"PayPal_user\",\n    \"Login with FB\"\n  ],\n  \"display_name\": \"John Doe\",\n  \"email_address\": \"customer@example.com\",\n  \"email_marketing_consent_collected_from\": \"website_signup\",\n  \"email_marketing_consent_opt_in_level\": \"SINGLE_OPT_IN\",\n  \"email_marketing_consent_status\": \"SUBSCRIBED\",\n  \"email_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"last_order_id\": \"4930225799243\",\n  \"latitude\": 34.1413713,\n  \"locale\": \"en-US\",\n  \"longitude\": -118.8639169,\n  \"note\": \"VIP customer\",\n  \"number_of_orders\": 15,\n  \"phone\": \"18005550199\",\n  \"product_subscriber_status\": \"ACTIVE\",\n  \"sms_marketing_consent_collected_from\": \"checkout\",\n  \"sms_marketing_consent_opt_in_level\": \"CONFIRMED_OPT_IN\",\n  \"sms_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"state\": \"Oregon\",\n  \"state_code\": \"OR\",\n  \"status\": \"ENABLED\",\n  \"tax_exempt\": false,\n  \"zip\": \"48104\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid customer data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3706e98b-450f-464a-a438-a4344a4a3cbd",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"customer_id\": \"5209503793328\",\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"address1\": \"764 Example Dr\",\n  \"address2\": \"Apt 603\",\n  \"amount_spent\": 1250.75,\n  \"city\": \"San Francisco\",\n  \"country\": \"United States\",\n  \"country_code\": \"US\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"customer_tags\": [\n    \"Active Subscriber\",\n    \"PayPal_user\",\n    \"Login with FB\"\n  ],\n  \"display_name\": \"John Doe\",\n  \"email_address\": \"customer@example.com\",\n  \"email_marketing_consent_collected_from\": \"website_signup\",\n  \"email_marketing_consent_opt_in_level\": \"SINGLE_OPT_IN\",\n  \"email_marketing_consent_status\": \"SUBSCRIBED\",\n  \"email_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"last_order_id\": \"4930225799243\",\n  \"latitude\": 34.1413713,\n  \"locale\": \"en-US\",\n  \"longitude\": -118.8639169,\n  \"note\": \"VIP customer\",\n  \"number_of_orders\": 15,\n  \"phone\": \"18005550199\",\n  \"product_subscriber_status\": \"ACTIVE\",\n  \"sms_marketing_consent_collected_from\": \"checkout\",\n  \"sms_marketing_consent_opt_in_level\": \"CONFIRMED_OPT_IN\",\n  \"sms_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"state\": \"Oregon\",\n  \"state_code\": \"OR\",\n  \"status\": \"ENABLED\",\n  \"tax_exempt\": false,\n  \"zip\": \"48104\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "673ca1cd-e5be-4d70-9ff3-8e314a88a8c1",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"customer_id\": \"5209503793328\",\n  \"platform\": \"magento\",\n  \"platform_account_id\": \"shop_account_123\",\n  \"address1\": \"764 Example Dr\",\n  \"address2\": \"Apt 603\",\n  \"amount_spent\": 1250.75,\n  \"city\": \"San Francisco\",\n  \"country\": \"United States\",\n  \"country_code\": \"US\",\n  \"created_at\": \"2022-06-15T19:26:30.000Z\",\n  \"customer_tags\": [\n    \"Active Subscriber\",\n    \"PayPal_user\",\n    \"Login with FB\"\n  ],\n  \"display_name\": \"John Doe\",\n  \"email_address\": \"customer@example.com\",\n  \"email_marketing_consent_collected_from\": \"website_signup\",\n  \"email_marketing_consent_opt_in_level\": \"SINGLE_OPT_IN\",\n  \"email_marketing_consent_status\": \"SUBSCRIBED\",\n  \"email_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"first_name\": \"John\",\n  \"last_name\": \"Doe\",\n  \"last_order_id\": \"4930225799243\",\n  \"latitude\": 34.1413713,\n  \"locale\": \"en-US\",\n  \"longitude\": -118.8639169,\n  \"note\": \"VIP customer\",\n  \"number_of_orders\": 15,\n  \"phone\": \"18005550199\",\n  \"product_subscriber_status\": \"ACTIVE\",\n  \"sms_marketing_consent_collected_from\": \"checkout\",\n  \"sms_marketing_consent_opt_in_level\": \"CONFIRMED_OPT_IN\",\n  \"sms_marketing_consent_updated_at\": \"2019-05-22 21:01:29\",\n  \"state\": \"Oregon\",\n  \"state_code\": \"OR\",\n  \"status\": \"ENABLED\",\n  \"tax_exempt\": false,\n  \"zip\": \"48104\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing customer\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9f37f91c-63a2-43fc-8afb-e0ca7b6b55b7",
+          "name": "Enrich Orders Data",
+          "request": {
+            "name": "Enrich Orders Data",
+            "description": {
+              "content": "Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags.  Note: Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full order via the [Orders](https://triplewhale.readme.io/reference/create-order-record) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "orders-enrichment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"order_id\": \"<string>\",\n  \"custom_expenses\": \"<number>\",\n  \"custom_gross_profit\": \"<number>\",\n  \"custom_gross_sales\": \"<number>\",\n  \"custom_net_revenue\": \"<number>\",\n  \"custom_number\": \"<number>\",\n  \"custom_status\": \"<string>\",\n  \"custom_string\": \"<string>\",\n  \"ignore_order\": false,\n  \"orders_quantity\": \"<number>\",\n  \"platform\": \"<string>\",\n  \"shipping_costs\": \"<number>\",\n  \"total_items_quantity\": \"<number>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5809cbbe-5fdb-4cb3-afc4-b9f48f72200a",
+              "name": "Order enrichment successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"custom_expenses\": 25,\n  \"custom_gross_profit\": 400,\n  \"custom_gross_sales\": 2000,\n  \"custom_net_revenue\": 1200,\n  \"custom_number\": 3.14,\n  \"custom_status\": \"unfulfilled\",\n  \"custom_string\": \"AlphaBetaTest\",\n  \"ignore_order\": false,\n  \"orders_quantity\": 1,\n  \"platform\": \"amazon\",\n  \"shipping_costs\": 15,\n  \"total_items_quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Order enrichment received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d230d62f-2c66-4757-b4b6-5c9b715afb80",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"custom_expenses\": 25,\n  \"custom_gross_profit\": 400,\n  \"custom_gross_sales\": 2000,\n  \"custom_net_revenue\": 1200,\n  \"custom_number\": 3.14,\n  \"custom_status\": \"unfulfilled\",\n  \"custom_string\": \"AlphaBetaTest\",\n  \"ignore_order\": false,\n  \"orders_quantity\": 1,\n  \"platform\": \"amazon\",\n  \"shipping_costs\": 15,\n  \"total_items_quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid order enrichment data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "758a87b0-80c1-46d3-8cf9-59a1399bbda7",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"custom_expenses\": 25,\n  \"custom_gross_profit\": 400,\n  \"custom_gross_sales\": 2000,\n  \"custom_net_revenue\": 1200,\n  \"custom_number\": 3.14,\n  \"custom_status\": \"unfulfilled\",\n  \"custom_string\": \"AlphaBetaTest\",\n  \"ignore_order\": false,\n  \"orders_quantity\": 1,\n  \"platform\": \"amazon\",\n  \"shipping_costs\": 15,\n  \"total_items_quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c4b77f6-fd9b-43ea-8207-fed75f126768",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "orders-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"order_id\": \"order_12345\",\n  \"custom_expenses\": 25,\n  \"custom_gross_profit\": 400,\n  \"custom_gross_sales\": 2000,\n  \"custom_net_revenue\": 1200,\n  \"custom_number\": 3.14,\n  \"custom_status\": \"unfulfilled\",\n  \"custom_string\": \"AlphaBetaTest\",\n  \"ignore_order\": false,\n  \"orders_quantity\": 1,\n  \"platform\": \"amazon\",\n  \"shipping_costs\": 15,\n  \"total_items_quantity\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing order enrichment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "424e1091-8273-49fa-8e61-d10e61a2d527",
+          "name": "Enrich Products Data",
+          "request": {
+            "name": "Enrich Products Data",
+            "description": {
+              "content": "Use this endpoint to enrich existing products—such as adding cost data from external systems.  Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full product record via the  [Products](https://triplewhale.readme.io/reference/create-product-record) endpoint.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "products-enrichment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"product_id\": \"<string>\",\n  \"variant_cost\": \"<number>\",\n  \"variant_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5bf0c3ba-6c12-4e0d-8c35-f5839adfd16b",
+              "name": "Order enrichment successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"variant_cost\": 8.5,\n  \"variant_id\": \"variant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Order enrichment received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b45448c-5d12-45e9-9d67-1635761a9fa6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"variant_cost\": 8.5,\n  \"variant_id\": \"variant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid order enrichment data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3699b0e4-5e03-4b7b-ab44-c0ed49585cb9",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"variant_cost\": 8.5,\n  \"variant_id\": \"variant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The number of seconds until the user can make another request.",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dc7697b-31cd-43d5-a889-54751d53c69b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "products-enrichment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"product_id\": \"prod-123\",\n  \"variant_cost\": 8.5,\n  \"variant_id\": \"variant-123\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing order enrichment\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52874003-61ec-4868-b78e-af01415f296f",
+          "name": "Enrich Pixel With Offline Events",
+          "request": {
+            "name": "Enrich Pixel With Offline Events",
+            "description": {
+              "content": "Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events, or fully custom events—into Triple Whale.  Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`, you can add additional properties of type **Number, Float, String, Boolean, or Date**.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "data-in",
+                "event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "x-api-key"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "header"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"shop\": \"<string>\",\n  \"type\": \"<string>\",\n  \"profileIdentifiers\": {\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"externalId\": \"<string>\"\n  },\n  \"eventId\": \"<string>\",\n  \"timestamp\": \"<int64>\",\n  \"event_name\": \"<string>\",\n  \"source\": \"<string>\",\n  \"campaign\": \"<string>\",\n  \"ad\": \"<string>\",\n  \"adset\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "57145be9-be0c-4d6d-8bcd-de9341a75a5f",
+              "name": "Pixel event successfully received.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"type\": \"lead\",\n  \"profileIdentifiers\": {\n    \"email\": \"john.smith@gmail.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": true,\n  \"message\": \"Pixel event received\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94a25a64-fbcc-4cfa-86b1-9a334aa3e67d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"type\": \"lead\",\n  \"profileIdentifiers\": {\n    \"email\": \"john.smith@gmail.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Invalid pixel event data.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6348a9d-1246-47ce-af2d-dc5496b02fce",
+              "name": "Payload Too Large",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"type\": \"lead\",\n  \"profileIdentifiers\": {\n    \"email\": \"john.smith@gmail.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Payload too large\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c4f3015-6179-424b-b62f-f2d612eb90ff",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"type\": \"lead\",\n  \"profileIdentifiers\": {\n    \"email\": \"john.smith@gmail.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Seconds until another request can be made.\n",
+                  "key": "Retry-After",
+                  "value": "60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Rate limit exceeded. Try again later.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b02e609c-b71c-4bae-bc9a-399f1e0ab3b4",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "data-in",
+                    "event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"shop\": \"madisonbraids.myshopify.com\",\n  \"type\": \"lead\",\n  \"profileIdentifiers\": {\n    \"email\": \"john.smith@gmail.com\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": false,\n  \"message\": \"Error processing pixel event\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.triplewhale.com/api/v2/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e6c837de-c6bc-4627-9466-a7f616bdd619",
+    "name": "Triple Whale API Keys Data In API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.\n",
+      "type": "text/plain"
+    }
+  }
+}

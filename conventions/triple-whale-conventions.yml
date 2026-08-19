@@ -1,0 +1,156 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+- https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys
+- https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+- https://triplewhale.readme.io/reference/create-order-record
+- https://triplewhale.readme.io/reference/managing-data-in-connections
+derived_from:
+- openapi/triple-whale-data-in-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+- openapi/triple-whale-api-keys-api-openapi.yml
+
+base_url: https://api.triplewhale.com/api/v2/
+
+authentication:
+  style: api-key-header
+  header: x-api-key
+  scoped: true
+  note: >-
+    Per-key scopes are selected at creation time in the app (Data > APIs). Shopify
+    session JWTs and other token types are explicitly NOT supported. Keys are tied
+    to the user who created them — if that user loses workspace access the key stops
+    working. See authentication/triple-whale-authentication.yml and
+    scopes/triple-whale-scopes.yml.
+  oauth:
+    surface: mcp
+    note: >-
+      OAuth 2.1 with PKCE is used only by the hosted MCP server at
+      mcp.triplewhale.com; the REST API itself is API-key only.
+
+tenancy:
+  concept: shop identifier
+  required: true
+  note: >-
+    Every endpoint requires a shop identifier in the request body, but THE FIELD
+    NAME VARIES BY ENDPOINT. This is the single most common source of 400/403
+    errors and is a real inconsistency in the contract, not a documentation gap.
+  fields:
+  - field: shopId
+    endpoints: [POST /orcabase/api/sql, POST /orcabase/api/moby]
+  - field: shop
+    endpoints: [POST /attribution/get-orders-with-journeys-v2, all Data-In endpoints]
+  - field: shopDomain
+    endpoints: [POST /summary-page/get-data]
+  format: >-
+    Plain string, e.g. "yourstore.myshopify.com" — no leading/trailing slashes, no
+    URL wrapping, no special characters. A value that does not match a connected
+    store returns 500.
+
+idempotency:
+  supported: true
+  mechanism: natural-key-upsert
+  key_header: null
+  key_param: null
+  note: >-
+    Triple Whale publishes a deterministic replay contract for writes but does NOT
+    use an Idempotency-Key header. Data-In records are upserted on a composite
+    natural key: resending a record with every key field matching the original
+    overwrites all other fields with the new values. Retrying a failed write is
+    therefore safe as long as the key fields are stable.
+  order_record_key:
+  - shop
+  - order_id
+  - refund_id
+  - created_at
+  - refunded_at
+  - platform
+  - platform_account_id
+  soft_delete: >-
+    Records are voided by resending them with all fields identical except
+    "void": true. Voided orders (and their refunds) are excluded from all queries.
+  update_path: >-
+    For platforms with a native integration (Shopify, BigCommerce, WooCommerce) use
+    the enrichment endpoints (enrich-orders-data, enrich-products-data). For Custom
+    Sales Platforms enrichment is not supported — resend the full record.
+  partial_batch: >-
+    bulk-create-order-records processes valid orders even when the response is 400
+    because other orders in the batch failed validation. A retry of the whole batch
+    is safe under the upsert rule.
+  docs: https://triplewhale.readme.io/reference/create-order-record
+
+pagination:
+  style: none-documented
+  note: >-
+    No cursor or offset pagination is documented or present in any published
+    operation. Data-Out retrieval is bounded by a period (period.startDate /
+    period.endDate) rather than paged; large pulls are chunked by narrowing the
+    date range. The Data-Out attribution export returns the full journey set for
+    the requested period.
+
+date_handling:
+  format: YYYY-MM-DD
+  body_fields: [period.startDate, period.endDate]
+  sql_placeholders: ['@startDate', '@endDate']
+  gotcha: >-
+    The in-app SQL Builder UI uses snake_case placeholders (@start_date /
+    @end_date) but the API expects camelCase inside the SQL string. A query that
+    runs in the builder can still 400 from the API for this reason alone.
+  validation: startDate must be on or before endDate.
+
+versioning:
+  scheme: uri-path
+  current: v2
+  path: /api/v2/
+  note: >-
+    No dated versions, no version header, no published version-negotiation policy.
+    See lifecycle/triple-whale-lifecycle.yml.
+
+error_envelope:
+  content_type: application/json
+  rfc9457: false
+  note: >-
+    Plain JSON message bodies; no problem+json, no type/title/detail/instance. Full
+    catalog in errors/triple-whale-problem-types.yml.
+  known_mismatch: >-
+    The 403 message reads "Access token is required" on the SQL and Moby endpoints
+    even when the real cause is a missing shopId. Triple Whale documents a clearer
+    message as future work.
+
+rate_limit_signaling:
+  status_on_exhaustion: 429
+  response_headers:
+  - header: RateLimit-Policy
+    description: '{quota};w={window} — window in seconds, quota is calls per window'
+    example: 100;w=60
+  - header: RateLimit
+    description: Current usage against the limit for this endpoint
+  - header: Retry-After
+    description: Seconds to wait before retrying; present on every 429
+  guidance: Exponential backoff; chunk wide date ranges; space out bulk loops.
+  detail: rate-limits/triple-whale-rate-limits.yml
+
+request_tracing:
+  request_id_header: null
+  observed: x-tw-trace-id
+  observed_on: https://mcp.triplewhale.com
+  note: >-
+    A trace id header (x-tw-trace-id) was observed on live MCP responses but is not
+    documented for the REST API and must not be relied on as a contract.
+
+sql_conventions:
+  endpoint: POST /api/v2/orcabase/api/sql
+  required_fields: [query, period.startDate, period.endDate, shopId]
+  guidance:
+  - Validate queries in the in-app SQL Builder before sending them to the API.
+  - Avoid SELECT * — table schemas are dynamic and results become inconsistent.
+  - Column and table vocabulary is published as the Data Ontology in the docs.
+  ontology: https://triplewhale.readme.io/docs/triple-whale-data-ontology
+
+cross_links:
+  authentication: authentication/triple-whale-authentication.yml
+  scopes: scopes/triple-whale-scopes.yml
+  errors: errors/triple-whale-problem-types.yml
+  lifecycle: lifecycle/triple-whale-lifecycle.yml
+  rate_limits: rate-limits/triple-whale-rate-limits.yml

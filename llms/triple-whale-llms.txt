@@ -1,0 +1,344 @@
+# Triple Whale Documentation
+
+> Documentation for Triple Whale
+
+## Guides
+- [How Data Works in Triple Whale](https://triplewhale.readme.io/docs/how-data-works-in-triple-whale.md)
+- [Triple Whale Data Ontology (Conceptual Data Model)](https://triplewhale.readme.io/docs/triple-whale-data-ontology.md)
+- [Table Classification by Business Object](https://triplewhale.readme.io/docs/table-classification-by-business-object.md)
+- [Including Marketplace Data in Blended Metrics](https://triplewhale.readme.io/docs/including-marketplace-data-in-blended-metrics.md)
+- [Blended Stats Table](https://triplewhale.readme.io/docs/blended-stats-table.md): blended_stats_tvf
+- [Customer Segmentation Analytics Table](https://triplewhale.readme.io/docs/customer-segmentation-analytics-table.md): customer_segmentation_analytics_tvf
+- [Pixel Joined Table](https://triplewhale.readme.io/docs/pixel-joined-table.md): pixel_joined_tvf
+- [Pixel Keywords Joined Table](https://triplewhale.readme.io/docs/pixel-keywords-joined-table.md): pixel_keywords_joined_tvf
+- [Product Analytics Table](https://triplewhale.readme.io/docs/product-analytics-table.md): product_analytics_tvf
+- [Activities Table](https://triplewhale.readme.io/docs/activities-table.md): activities_table
+- [Ads Table](https://triplewhale.readme.io/docs/ads-table.md): ads_table
+- [Using Ad Set Targeting Data](https://triplewhale.readme.io/docs/using-adset-targeting-data.md)
+- [Ads – Standardized `channel` IDs](https://triplewhale.readme.io/docs/ads-standardized-channel-ids.md)
+- [Ads Experiments Geolift Table (BETA)](https://triplewhale.readme.io/docs/ads-experiments-geolift-table.md): ads_experiments_geolift_table
+- [Affiliates Table](https://triplewhale.readme.io/docs/affiliates-table.md)
+- [Affluencer Hub Table](https://triplewhale.readme.io/docs/affluencer-hub-table.md): affluencer_hub_table
+- [AI Visibility Table](https://triplewhale.readme.io/docs/ai-visibility-table.md): ai_visibility_table
+- [Creatives Table](https://triplewhale.readme.io/docs/creatives-table.md): creatives_table
+- [Customer Support Agg Metrics Table (BETA)](https://triplewhale.readme.io/docs/customer-support-agg-metrics-table.md): cs_agg_metrics_table
+- [CS Events Table](https://triplewhale.readme.io/docs/cs-events-table.md): cs_events_table
+- [CS Messages Table](https://triplewhale.readme.io/docs/cs-messages-table.md): cs_messages_table
+- [CS Tickets Table](https://triplewhale.readme.io/docs/cs-tickets-table.md): cs_tickets_table
+- [Custom Categories Table](https://triplewhale.readme.io/docs/custom-categories-table.md): custom_categories_table
+- [Custom Category Mappings Table](https://triplewhale.readme.io/docs/custom-category-mappings-table.md): custom_category_mappings_table
+- [Custom Spend Table](https://triplewhale.readme.io/docs/custom-spend-table.md): custom_spend_table
+- [Customer Journey Table](https://triplewhale.readme.io/docs/customer-journey-table.md): customer_journey_table
+- [Customer Segmentation Table](https://triplewhale.readme.io/docs/customer-segmentation-table.md): customer_segmentation_table
+- [Customers Table](https://triplewhale.readme.io/docs/customers-table.md): customers_table
+- [Email/SMS Settings Table](https://triplewhale.readme.io/docs/emailsms-settings-table.md): email_sms_settings_table
+- [Email/SMS Table](https://triplewhale.readme.io/docs/emailsms-table.md): email_sms_table
+- [External Revenue Table](https://triplewhale.readme.io/docs/external-revenue-table.md): external_revenue_table
+- [GA4 Product Analytics Table](https://triplewhale.readme.io/docs/ga4-product-analytics-table.md): ga4_product_analytics_table
+- [GA4 Sessions Agg Table](https://triplewhale.readme.io/docs/ga4-sessions-agg-table.md): ga4_sessions_agg_table
+- [GA4 Web Analytics Table](https://triplewhale.readme.io/docs/ga4-web-analytics-table.md): ga4_web_analytics_table
+- [ID Graph Table](https://triplewhale.readme.io/docs/id-graph-table.md): id_graph_table
+- [Keywords Table](https://triplewhale.readme.io/docs/keywords-table.md): keywords_table
+- [Orders Table](https://triplewhale.readme.io/docs/orders-table.md): orders_table
+- [Pixel Custom Conversions Table](https://triplewhale.readme.io/docs/pixel-custom-conversions-table.md): pixel_custom_conversions_table
+- [Pixel Custom Events Table](https://triplewhale.readme.io/docs/pixel-custom-events-table.md): pixel_custom_events_table
+- [Pixel Orders Table](https://triplewhale.readme.io/docs/pixel-orders-table.md): pixel_orders_table
+- [Post-Purchase Survey Table](https://triplewhale.readme.io/docs/post-purchase-survey-table.md): post_purchase_survey_table
+- [Post-Purchase Survey (PPS) – Standardized Source IDs](https://triplewhale.readme.io/docs/post-purchase-survey-pps-standardized-source-ids.md)
+- [Products Table](https://triplewhale.readme.io/docs/products-table.md): products_table
+- [Refunds Table](https://triplewhale.readme.io/docs/refunds-table.md): refunds_table
+- [Reviews Table](https://triplewhale.readme.io/docs/reviews-table.md): reviews_table
+- [Search Terms Table](https://triplewhale.readme.io/docs/search-terms-table.md): search_terms_table
+- [Sessions Table](https://triplewhale.readme.io/docs/sessions-table.md): sessions_table
+- [Shipping Table](https://triplewhale.readme.io/docs/shipping-table.md): shipping_table
+- [Social Media Brand Mentions Table](https://triplewhale.readme.io/docs/social-media-brand-mentions-table.md): social_media_brand_mentions_table
+- [Social Media Comments Table](https://triplewhale.readme.io/docs/social-media-comments-table.md): social_media_comments_table
+- [Social Media Pages Table](https://triplewhale.readme.io/docs/social-media-pages-table.md): social_media_pages_table
+- [Social Media Posts Table](https://triplewhale.readme.io/docs/social-media-posts-table.md): social_media_posts_table
+- [Subscription Metrics Table](https://triplewhale.readme.io/docs/subscription-metrics-table.md): subscription_metrics_table
+- [Subscriptions Table](https://triplewhale.readme.io/docs/subscriptions-table.md): subscriptions_table
+- [Web Analytics Table](https://triplewhale.readme.io/docs/web-analytics-table.md): web_analytics_table
+- [Net Profit](https://triplewhale.readme.io/docs/net-profit.md): net_profit
+- [Blended ROAS](https://triplewhale.readme.io/docs/blended-roas.md): roas
+- [MER](https://triplewhale.readme.io/docs/mer.md): mer
+- [Net Margin](https://triplewhale.readme.io/docs/net-margin.md): net_margin
+- [Blended Ad Spend](https://triplewhale.readme.io/docs/blended-ad-spend.md): spend
+- [NCPA](https://triplewhale.readme.io/docs/ncpa.md): ncpa
+- [NC ROAS](https://triplewhale.readme.io/docs/nc-roas.md): new_customer_roas
+- [Return Rate](https://triplewhale.readme.io/docs/return-rate.md): returns_percent
+- [Blended CPA](https://triplewhale.readme.io/docs/blended-cpa.md): blended_cpa
+- [POAS](https://triplewhale.readme.io/docs/poas.md): poas
+- [BA ROAS](https://triplewhale.readme.io/docs/ba-roas.md): ba_roas
+- [Order Revenue](https://triplewhale.readme.io/docs/order-revenue.md): order_revenue
+- [Orders](https://triplewhale.readme.io/docs/orders.md): orders
+- [Refunded Sales (Returns)](https://triplewhale.readme.io/docs/refunded-sales-returns.md): total_refunded_price
+- [Net Taxes](https://triplewhale.readme.io/docs/net-taxes.md)
+- [True Average Order Value](https://triplewhale.readme.io/docs/true-average-order-value-true-aov.md): true_aov
+- [Average Order Value (AOV)](https://triplewhale.readme.io/docs/average-order-value-aov.md): aov
+- [New Customers %](https://triplewhale.readme.io/docs/new-customers-percent.md): new_customers_percent
+- [Gross Sales](https://triplewhale.readme.io/docs/gross-sales.md): gross_product_sales
+- [Returning Customers %](https://triplewhale.readme.io/docs/returning-customers-percent.md): returning_customers_percent
+- [Non-Zero Orders](https://triplewhale.readme.io/docs/non-zero-orders.md): orders_with_amount
+- [New Customer Orders](https://triplewhale.readme.io/docs/new-customer-orders.md): new_customer_orders
+- [Units Sold](https://triplewhale.readme.io/docs/units-sold.md): product_quantity_sold_in_order
+- [New Customer Revenue](https://triplewhale.readme.io/docs/new-customer-revenue.md): new_customer_revenue
+- [Returning Customer Revenue](https://triplewhale.readme.io/docs/returning-customer-revenue.md): returning_customer_revenue
+- [Discounts](https://triplewhale.readme.io/docs/discounts.md): discount_amount
+- [Total Sales](https://triplewhale.readme.io/docs/total-sales.md): total_sales
+- [Sale Taxes](https://triplewhale.readme.io/docs/sale-taxes.md): taxes
+- [Is New Customer](https://triplewhale.readme.io/docs/is-new-customer.md): is_new_customer
+- [Amazon Product Sales](https://triplewhale.readme.io/docs/amazon-product-sales.md): gross_product_sales
+- [Amazon Orders](https://triplewhale.readme.io/docs/amazon-orders.md): orders
+- [Amazon Taxes](https://triplewhale.readme.io/docs/amazon-taxes.md): taxes
+- [Amazon Items Sold](https://triplewhale.readme.io/docs/amazon-items-sold.md): product_quantity_sold_in_order
+- [Amazon Estimated Fees](https://triplewhale.readme.io/docs/amazon-estimated-fees.md): amazon_estimated_fees
+- [Amazon Sales (Order Revenue)](https://triplewhale.readme.io/docs/amazon-sales-order-revenue.md): order_revenue
+- [Amazon Cost of Goods Sold (COGS)](https://triplewhale.readme.io/docs/amazon-cost-of-goods-sold-cogs.md): cost_of_goods
+- [Amazon Handling Fees](https://triplewhale.readme.io/docs/amazon-handling-fees.md): handling_fees
+- [Facebook Ad Spend](https://triplewhale.readme.io/docs/facebook-ad-spend.md): spend
+- [Facebook ROAS](https://triplewhale.readme.io/docs/facebook-roas.md): roas
+- [Facebook CPC](https://triplewhale.readme.io/docs/facebook-cpc.md): cpc
+- [Facebook CPM](https://triplewhale.readme.io/docs/facebook-cpm.md): cpm
+- [Facebook CV](https://triplewhale.readme.io/docs/facebook-cv.md): conversion_value
+- [Facebook CPOC](https://triplewhale.readme.io/docs/facebook-cpoc.md): cpoc
+- [Facebook CTR](https://triplewhale.readme.io/docs/facebook-ctr.md): ctr
+- [Facebook Revenue Per Link Click](https://triplewhale.readme.io/docs/facebook-revenue-per-link-click.md): revenue_per_link_click
+- [Facebook Conversions (Purchases)](https://triplewhale.readme.io/docs/facebook-conversions-purchases.md): conversions
+- [Facebook CPA](https://triplewhale.readme.io/docs/facebook-cpa.md): cpa
+- [Google Ad Spend](https://triplewhale.readme.io/docs/google-ad-spend.md): spend
+- [Google CV](https://triplewhale.readme.io/docs/google-cv.md): conversion_value
+- [Google ROAS](https://triplewhale.readme.io/docs/google-roas.md): roas
+- [Google Conversions (Purchases)](https://triplewhale.readme.io/docs/google-conversions-purchases.md): conversions
+- [Google CTR](https://triplewhale.readme.io/docs/google-ctr.md): ctr
+- [Google CPA](https://triplewhale.readme.io/docs/google-cpa.md): cpa
+- [Google CPM](https://triplewhale.readme.io/docs/google-cpm.md): cpm
+- [Google Clicks](https://triplewhale.readme.io/docs/google-clicks.md): clicks
+- [Google Impressions](https://triplewhale.readme.io/docs/google-impressions.md): impressions
+- [Google All CV](https://triplewhale.readme.io/docs/google-all-cv.md): all_conversion_value
+- [Google All Conversions](https://triplewhale.readme.io/docs/google-all-conversions.md): all_conversions
+- [TikTok Ad Spend](https://triplewhale.readme.io/docs/tiktok-ad-spend.md): spend
+- [TikTok ROAS](https://triplewhale.readme.io/docs/tiktok-roas.md): roas
+- [TikTok Impressions](https://triplewhale.readme.io/docs/tiktok-impressions.md): impressions
+- [TikTok CPM](https://triplewhale.readme.io/docs/tiktok-cpm.md): cpm
+- [TikTok CPC](https://triplewhale.readme.io/docs/tiktok-cpc.md): cpc
+- [TikTok CTR](https://triplewhale.readme.io/docs/tiktok-ctr.md): ctr
+- [TikTok CPA](https://triplewhale.readme.io/docs/tiktok-cpa.md): cpa
+- [TikTok CV](https://triplewhale.readme.io/docs/tiktok-cv.md): conversion_value
+- [TikTok Conversions (Purchases)](https://triplewhale.readme.io/docs/tiktok-conversions-purchases.md): conversions
+- [Microsoft Ad Spend](https://triplewhale.readme.io/docs/microsoft-ad-spend.md): spend
+- [Microsoft Conversions (Purchases)](https://triplewhale.readme.io/docs/microsoft-conversions-purchases.md): conversions
+- [Microsoft CV](https://triplewhale.readme.io/docs/microsoft-cv.md): conversion_value
+- [Microsoft Clicks](https://triplewhale.readme.io/docs/microsoft-clicks.md): clicks
+- [Microsoft Impressions](https://triplewhale.readme.io/docs/microsoft-impressions.md): impressions
+- [Microsoft ROAS](https://triplewhale.readme.io/docs/microsoft-roas.md): roas
+- [Microsoft CTR](https://triplewhale.readme.io/docs/microsoft-ctr.md): ctr
+- [Microsoft CPA](https://triplewhale.readme.io/docs/microsoft-cpa.md): cpa
+- [Microsoft CPM](https://triplewhale.readme.io/docs/microsoft-cpm.md): cpm
+- [Amazon Ad Spend](https://triplewhale.readme.io/docs/amazon-ad-spend.md): spend
+- [Amazon ROAS](https://triplewhale.readme.io/docs/amazon-roas.md): roas
+- [Amazon CPC](https://triplewhale.readme.io/docs/amazon-cpc.md): cpc
+- [Amazon Clicks](https://triplewhale.readme.io/docs/amazon-clicks.md): clicks
+- [Amazon Conversions (Purchases)](https://triplewhale.readme.io/docs/amazon-conversions-purchases.md): conversions
+- [Amazon CV](https://triplewhale.readme.io/docs/amazon-cv.md): conversion_value
+- [Pinterest Ad Spend](https://triplewhale.readme.io/docs/pinterest-ad-spend.md): spend
+- [Pinterest ROAS](https://triplewhale.readme.io/docs/pinterest-roas.md): roas
+- [Pinterest CPC](https://triplewhale.readme.io/docs/pinterest-cpc.md): cpc
+- [Pinterest CPM](https://triplewhale.readme.io/docs/pinterest-cpm.md): cpm
+- [Pinterest CV](https://triplewhale.readme.io/docs/pinterest-cv.md): conversion_value
+- [Pinterest Conversions (Purchases)](https://triplewhale.readme.io/docs/pinterest-conversions-purchases.md): conversions
+- [Pinterest Impressions](https://triplewhale.readme.io/docs/pinterest-impressions.md): impressions
+- [Pinterest CTR](https://triplewhale.readme.io/docs/pinterest-ctr.md): ctr
+- [Snapchat Ad Spend](https://triplewhale.readme.io/docs/snapchat-ad-spend.md): spend
+- [Snapchat ROAS](https://triplewhale.readme.io/docs/snapchat-roas.md): roas
+- [Snapchat Impressions](https://triplewhale.readme.io/docs/snapchat-impressions.md): impressions
+- [Snapchat Swipes](https://triplewhale.readme.io/docs/snapchat-swipes.md): clicks
+- [Snapchat CPM](https://triplewhale.readme.io/docs/snapchat-cpm.md): cpm
+- [Snapchat CPA](https://triplewhale.readme.io/docs/snapchat-cpa.md): cpa
+- [Snapchat CV](https://triplewhale.readme.io/docs/snapchat-cv.md): conversion_value
+- [Twitter Ad Spend](https://triplewhale.readme.io/docs/twitter-ad-spend.md): spend
+- [Twitter ROAS](https://triplewhale.readme.io/docs/twitter-roas.md): roas
+- [Twitter Impressions](https://triplewhale.readme.io/docs/twitter-impressions.md): impressions
+- [Twitter CPM](https://triplewhale.readme.io/docs/twitter-cpm.md): cpm
+- [Twitter CPA](https://triplewhale.readme.io/docs/twitter-cpa.md): cpa
+- [Twitter CV](https://triplewhale.readme.io/docs/twitter-cv.md): conversion_value
+- [Twitter Conversions (Purchases)](https://triplewhale.readme.io/docs/twitter-conversions-purchases.md): conversions
+- [Twitter Clicks](https://triplewhale.readme.io/docs/twitter-clicks.md): clicks
+- [Outbrain Ad Spend](https://triplewhale.readme.io/docs/outbrain-ad-spend.md): spend
+- [Outbrain Impressions (Displays)](https://triplewhale.readme.io/docs/outbrain-impressions-displays.md): impressions
+- [Outbrain Clicks](https://triplewhale.readme.io/docs/outbrain-clicks.md): clicks
+- [Outbrain CTR (vCTR)](https://triplewhale.readme.io/docs/outbrain-ctr-vctr.md): ctr
+- [Outbrain Conversions (Purchases)](https://triplewhale.readme.io/docs/outbrain-conversions-purchases.md): conversions
+- [Outbrain All Conversions](https://triplewhale.readme.io/docs/outbrain-all-conversions.md): all_conversions
+- [Outbrain CPA](https://triplewhale.readme.io/docs/outbrain-cpa.md): cpa
+- [Outbrain CPM (vCPM)](https://triplewhale.readme.io/docs/outbrain-cpm-vcpm.md): cpm
+- [Outbrain CV](https://triplewhale.readme.io/docs/outbrain-cv.md): conversion_value
+- [Outbrain ROAS](https://triplewhale.readme.io/docs/outbrain-roas.md): roas
+- [Outbrain AOV](https://triplewhale.readme.io/docs/outbrain-aov.md): aov
+- [Criteo Ad Spend](https://triplewhale.readme.io/docs/criteo-ad-spend.md): spend
+- [Criteo ROAS](https://triplewhale.readme.io/docs/criteo-roas.md): roas
+- [Criteo Impressions (Displays)](https://triplewhale.readme.io/docs/criteo-impressions-displays.md): impressions
+- [Criteo Conversions (Purchases)](https://triplewhale.readme.io/docs/criteo-conversions-purchases.md): conversions
+- [Criteo Visits](https://triplewhale.readme.io/docs/criteo-visits.md): visits
+- [Criteo Clicks](https://triplewhale.readme.io/docs/criteo-clicks.md): clicks
+- [Criteo AOV](https://triplewhale.readme.io/docs/criteo-aov.md): aov
+- [Criteo CPA](https://triplewhale.readme.io/docs/criteo-cpa.md): cpa
+- [Criteo CPV](https://triplewhale.readme.io/docs/criteo-cpv.md)
+- [Criteo CV](https://triplewhale.readme.io/docs/criteo-cv.md): conversion_value
+- [Taboola Ad Spend](https://triplewhale.readme.io/docs/taboola-ad-spend.md): spend
+- [Taboola Impressions (Displays)](https://triplewhale.readme.io/docs/taboola-impressions-displays.md): impressions
+- [Taboola Clicks](https://triplewhale.readme.io/docs/taboola-clicks.md): clicks
+- [Taboola CTR (vCTR)](https://triplewhale.readme.io/docs/taboola-ctr-vctr.md): ctr
+- [Taboola CPC](https://triplewhale.readme.io/docs/taboola-cpc.md): cpc
+- [Taboola CPA](https://triplewhale.readme.io/docs/taboola-cpa.md): cpa
+- [Taboola CPM (vCPM)](https://triplewhale.readme.io/docs/taboola-cpm-vcpm.md): cpm
+- [Taboola CV](https://triplewhale.readme.io/docs/taboola-cv.md): conversion_value
+- [Taboola ROAS](https://triplewhale.readme.io/docs/taboola-roas.md): roas
+- [Taboola AOV](https://triplewhale.readme.io/docs/taboola-aov.md): aov
+- [Taboola CPV](https://triplewhale.readme.io/docs/taboola-cpv.md)
+- [MNTN Ad Spend](https://triplewhale.readme.io/docs/mntn-ad-spend.md): spend
+- [MNTN ROAS](https://triplewhale.readme.io/docs/mntn-roas.md): roas
+- [MNTN Impressions](https://triplewhale.readme.io/docs/mntn-impressions.md): impressions
+- [MNTN Conversions (Purchases)](https://triplewhale.readme.io/docs/mntn-conversions-purchases.md): conversions
+- [MNTN CV](https://triplewhale.readme.io/docs/mntn-cv.md): conversion_value
+- [MNTN AOV](https://triplewhale.readme.io/docs/mntn-aov.md): aov
+- [MNTN CPA](https://triplewhale.readme.io/docs/mntn-cpa.md): cpa
+- [MNTN CPV](https://triplewhale.readme.io/docs/mntn-cpv.md)
+- [LinkedIn Ad Spend](https://triplewhale.readme.io/docs/linkedin-ad-spend.md): spend
+- [LinkedIn Impressions](https://triplewhale.readme.io/docs/linkedin-impressions.md): impressions
+- [LinkedIn Clicks](https://triplewhale.readme.io/docs/linkedin-clicks.md): clicks
+- [LinkedIn CTR (vCTR)](https://triplewhale.readme.io/docs/linkedin-ctr-vctr.md): ctr
+- [LinkedIn CPA](https://triplewhale.readme.io/docs/linkedin-cpa.md): cpa
+- [LinkedIn CPM (vCPM)](https://triplewhale.readme.io/docs/linkedin-cpm-vcpm.md): cpm
+- [LinkedIn CV (Revenue on Conversions)](https://triplewhale.readme.io/docs/linkedin-cv-revenue-on-conversions.md): conversion_value
+- [LinkedIn ROAS](https://triplewhale.readme.io/docs/linkedin-roas.md): roas
+- [LinkedIn AOV](https://triplewhale.readme.io/docs/linkedin-aov.md): aov
+- [Axon by Applovin Ad Spend](https://triplewhale.readme.io/docs/applovin-ad-spend.md): spend
+- [Axon by Applovin Impressions](https://triplewhale.readme.io/docs/applovin-impressions.md): impressions
+- [Axon by Applovin Clicks](https://triplewhale.readme.io/docs/applovin-clicks.md): clicks
+- [Axon by Applovin CTR](https://triplewhale.readme.io/docs/applovin-ctr.md): ctr
+- [Axon by Applovin Conversions (Purchases)](https://triplewhale.readme.io/docs/applovin-conversions-purchases.md): conversions
+- [Axon by Applovin CPA](https://triplewhale.readme.io/docs/applovin-cpa.md): cpa
+- [Axon by Applovin CPM](https://triplewhale.readme.io/docs/applovin-cpm.md): cpm
+- [Axon by Applovin CV (Revenue on Conversions)](https://triplewhale.readme.io/docs/applovin-cv-revenue-on-conversions.md): conversion_value
+- [Axon by Applovin ROAS ](https://triplewhale.readme.io/docs/applovin-roas.md): roas
+- [Axon by Applovin AOV ](https://triplewhale.readme.io/docs/applovin-aov.md): aov
+- [Klaviyo CV (Revenue)](https://triplewhale.readme.io/docs/klaviyo-order-revenue.md): conversion_value
+- [Klaviyo Flows CV (Revenue)](https://triplewhale.readme.io/docs/klaviyo-flows-cv-revenue.md): conversion_value
+- [Klaviyo Campaigns CV (Revenue)](https://triplewhale.readme.io/docs/klaviyo-campaigns-cv-revenue.md): conversion_value
+- [Klaviyo Percent of Revenue](https://triplewhale.readme.io/docs/klaviyo-sales-percentage.md)
+- [Klaviyo Flows Percent of Revenue](https://triplewhale.readme.io/docs/klaviyo-flows-percent-of-revenue.md)
+- [Klaviyo Campaigns Percent of Revenue](https://triplewhale.readme.io/docs/klaviyo-campaigns-percent-of-revenue.md)
+- [Klaviyo Unsubscribed](https://triplewhale.readme.io/docs/klaviyo-unsubscribed.md): unsubscribed
+- [Klaviyo Subscribed](https://triplewhale.readme.io/docs/klaviyo-subscribed.md): subscribed_to_list
+- [Klaviyo Net New Subscribers](https://triplewhale.readme.io/docs/klaviyo-net-new-subscribers.md)
+- [Conversion Rate (CR)](https://triplewhale.readme.io/docs/conversion-rate-cr.md): conversion_rate
+- [Sessions](https://triplewhale.readme.io/docs/sessions.md): sessions
+- [New Users (New Visitors)](https://triplewhale.readme.io/docs/new-users-new-visitors.md): new_users
+- [Add to Cart Sessions](https://triplewhale.readme.io/docs/add-to-carts.md): add_to_carts
+- [First Order Revenue](https://triplewhale.readme.io/docs/first-order-revenue.md): total_revenue_first_order
+- [Recurring Order Revenue](https://triplewhale.readme.io/docs/recurring-order-revenue.md): total_revenue_recurring
+- [Subscription Order Revenue](https://triplewhale.readme.io/docs/subscription-order-revenue.md): total_revenue
+- [Reactivated Subscribers](https://triplewhale.readme.io/docs/reactivated-subscribers.md): reactivated_subscribers
+- [New Subscriptions](https://triplewhale.readme.io/docs/new-subscriptions.md): total_new_subscriptions
+- [Cancelled Subscriptions](https://triplewhale.readme.io/docs/cancelled-subscriptions.md): total_cancelled_subscriptions
+- [Churned Subscribers](https://triplewhale.readme.io/docs/churned-subscribers.md): total_churned_subscribers
+- [Active Subscriptions](https://triplewhale.readme.io/docs/active-subscriptions.md): active_subscriptions
+- [Active Subscribers](https://triplewhale.readme.io/docs/active-subscribers.md): active_subscribers
+- [Shipstation Shipping Costs](https://triplewhale.readme.io/docs/shipstation-shipping-costs.md): shop_shipment_cost
+- [Shipstation Shipments](https://triplewhale.readme.io/docs/shipstation-shipments.md)
+- [Gorgias Tickets Created](https://triplewhale.readme.io/docs/gorgias-tickets-created.md)
+- [Gorgias Tickets Replied](https://triplewhale.readme.io/docs/gorgias-tickets-replied.md)
+- [Lifetime Value (LTV)](https://triplewhale.readme.io/docs/lifetime-value-ltv.md): ltv
+- [Unique Customers](https://triplewhale.readme.io/docs/unique-customers.md): customer_id
+- [Payment Gateway Costs](https://triplewhale.readme.io/docs/payment-gateway-costs.md): payment_gateway_costs
+- [Cost of Goods Sold (COGS)](https://triplewhale.readme.io/docs/cost-of-goods-sold-cogs.md): cost_of_goods
+- [Handling Fees](https://triplewhale.readme.io/docs/handling-fees.md): handling_fees
+- [Shipping Costs](https://triplewhale.readme.io/docs/shipping-costs.md): shipping_costs
+- [Custom Spend (Custom Expenses)](https://triplewhale.readme.io/docs/custom-spend-custom-expenses.md): amount
+- [SQL Example Library Overview and Best Practices](https://triplewhale.readme.io/docs/sql-example-library-overview-and-best-practices.md)
+- [SQL Example: Top 200 Customers by Total Order Revenue](https://triplewhale.readme.io/docs/sql-example-top-200-customers-by-total-order-revenue.md)
+- [SQL Example: Single vs. Multi-Item Orders](https://triplewhale.readme.io/docs/sql-example-single-vs-multi-item-orders.md)
+- [SQL Example: Purchase Frequency Distribution (Orders per Customer)](https://triplewhale.readme.io/docs/sql-example-purchase-frequency-distribution-orders-per-customer.md)
+- [SQL Example: Retention & Churn Signals (Time Between Last Two Orders)](https://triplewhale.readme.io/docs/sql-example-retention-churn-signals-time-between-last-two-orders.md)
+- [SQL Example: Revenue Split (First vs. Second Half of Date Range)](https://triplewhale.readme.io/docs/sql-example-revenue-split-first-vs-second-half-of-date-range.md)
+- [SQL Example: Hourly Revenue Indexed by Day](https://triplewhale.readme.io/docs/sql-example-hourly-revenue-indexed-by-day.md)
+- [SQL Example: Lifetime Value by Day Range (60, 90, 180, 365)](https://triplewhale.readme.io/docs/sql-example-lifetime-value-by-day-range-60-90-180-365.md)
+- [SQL Example: Top First Purchased Products (Count, AOV, LTV…)](https://triplewhale.readme.io/docs/sql-example-top-first-purchased-products-count-aov-ltv.md)
+- [SQL Example: Most Common Next Product Bought (Sequential Product Purchases)](https://triplewhale.readme.io/docs/sql-example-most-common-next-product-bought-sequential-product-purchases.md)
+- [SQL Example: Most Common Second Product Bought](https://triplewhale.readme.io/docs/sql-example-most-common-second-product-bought.md)
+- [SQL Example: Group Campaigns by Keyword (Top Match Terms)](https://triplewhale.readme.io/docs/sql-example-group-campaigns-by-keyword-top-match-terms.md)
+- [SQL Example: Weekly Performance Metrics (ROAS, CTR, CVR…)](https://triplewhale.readme.io/docs/sql-example-weekly-performance-metrics-roas-ctr-cvr.md)
+- [SQL Example: Monthly Pixel ROAS for Selected Channels (Bing, Facebook, Google)](https://triplewhale.readme.io/docs/sql-example-monthly-pixel-roas-for-selected-channels-bing-facebook-google.md)
+- [SQL Example: Website Performance by Device and Country](https://triplewhale.readme.io/docs/sql-example-website-performance-by-device-and-country.md)
+- [SQL Example: Multi-Touch Landing Page Paths (Conversion & Bounce Metrics)](https://triplewhale.readme.io/docs/sql-example-multi-touch-landing-page-paths-conversion-bounce-metrics.md)
+- [Why Does My Total Revenue Across Channels Look Higher Than My Store Revenue?](https://triplewhale.readme.io/docs/why-does-my-total-revenue-across-channels-look-higher-than-my-store-revenue.md)
+- [Why Do My Order-Based Sales Metrics Not Match Between Shopify and Triple Whale?](https://triplewhale.readme.io/docs/why-do-my-order-based-sales-metrics-not-match-between-shopify-and-triple-whale.md)
+- [Why Are My Amazon Product Sales in Triple Whale Different From Amazon’s Official Dashboard?](https://triplewhale.readme.io/docs/why-are-my-amazon-product-sales-in-triple-whale-different-from-amazons-official-dashboard.md)
+- [Why Is My New vs. Returning Customer Count Different in Triple Whale vs. Shopify?](https://triplewhale.readme.io/docs/why-is-my-new-vs-returning-customer-count-different-in-triple-whale-vs-shopify.md)
+- [Why Is My Klaviyo (or Email/SMS) Revenue in Triple Whale Different from the Klaviyo Dashboard?](https://triplewhale.readme.io/docs/why-is-my-klaviyo-or-emailsms-revenue-in-triple-whale-different-from-the-klaviyo-dashboard.md)
+- [Why Do TikTok Shop Purchases Show a Different Number in the Pixel Report (Pixel > All) Compared to the Ads Breakdown (Pixel > Ads > TikTok)?](https://triplewhale.readme.io/docs/why-do-tiktok-shop-purchases-show-a-different-number-in-the-pixel-report-pixel-all-compared-to-the-ads-breakdown-pixel-ads-tiktok.md)
+- [Why Does Triple Whale Show a Lower Fairing/Kno Post-Purchase Survey Response Rate Than Fairing/Kno’s Own Dashboard?](https://triplewhale.readme.io/docs/why-does-triple-whale-show-a-lower-fairingkno-post-purchase-survey-response-rate-than-fairingknos-own-dashboard.md)
+- [Why Do Shopify Sessions Not Match Triple Whale Web Analytics?](https://triplewhale.readme.io/docs/why-do-shopify-sessions-not-match-triple-whale-web-analytics.md)
+- [Why Does My Conversion Rate Not Match Between Triple Whale and Shopify?](https://triplewhale.readme.io/docs/why-does-my-conversion-rate-not-match-between-triple-whale-and-shopify.md)
+- [Why Does the Inventory Metric on the Summary Page Not Match Shopify Inventory Reports?](https://triplewhale.readme.io/docs/why-does-the-inventory-metric-on-the-summary-page-not-match-shopify-inventory-reports.md)
+- [Why Does Brand Search Lose Credit in Total Impact (TI), or Why Might Another Channel Get More Credit Than Expected?](https://triplewhale.readme.io/docs/why-does-brand-search-lose-credit-in-total-impact-ti-or-why-might-another-channel-get-more-credit-than-expected.md)
+- [Why Am I Seeing Negative Profit for a Channel in Total Impact?](https://triplewhale.readme.io/docs/why-am-i-seeing-negative-profit-for-a-channel-in-total-impact.md)
+- [Why Do My Campaigns Have Spend but No Sessions?](https://triplewhale.readme.io/docs/why-do-my-campaigns-have-spend-but-no-sessions.md)
+- [Why Are Some Orders Missing or Marked as “Excluded” in the Pixel?](https://triplewhale.readme.io/docs/why-are-some-orders-missing-or-marked-as-excluded-in-the-pixel.md)
+- [Why Is My Ad Spend on the Summary Page Different From the Pixel Report or Blended Stats?](https://triplewhale.readme.io/docs/why-is-my-ad-spend-on-the-summary-page-different-from-the-pixel-report-or-blended-stats.md)
+- [Why Are My Orders and Revenue on the Summary Page Different From the Pixel Page?](https://triplewhale.readme.io/docs/why-are-my-orders-and-revenue-on-the-summary-page-different-from-the-pixel-page.md)
+- [Why Do Conversions in Web Analytics Not Match the Pixel Report?](https://triplewhale.readme.io/docs/why-do-conversions-in-web-analytics-not-match-the-pixel-report.md)
+- [Why Is My COGS in Triple Whale Different From My Shopify COGS?](https://triplewhale.readme.io/docs/why-is-my-cogs-in-triple-whale-different-from-my-shopify-cogs.md)
+- [Why Does My Lifetime Value (LTV) Metric Keep Changing Over Time?](https://triplewhale.readme.io/docs/why-does-my-lifetime-value-ltv-metric-keep-changing-over-time.md)
+- [Why Is My NCPA on the Summary Page Different From the NCPA in the Cohort Page?](https://triplewhale.readme.io/docs/why-is-my-ncpa-on-the-summary-page-different-from-the-ncpa-in-the-cohort-page.md)
+- [Why Do the PPS ‘Views’ in the Retention Tab Not Match the Actual Number of Post-Purchase Survey Responses?](https://triplewhale.readme.io/docs/why-do-the-pps-views-in-the-retention-tab-not-match-the-actual-number-of-post-purchase-survey-responses.md)
+- [Why Are My Meta (Facebook) Organic Sessions Inflated Compared to Triple Whale Sessions?](https://triplewhale.readme.io/docs/why-are-my-meta-facebook-organic-sessions-inflated-compared-to-triple-whale-sessions.md)
+- [Why Is My Triple Whale Web Analytics Pageview Count Lower Than My Google Analytics Pageview Count?](https://triplewhale.readme.io/docs/why-is-my-triple-whale-web-analytics-pageview-count-lower-than-my-google-analytics-pageview-count.md)
+- [Why Are My TikTok or Meta/Facebook Purchases Falling Under 'Not Set' or Non-Attributed in the Attribution Page?](https://triplewhale.readme.io/docs/why-are-my-tiktok-or-metafacebook-purchases-falling-under-not-set-or-non-attributed-in-the-attribution-page.md)
+- [Why Does My New Customer Count in LTV Cohorts Not Match Shopify?](https://triplewhale.readme.io/docs/why-does-my-new-customer-count-in-ltv-cohorts-not-match-shopify.md)
+- [Why Do Pixel Unique Metrics Look Higher at the Channel, Campaign, or Ad Set Level Than at the Ads Level?](https://triplewhale.readme.io/docs/why-do-pixel-unique-metrics-look-higher-at-the-channel-campaign-or-ad-set-level-than-at-the-ads-level.md)
+- [Moving from BigQuery to ClickHouse syntax in the SQL Editor](https://triplewhale.readme.io/docs/moving-from-bigquery-to-clickhouse-in-the-sql-editor.md)
+- [Mapping Shopify Fields to Triple Whale](https://triplewhale.readme.io/docs/mapping-shopify-fields-to-triple-whale.md)
+- [Mapping BigCommerce Fields to Triple Whale](https://triplewhale.readme.io/docs/mapping-bigcommerce-metrics-to-triple-whale.md)
+
+## API Reference
+- [Introduction to the Triple Whale API](https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api.md)
+- [Creating and Managing Triple Whale API Keys](https://triplewhale.readme.io/reference/creating-and-managing-triple-whale-api-keys.md)
+- [Validate Your Triple Whale API Key](https://triplewhale.readme.io/reference/validate-your-triple-whale-api-key.md): Enter your API key in Credentials > Header to the right and click "Try it!" to test its validity.
+- [Data-In API Use Cases](https://triplewhale.readme.io/reference/data-in-api-use-cases.md)
+- [Managing Data-In Connections](https://triplewhale.readme.io/reference/managing-data-in-connections.md)
+- [Google Sheets Data-In Template](https://triplewhale.readme.io/reference/google-sheets-data-in-template.md)
+- [Custom Sales Platform Setup Overview](https://triplewhale.readme.io/reference/custom-sales-platform-setup-overview.md): Set up your custom sales platform using Data-In API and Triple Pixel
+- [API Setup Guide for Custom Sales Platform ](https://triplewhale.readme.io/reference/api-setup-guide-for-custom-sales-platform.md)
+- [Pixel Setup Guide for Custom Sales Platform](https://triplewhale.readme.io/reference/pixel-setup-guide-for-custom-sales-platform.md)
+- [Create Order Record](https://triplewhale.readme.io/reference/create-order-record.md): Ingest order data into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload  detailed order information,  including customer details, product information, transaction totals,  discounts, refunds, and shipping details.
+- [Bulk Create Order Records](https://triplewhale.readme.io/reference/bulk-create-order-records.md): Ingest multiple order records into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload batches of order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.
+- [Create Product Record](https://triplewhale.readme.io/reference/create-product-record.md): Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information, including variants, tags, collections, and images.
+- [Create Subscription Record](https://triplewhale.readme.io/reference/create-subscription-record.md): Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription information, including customer details, items, status, and metadata.
+- [Create Customer Record](https://triplewhale.readme.io/reference/create-customer-record.md): Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information — including contact details, address, consent status, and purchase history metadata.
+- [Create Ad Record](https://triplewhale.readme.io/reference/create-ad-record.md): Ingest ad data into Triple Whale. This endpoint allows users to upload  detailed ad information, including campaign, adset, ad details, and  performance metrics.
+- [Create Email/SMS Record](https://triplewhale.readme.io/reference/create-email-sms-record.md): Ingest email, SMS, and direct mail marketing data into Triple Whale. This endpoint accepts campaign, flow, and message attributes along with performance metrics.
+- [Create Post-Purchase Survey (PPS) Record](https://triplewhale.readme.io/reference/create-pps-record.md): Ingest PPS data into Triple Whale. This endpoint allows users to upload  detailed post-purchase survey information, including order-related data, questions, and responses.
+- [Enrich Orders Data](https://triplewhale.readme.io/reference/enrich-orders-data.md): Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags.  Note: Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full order via the [Orders](https://triplewhale.readme.io/reference/create-order-record) endpoint.
+- [Enrich Products Data](https://triplewhale.readme.io/reference/enrich-products-data.md): Use this endpoint to enrich existing products—such as adding cost data from external systems.  Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full product record via the  [Products](https://triplewhale.readme.io/reference/create-product-record) endpoint.
+- [Enrich Pixel With Offline Events](https://triplewhale.readme.io/reference/enrich-pixel-with-offline-events.md): Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events, or fully custom events—into Triple Whale.  Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`, you can add additional properties of type **Number, Float, String, Boolean, or Date**.
+- [Create Compliance Data Deletion Request](https://triplewhale.readme.io/reference/create-compliance-request.md): Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).
+- [Sample Automation: Submit Deletion Requests from a CSV (Python)](https://triplewhale.readme.io/reference/sample-automation-submit-deletion-requests-from-a-csv-python.md)
+- [Data-Out API Use Cases](https://triplewhale.readme.io/reference/data-out-api-use-cases.md)
+- [Get Summary Page Data](https://triplewhale.readme.io/reference/get-summary-page-data.md): Retrieve data from the Summary Page for a specified time period.
+- [Get Customer Journey Attribution Data](https://triplewhale.readme.io/reference/get-customer-journey-attribution-data.md): Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.
+- [Execute Natural Language Query (Moby AI)](https://triplewhale.readme.io/reference/data-out-execute-natural-language-query-moby.md): Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.
+- [Execute Custom SQL Query](https://triplewhale.readme.io/reference/data-out-execute-custom-sql-query.md): Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.
+- [Troubleshooting Common Triple Whale API Errors](https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors.md)
+- [Intro to the Triple Pixel Mobile SDK](https://triplewhale.readme.io/reference/intro-to-the-triple-pixel-mobile-sdk.md)
+- [Mobile SDK Installation](https://triplewhale.readme.io/reference/mobile-sdk-installation.md)
+- [Mobile SDK Quick Start](https://triplewhale.readme.io/reference/mobile-sdk-quick-start.md)
+- [Mobile SDK Methods](https://triplewhale.readme.io/reference/mobile-sdk-methods.md)
+- [Mobile SDK Consent and Privacy](https://triplewhale.readme.io/reference/mobile-sdk-consent-and-privacy.md)
+- [Troubleshooting Mobile SDK Errors](https://triplewhale.readme.io/reference/troubleshooting-mobile-sdk-errors.md)
+- [Introduction to Data Warehouse Export](https://triplewhale.readme.io/reference/introduction-to-data-warehouse-export.md)
+- [BigQuery Setup and Configuration](https://triplewhale.readme.io/reference/bigquery-setup-and-configuration.md)
+- [Snowflake Setup and Configuration](https://triplewhale.readme.io/reference/snowflake-setup-and-configuration.md)
+- [AWS S3 Setup and Configuration](https://triplewhale.readme.io/reference/aws-s3-setup-and-configuration.md)
+- [Google Cloud Storage Setup and Configuration](https://triplewhale.readme.io/reference/google-cloud-storage-setup-and-configuration.md)
+- [De-duplication for Data Warehouse Export](https://triplewhale.readme.io/reference/de-duplication-for-data-warehouse-export.md)

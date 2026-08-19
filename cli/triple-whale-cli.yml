@@ -1,0 +1,59 @@
+generated: '2026-08-13'
+method: searched
+source: '@triplewhale/pixel-cli@0.1.3 README (npm tarball, fetched 2026-08-13)'
+name: Triple Whale Pixel CLI
+binary: triple-whale
+package: '@triplewhale/pixel-cli'
+version: 0.1.3
+published: '2026-03-19'
+license: MIT
+repository: https://github.com/Triple-Whale/triplewhale-pixel-installation
+docs: https://kb.triplewhale.com/en/articles/6266255-adding-the-triple-pixel-to-a-headless-store-or-custom-website
+description: >-
+  A first-party CLI that automates Triple Pixel installation into headless and
+  custom storefronts. It is a pixel-deployment tool, not a client for the Data-In /
+  Data-Out REST APIs — Triple Whale ships no general-purpose API CLI.
+
+install:
+- method: npm
+  command: npm install @triplewhale/pixel-cli
+- method: npx
+  command: npx @triplewhale/pixel-cli install
+
+commands:
+- name: install
+  summary: Install the Triple Pixel in a project, detecting the framework and injecting the snippet plus event tracking.
+  usage: npx @triplewhale/pixel-cli install [options]
+  flags:
+  - flag: -d, --dir <path>
+    description: 'Project directory (default: current directory)'
+  - flag: -y, --yes
+    description: Skip confirmations and use defaults
+  - flag: --dry-run
+    description: Preview changes without modifying files
+  - flag: -v, --verbose
+    description: Show detailed output
+- name: verify
+  summary: Verify an existing pixel installation.
+  usage: npx @triplewhale/pixel-cli verify
+- name: login
+  summary: Log in to a Triple Whale account.
+  usage: npx @triplewhale/pixel-cli login
+- name: logout
+  summary: Log out of the Triple Whale account.
+  usage: npx @triplewhale/pixel-cli logout
+
+supported_frameworks:
+- {name: Shopify Hydrogen (Remix-based), status: Full Support}
+- {name: Next.js, status: Full Support}
+- {name: Gatsby, status: Full Support}
+- {name: Custom React (Vite/Webpack), status: Full Support}
+- {name: Vue/Nuxt, status: Full Support}
+
+verification_flow:
+- Start the development server.
+- Open browser DevTools console.
+- 'Run TriplePixel(''State'') — should return "Ready".'
+- Check for the TriplePixelData object.
+- Navigate pages and observe events.
+- Add an item to cart and confirm AddToCart fires.

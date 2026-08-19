@@ -1,0 +1,123 @@
+generated: '2026-08-13'
+method: derived
+source:
+- openapi/triple-whale-data-in-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+- openapi/triple-whale-api-keys-api-openapi.yml
+- openapi/triple-whale-bi-benchmarks-openapi.json
+- well-known/triple-whale-oauth-authorization-server.json
+- well-known/triple-whale-oauth-protected-resource.json
+- https://trust.triplewhale.com/
+- https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+
+standards:
+- id: openapi-3.0
+  conforms: true
+  evidence: All four published REST specs declare openapi 3.0.3; the harvested benchmarks spec declares 3.0.0.
+- id: openapi-3.1
+  conforms: false
+  evidence: No published Triple Whale spec is 3.1.
+- id: oauth2
+  conforms: true
+  scope: mcp-only
+  evidence: >-
+    https://mcp.triplewhale.com/.well-known/oauth-authorization-server advertises
+    authorization_code + refresh_token. The REST API declares no oauth2 scheme.
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: 200 at /.well-known/oauth-authorization-server on mcp.triplewhale.com (probed 2026-08-13).
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: >-
+    200 at /.well-known/oauth-protected-resource; 401 responses carry
+    WWW-Authenticate Bearer resource_metadata pointing at it.
+- id: rfc7636-pkce
+  conforms: true
+  evidence: code_challenge_methods_supported ["S256"].
+- id: rfc7591-dynamic-client-registration
+  conforms: true
+  evidence: registration_endpoint https://mcp.triplewhale.com/register.
+- id: openid-connect
+  conforms: false
+  evidence: No /.well-known/openid-configuration on any host (404).
+- id: mcp
+  conforms: true
+  evidence: >-
+    Hosted JSON-RPC MCP server at https://mcp.triplewhale.com/sse plus the
+    first-party npm stdio server @triplewhale/mcp-server-triplewhale.
+- id: a2a
+  conforms: false
+  evidence: No agent card at /.well-known/agent-card.json or /.well-known/agent.json on any host.
+- id: asyncapi
+  conforms: false
+  evidence: No event, streaming or outbound webhook surface is published.
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: >-
+    No operation declares application/problem+json; errors are plain
+    application/json message bodies.
+- id: rfc6585-429
+  conforms: true
+  evidence: 429 declared on operations across all four specs.
+- id: retry-after
+  conforms: true
+  evidence: >-
+    Retry-After declared on 429 responses in every spec, and the error guide states
+    every 429 includes it.
+- id: draft-ietf-httpapi-ratelimit-headers
+  conforms: partial
+  evidence: >-
+    RateLimit-Policy and RateLimit response headers are declared with the
+    "{quota};w={window}" form on the API Keys and Data-Out specs, but not on every
+    operation, and RateLimit-Remaining/Reset are not used.
+- id: rfc8594-sunset-header
+  conforms: false
+  evidence: No Sunset or Deprecation header support; no deprecation policy published.
+- id: pagination
+  conforms: false
+  evidence: >-
+    No cursor or offset pagination anywhere; Data-Out retrieval is bounded by a
+    date period instead.
+- id: idempotency
+  conforms: partial
+  evidence: >-
+    No Idempotency-Key header. Data-In writes are natural-key upserts with a
+    documented composite key, which makes retries deterministic. See
+    conventions/triple-whale-conventions.yml.
+- id: llms-txt
+  conforms: true
+  evidence: https://triplewhale.readme.io/llms.txt returns a real index (200, saved verbatim).
+- id: openai-plugin-manifest
+  conforms: true
+  evidence: >-
+    https://api.triplewhale.com/.well-known/ai-plugin.json (schema_version v1)
+    pointing at a live OpenAPI document.
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: 404 on /.well-known/security.txt on every reachable host.
+- id: soc2
+  conforms: true
+  evidence: >-
+    SOC 2 named on https://trust.triplewhale.com/; the pricing page lists SOC 2
+    Type 2 compliance under the Enterprise plan.
+- id: gdpr
+  conforms: true
+  evidence: >-
+    GDPR named on https://trust.triplewhale.com/; a Compliance API exists for
+    customer PII deletion/masking requests (create-compliance-request).
+- id: iso27001
+  conforms: unknown
+  evidence: Not named on the trust center page captured by the probe.
+- id: hipaa
+  conforms: false
+  evidence: Not applicable; no health data surface and no claim published.
+- id: pci-dss
+  conforms: false
+  evidence: >-
+    No claim published. Triple Whale ingests order and revenue data but is not a
+    payment processor.
+
+compliance_program:
+  trust_center: https://trust.triplewhale.com/
+  certifications: [SOC 2, GDPR]
+  artifact: security/triple-whale-trust-center.yml

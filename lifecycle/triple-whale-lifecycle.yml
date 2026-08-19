@@ -1,0 +1,64 @@
+generated: '2026-08-13'
+method: searched
+source:
+- https://status.triplewhale.com
+- https://www.triplewhale.com/product-updates
+- https://triplewhale.readme.io/reference/troubleshooting-common-triple-whale-api-errors
+
+versioning:
+  scheme: uri-path
+  current: v2
+  base: https://api.triplewhale.com/api/v2/
+  docs: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
+  note: >-
+    No dated versions, no version request header, and no published policy for how
+    long a major version is supported. Some operations carry an unversioned suffix
+    of their own (get-orders-with-journeys-v2), which is endpoint-level revisioning
+    inside /api/v2 rather than API versioning.
+
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  note: >-
+    No deprecation policy, no RFC 8594 Sunset/Deprecation header support, and no
+    advance-notice commitment could be found. The only acknowledgement of removal
+    is in the error guide, which lists "endpoint has been renamed or removed" as a
+    cause of 404 — after the fact, not before it. This is a real gap: an integrator
+    has no published signal that an endpoint is going away.
+
+deprecated_operations: []
+deprecated_operations_note: >-
+  No operation in any published Triple Whale OpenAPI carries deprecated: true.
+
+status_page:
+  url: https://status.triplewhale.com
+  platform: Atlassian Statuspage
+  machine_readable: https://status.triplewhale.com/api/v2/summary.json
+  http_status: 200
+  probed: '2026-08-13'
+
+sla:
+  url: null
+  uptime_target: null
+  note: >-
+    No public SLA or uptime commitment is published. The pricing page attaches a
+    dedicated customer success team to Enterprise, but no numeric availability
+    target is stated anywhere public.
+
+changelog:
+  url: https://www.triplewhale.com/product-updates
+  artifact: changelog/triple-whale-changelog.yml
+  note: >-
+    Product-level release notes with an "APIs" category filter. There is no
+    API-specific changelog on the developer docs host; the readme.io docs carry
+    per-page updatedAt timestamps instead.
+
+support:
+  help_center: https://kb.triplewhale.com/
+  developer_docs: https://triplewhale.readme.io/
+  developer_portal: https://developers.triplewhale.com/
+  escalation: >-
+    The error guide asks for the full error response body, shop domain, endpoint,
+    and redacted request payload when contacting support.

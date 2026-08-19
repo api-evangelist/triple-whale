@@ -1,0 +1,100 @@
+generated: '2026-08-13'
+method: searched
+status: published
+source: https://mcp.triplewhale.com/.well-known/oauth-protected-resource
+name: Triple Whale MCP (Moby)
+description: >-
+  Triple Whale ships an MCP surface in two distinct forms. A hosted remote server
+  at https://mcp.triplewhale.com/sse answers JSON-RPC over HTTP and is protected by
+  OAuth 2.1 (PKCE S256, dynamic client registration, scope moby:read). A separate
+  first-party stdio server is published to npm as @triplewhale/mcp-server-triplewhale
+  and runs locally against a Triple Whale API key. They are not the same product and
+  are recorded separately below.
+
+deployment:
+  mode: both
+  endpoint: https://mcp.triplewhale.com/sse
+  install: npx -y @triplewhale/mcp-server-triplewhale init $TRIPLEWHALE_API_KEY
+  package: https://www.npmjs.com/package/@triplewhale/mcp-server-triplewhale
+  auth: oauth
+  verified: probed
+
+servers:
+- name: triple-whale-remote
+  kind: remote
+  transport: http
+  url: https://mcp.triplewhale.com/sse
+  auth: oauth
+  tools_list: gated
+  evidence:
+    probed: '2026-08-13'
+    request: 'POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+    http_status: 401
+    body: '{"jsonrpc":"2.0","error":{"code":-32001,"message":"Authentication required"},"id":1}'
+    www_authenticate: Bearer resource_metadata="https://mcp.triplewhale.com/.well-known/oauth-protected-resource"
+  oauth:
+    issuer: https://mcp.triplewhale.com
+    authorization_endpoint: https://mcp.triplewhale.com/authorize
+    token_endpoint: https://mcp.triplewhale.com/token
+    registration_endpoint: https://mcp.triplewhale.com/register
+    grant_types: [authorization_code, refresh_token]
+    code_challenge_methods: [S256]
+    scopes: [moby:read, offline, offline_access]
+    metadata: well-known/triple-whale-oauth-authorization-server.json
+  note: >-
+    The live tool set requires an authenticated session; tools/list returns 401
+    anonymously, so input schemas for the remote server could not be introspected.
+    An MCP-scoped API key is issued in-app under Data > APIs with the "MCP: Read"
+    scope.
+- name: triple-whale-local
+  kind: local-stdio
+  transport: stdio
+  package: '@triplewhale/mcp-server-triplewhale'
+  registry: npm
+  version: 0.0.6
+  published: '2025-03-05'
+  install: npx -y @triplewhale/mcp-server-triplewhale init $TRIPLEWHALE_API_KEY
+  bin: mcp-server-triplewhale
+  auth: api-key
+  auth_note: Triple Whale API key passed at init; sent as the x-api-key header
+  license: MIT
+  tools_list: read-from-package
+  evidence:
+    source: npm tarball @triplewhale/mcp-server-triplewhale@0.0.6 (dist/tools.js, dist/toolsSchema.js)
+    fetched: '2026-08-13'
+
+tools:
+- name: moby
+  server: triple-whale-local
+  description: >-
+    Natural-language question answering over the brand's Triple Whale e-commerce
+    performance data. Requires a shopId.
+  input_schema:
+    type: object
+    required: [question, shopId]
+    properties:
+      question:
+        type: string
+        description: A question about e-commerce data like spend
+      shopId:
+        type: string
+        description: shopId that is used to fetch data
+  backing_operation: POST https://api.triplewhale.com/willy/moby-chat
+  source: dist/tools.js in @triplewhale/mcp-server-triplewhale@0.0.6
+  note: >-
+    The package embeds its own OpenAPI 3.1 fragment for the backing call
+    (operationId answerMobyQuestion, x-api-key security). That endpoint
+    (/willy/moby-chat) is NOT the same path as the documented public Data-Out Moby
+    endpoint (/api/v2/orcabase/api/moby) in openapi/triple-whale-data-out-api-openapi.yml.
+
+remote_tools: gated
+remote_tools_note: >-
+  NOT RECORDED. The hosted server's tool list is only visible to an authenticated
+  client. Triple Whale's own docs do not publish a tool inventory, and the help
+  center article on MCP is behind a Cloudflare challenge, so no tool names for the
+  remote server are asserted here.
+
+marketplaces:
+- name: Smithery
+  url: https://smithery.ai/server/triplewhale
+  note: third-party distribution of the stdio package

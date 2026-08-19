@@ -1,0 +1,162 @@
+generated: '2026-08-13'
+method: derived
+source:
+- openapi/triple-whale-data-in-api-openapi.yml
+- openapi/triple-whale-data-out-api-openapi.yml
+- openapi/triple-whale-compliance-api-openapi.yml
+searched_supplement: https://triplewhale.readme.io/docs/triple-whale-data-ontology
+note: >-
+  Derived from request-body shapes, not from components.schemas — every published
+  Triple Whale spec inlines its schemas and declares zero named components, so
+  there are no $ref edges to walk. Relationships below come from the id-reference
+  fields present in the request bodies. The provider publishes a conceptual data
+  model ("Triple Whale Data Ontology") plus a per-table reference in the docs;
+  those table names are the Data-Out/warehouse projection of the same entities and
+  are listed under warehouse_tables for cross-reference.
+
+tenant_key:
+  field: shop
+  aliases: [shopId, shopDomain]
+  description: >-
+    The shop domain is the tenant discriminator on every entity and every
+    operation. Field naming varies by endpoint — see
+    conventions/triple-whale-conventions.yml.
+
+entities:
+- name: order
+  id_field: order_id
+  natural_key: [shop, order_id, refund_id, created_at, refunded_at, platform, platform_account_id]
+  operations: [create-order-record, bulk-create-order-records, enrich-orders-data]
+  fields_of_note: [currency, line_items, refunds, discount_codes, shipping_address, shipping_lines, taxes, order_revenue, status, subscription_id]
+  relationships:
+  - {type: belongs_to, target: customer, via: customer}
+  - {type: has_many, target: line_item, via: line_items}
+  - {type: has_many, target: refund, via: refunds}
+  - {type: has_many, target: discount_code, via: discount_codes}
+  - {type: belongs_to, target: subscription, via: subscription_id}
+  - {type: has_many, target: shipping_line, via: shipping_lines}
+  - {type: has_many, target: custom_expense, via: custom_expenses}
+
+- name: customer
+  id_field: customer_id
+  operations: [create-customer-record]
+  fields_of_note: [email_address, display_name, amount_spent, customer_tags, last_order_id, country_code, locale, email_marketing_consent_status]
+  relationships:
+  - {type: has_many, target: order, via: last_order_id}
+  pii: true
+  pii_note: >-
+    Carries email, name, address and marketing-consent state. Deletion/masking is
+    handled by the Compliance API (create-compliance-request), which accepts emails
+    and/or phone numbers as identifiers.
+
+- name: product
+  id_field: product_id
+  operations: [create-product-record, enrich-products-data]
+  fields_of_note: [product_title, vendor, product_status, product_tags, product_type, collections, images, variants]
+  relationships:
+  - {type: has_many, target: variant, via: variants}
+  - {type: has_many, target: collection, via: collections}
+  - {type: has_many, target: image, via: images}
+
+- name: variant
+  id_field: variant_id
+  operations: [enrich-products-data]
+  fields_of_note: [variant_cost]
+  relationships:
+  - {type: belongs_to, target: product, via: product_id}
+
+- name: subscription
+  id_field: subscription_id
+  operations: [create-subscription-record]
+  fields_of_note: [status, canceled_at, ended_at, cancellation_reason, subscription_items, metadata]
+  relationships:
+  - {type: belongs_to, target: customer, via: customer}
+  - {type: has_many, target: subscription_item, via: subscription_items}
+  - {type: has_many, target: order, via: subscription_id}
+
+- name: ad
+  id_field: ad
+  operations: [create-ad-record]
+  fields_of_note: [channel, channel_account_id, event_date, currency, metrics]
+  relationships:
+  - {type: belongs_to, target: adset, via: adset}
+  - {type: belongs_to, target: campaign, via: campaign}
+
+- name: adset
+  relationships:
+  - {type: belongs_to, target: campaign, via: campaign}
+  - {type: has_many, target: ad, via: ad}
+
+- name: campaign
+  relationships:
+  - {type: has_many, target: adset, via: adset}
+
+- name: pixel_event
+  id_field: eventId
+  operations: [enrich-pixel-with-offline-events]
+  fields_of_note: [type, profileIdentifiers, timestamp, event_name, source]
+  relationships:
+  - {type: belongs_to, target: ad, via: ad}
+  - {type: belongs_to, target: adset, via: adset}
+  - {type: belongs_to, target: campaign, via: campaign}
+  note: >-
+    profileIdentifiers is the identity-resolution join key back into the pixel
+    graph. Capped at 3 KB per event, 1,000 events/min.
+
+- name: post_purchase_survey_response
+  id_field: response_id
+  operations: [create-pps-record]
+  fields_of_note: [question_id, question_text, response, include_in_attribution, source, total_price]
+  relationships:
+  - {type: belongs_to, target: order, via: order_id}
+
+- name: compliance_request
+  operations: [create-compliance-request]
+  fields_of_note: [identifiers]
+  relationships:
+  - {type: has_many, target: customer, via: identifiers}
+  note: Deletes/masks customer PII for a shop by email and/or phone number.
+
+- name: customer_journey
+  operations: [get-customer-journey-attribution-data]
+  relationships:
+  - {type: belongs_to, target: order, via: order_id}
+  - {type: has_many, target: pixel_event, via: journey}
+  note: Read-only projection joining orders to their attributed pixel touchpoints.
+
+cross_platform_keys:
+- {field: platform, description: Source sales platform for the record}
+- {field: platform_account_id, description: Account within that platform; part of the order natural key}
+- {field: channel, description: Ad platform for ad records; standardized channel IDs published in the docs}
+- {field: channel_account_id, description: Ad account within that channel}
+
+warehouse_tables:
+  note: >-
+    The Data-Out/warehouse projection of the same core, named in
+    https://triplewhale.readme.io/llms.txt. Listed for cross-reference; these are
+    query targets for the Custom SQL endpoint, not REST resources.
+  tables:
+  - orders_table
+  - customers_table
+  - products_table
+  - subscriptions_table
+  - refunds_table
+  - ads_table
+  - creatives_table
+  - keywords_table
+  - search_terms_table
+  - customer_journey_table
+  - customer_segmentation_table
+  - pixel_orders_table
+  - pixel_custom_events_table
+  - pixel_custom_conversions_table
+  - post_purchase_survey_table
+  - id_graph_table
+  - sessions_table
+  - web_analytics_table
+  - email_sms_table
+  - shipping_table
+  - reviews_table
+  - activities_table
+  - external_revenue_table
+  - custom_spend_table
