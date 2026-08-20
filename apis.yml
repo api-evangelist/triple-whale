@@ -29,6 +29,15 @@ x-enrichment:
   pass: local-v1
 specificationVersion: '0.23'
 tags:
+  - E-Commerce
+  - Analytics
+  - Attribution
+  - Shopify
+  - Pixel Tracking
+  - ROAS
+  - Direct to Consumer
+  - Marketing
+tags_raw:
   - E-commerce
   - Analytics
   - Attribution
@@ -44,6 +53,8 @@ apis:
   humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
   baseURL: https://api.triplewhale.com
   tags:
+  - APIKeys
+  tags_raw:
   - API Keys
   properties:
   - type: OpenAPI
