@@ -129,28 +129,21 @@ apis:
     url: json-schema/triple-whale-ad.json
   - type: Examples
     url: examples/triple-whale-examples.yml
-- aid: triple-whale:triple-whale-benchmarks-api
-  name: Triple Whale Benchmarks API
-  description: >-
-    An unauthenticated e-commerce advertising benchmarks API from Triple Whale —
-    aggregate CTR, CPM, CPC, ROAS and MER for Facebook, Google, TikTok, Snapchat
-    and Pinterest, segmentable by shop industry, monthly ad spend band and average
-    order value band. Discovered live at
-    https://api.triplewhale.com/api/v2/ai/swagger.json, the document Triple Whale's
-    own /.well-known/ai-plugin.json manifest points at.
-  humanURL: https://www.triplewhale.com/api
+- aid: triple-whale:triple-whale-bi-api
+  name: Triple Whale Bi API
+  description: The bi API from Triple Whale — 1 operation(s) for bi.
+  humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
   baseURL: https://api.triplewhale.com
   tags:
-  - Benchmarks
-  - Advertising
+  - bi
   properties:
   - type: OpenAPI
-    url: openapi/triple-whale-bi-benchmarks-openapi.json
-  - type: Overlay
-    url: overlays/triple-whale-bi-benchmarks-overlay.yaml
+    url: openapi/triple-whale-bi-api-openapi.yml
   - type: AIPlugin
     url: well-known/triple-whale-ai-plugin.json
 common:
+  - type: Overlay
+    url: overlays/triple-whale-bi-benchmarks-overlay.yaml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/triple-whale/overview
   - type: AgenticAccess
