@@ -5,6 +5,19 @@ description: E-commerce analytics and attribution platform for Shopify brands wi
   ROAS. Offers a two-way data highway with Data-In and Data-Out APIs supporting OAuth2
   and API key authentication.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
@@ -142,6 +155,8 @@ apis:
   - type: AIPlugin
     url: well-known/triple-whale-ai-plugin.json
 common:
+  - type: IssueTracker
+    url: https://github.com/Triple-Whale/triple-whale-public-apis/issues
   - type: Overlay
     url: overlays/triple-whale-bi-benchmarks-overlay.yaml
   - type: PostmanWorkspace
