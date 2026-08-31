@@ -48,7 +48,7 @@ tags:
   - Shopify
   - Pixel Tracking
   - ROAS
-  - Direct to Consumer
+  - DTC
   - Marketing
 tags_raw:
   - E-commerce
@@ -148,6 +148,8 @@ apis:
   humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
   baseURL: https://api.triplewhale.com
   tags:
+  - BI
+  tags_raw:
   - bi
   properties:
   - type: OpenAPI
