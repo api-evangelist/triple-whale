@@ -148,7 +148,7 @@ apis:
   humanURL: https://triplewhale.readme.io/reference/introduction-to-the-triple-whale-api
   baseURL: https://api.triplewhale.com
   tags:
-  - BI
+  - Business Intelligence
   tags_raw:
   - bi
   properties:
