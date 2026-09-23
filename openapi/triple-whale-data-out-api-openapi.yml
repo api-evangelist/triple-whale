@@ -1,10 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Triple Whale API Keys Data Out API
+  title: Triple Whale Data Out API
   version: '1.0'
-  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
-
-    '
+  description: Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
 servers:
 - url: https://api.triplewhale.com/api/v2/
 security:
@@ -15,9 +13,7 @@ paths:
   /orcabase/api/moby:
     post:
       summary: Execute Natural Language Query (Moby AI)
-      description: 'Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.
-
-        '
+      description: Process natural language prompts to retrieve data. This endpoint interprets user-provided questions and generates SQL queries to fetch the desired results. The response returns the query results in a JSON format, grouped based on the question.
       operationId: data-out-execute-natural-language-query-moby
       tags:
       - Data Out
@@ -75,11 +71,12 @@ paths:
                     description: Indicates whether any errors occurred in processing the request.
                     example: false
                   error:
-                    type: string
+                    type:
+                    - string
+                    - 'null'
                     description: 'An optional error field if an error occurred.
 
                       '
-                    nullable: true
                   responses:
                     type: array
                     description: List of responses to the provided questions.
@@ -114,11 +111,12 @@ paths:
                           description: Indicates whether an error occurred in processing the query.
                           example: false
                         errorMsg:
-                          type: string
+                          type:
+                          - string
+                          - 'null'
                           description: 'An optional message describing why an error occurred.
 
                             '
-                          nullable: true
                         assistant:
                           type: string
                           description: Internal assistant instructions and metadata (hidden from users).
@@ -454,9 +452,7 @@ paths:
   /orcabase/api/sql:
     post:
       summary: Execute Custom SQL Query
-      description: 'Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.
-
-        '
+      description: Run custom SQL queries for structured data retrieval. The response returns the query results in a JSON format.
       operationId: data-out-execute-custom-sql-query
       tags:
       - Data Out
@@ -628,9 +624,7 @@ paths:
   /attribution/get-orders-with-journeys-v2:
     post:
       summary: Get Customer Journey Attribution Data
-      description: 'Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.
-
-        '
+      description: Export full customer journey data, with Triple Pixel attribution, for all customers who placed an order in the specified period.
       operationId: get-customer-journey-attribution-data
       tags:
       - Data Out
@@ -897,9 +891,7 @@ paths:
   /summary-page/get-data:
     post:
       summary: Get Summary Page Data
-      description: 'Retrieve data from the Summary Page for a specified time period.
-
-        '
+      description: Retrieve data from the Summary Page for a specified time period.
       operationId: get-summary-page-data
       tags:
       - Data Out

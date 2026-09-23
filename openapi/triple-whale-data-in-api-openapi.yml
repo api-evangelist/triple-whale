@@ -1,10 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Triple Whale API Keys Data In API
+  title: Triple Whale Data In API
   version: '1.0'
-  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
-
-    '
+  description: Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
 servers:
 - url: https://api.triplewhale.com/api/v2/
 security:
@@ -15,9 +13,7 @@ paths:
   /data-in/ads:
     post:
       summary: Create Ad Record
-      description: 'Ingest ad data into Triple Whale. This endpoint allows users to upload  detailed ad information, including campaign, adset, ad details, and  performance metrics.
-
-        '
+      description: Ingest ad data into Triple Whale. This endpoint allows users to upload detailed ad information, including campaign, adset, ad details, and performance metrics.
       operationId: create-ad-record
       tags:
       - Data In
@@ -242,9 +238,7 @@ paths:
   /data-in/orders:
     post:
       summary: Create Order Record
-      description: 'Ingest order data into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload  detailed order information,  including customer details, product information, transaction totals,  discounts, refunds, and shipping details.
-
-        '
+      description: Ingest order data into Triple Whale for Custom Sales Platforms. This endpoint allows users to upload detailed order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.
       operationId: create-order-record
       tags:
       - Data In
@@ -686,9 +680,7 @@ paths:
   /data-in/bulk-orders:
     post:
       summary: Bulk Create Order Records
-      description: 'Ingest multiple order records into Triple Whale for Custom Sales Platforms.   This endpoint allows users to upload batches of order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.
-
-        '
+      description: Ingest multiple order records into Triple Whale for Custom Sales Platforms. This endpoint allows users to upload batches of order information, including customer details, product information, transaction totals, discounts, refunds, and shipping details.
       operationId: bulk-create-order-records
       tags:
       - Data In
@@ -1163,9 +1155,7 @@ paths:
   /data-in/subscriptions:
     post:
       summary: Create Subscription Record
-      description: 'Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription information, including customer details, items, status, and metadata.
-
-        '
+      description: Ingest subscription data into Triple Whale. This endpoint allows users to upload detailed subscription information, including customer details, items, status, and metadata.
       operationId: create-subscription-record
       tags:
       - Data In
@@ -1442,9 +1432,7 @@ paths:
   /data-in/products:
     post:
       summary: Create Product Record
-      description: 'Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information, including variants, tags, collections, and images.
-
-        '
+      description: Ingest product data into Triple Whale. This endpoint allows users to upload detailed product information, including variants, tags, collections, and images.
       operationId: create-product-record
       tags:
       - Data In
@@ -1663,9 +1651,7 @@ paths:
   /data-in/pps:
     post:
       summary: Create Post-Purchase Survey (PPS) Record
-      description: 'Ingest PPS data into Triple Whale. This endpoint allows users to upload  detailed post-purchase survey information, including order-related data, questions, and responses.
-
-        '
+      description: Ingest PPS data into Triple Whale. This endpoint allows users to upload detailed post-purchase survey information, including order-related data, questions, and responses.
       operationId: create-pps-record
       tags:
       - Data In
@@ -1820,9 +1806,7 @@ paths:
   /data-in/customers:
     post:
       summary: Create Customer Record
-      description: 'Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information — including contact details, address, consent status, and purchase history metadata.
-
-        '
+      description: Ingest customer data into Triple Whale. This endpoint allows users to upload detailed customer information — including contact details, address, consent status, and purchase history metadata.
       operationId: create-customer-record
       tags:
       - Data In
@@ -2069,9 +2053,7 @@ paths:
   /data-in/orders-enrichment:
     post:
       summary: Enrich Orders Data
-      description: 'Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags.  Note: Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full order via the [Orders](https://triplewhale.readme.io/reference/create-order-record) endpoint.
-
-        '
+      description: 'Use this endpoint to enrich existing orders—such as adding shipping costs or custom tags. Note: Supported for data from platforms with a native Triple Whale integration (e.g., Shopify, BigCommerce, WooCommerce). Not supported for Custom Sales Platforms—to update these, resend the full order via the Orders endpoint.'
       operationId: enrich-orders-data
       tags:
       - Data In
@@ -2235,9 +2217,7 @@ paths:
   /data-in/products-enrichment:
     post:
       summary: Enrich Products Data
-      description: 'Use this endpoint to enrich existing products—such as adding cost data from external systems.  Supported for data from platforms with a native Triple Whale integration  (e.g., Shopify, BigCommerce, WooCommerce).  Not supported for Custom Sales Platforms—to update these, resend the full product record via the  [Products](https://triplewhale.readme.io/reference/create-product-record) endpoint.
-
-        '
+      description: Use this endpoint to enrich existing products—such as adding cost data from external systems. Supported for data from platforms with a native Triple Whale integration (e.g., Shopify, BigCommerce, WooCommerce). Not supported for Custom Sales Platforms—to update these, resend the full product record via the Products endpoint.
       operationId: enrich-products-data
       tags:
       - Data In
@@ -2334,9 +2314,7 @@ paths:
   /data-in/event:
     post:
       summary: Enrich Pixel With Offline Events
-      description: 'Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events, or fully custom events—into Triple Whale.  Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`, you can add additional properties of type **Number, Float, String, Boolean, or Date**.
-
-        '
+      description: Send offline or server-side Pixel events—such as leads, MQLs, SQLs, opportunities, book-a-demo events, or fully custom events—into Triple Whale. Rate limit is 1,000 events/min. Max payload is 3 KB. When `type = custom`, you can add additional properties of type **Number, Float, String, Boolean, or Date**.
       operationId: enrich-pixel-with-offline-events
       tags:
       - Data In

@@ -1,20 +1,40 @@
 {
   "provider": "triple-whale",
   "sources": [
-    "triple-whale-api-keys-api-openapi.yml",
-    "triple-whale-compliance-api-openapi.yml",
-    "triple-whale-data-in-api-openapi.yml",
-    "triple-whale-data-out-api-openapi.yml"
+    "_original/triple-whale-bi-benchmarks-openapi.json",
+    "_original/triple-whale-openapi.yml"
   ],
   "outputs": [
+    "triple-whale-bi-api-openapi.yml",
     "triple-whale-api-keys-api-openapi.yml",
     "triple-whale-compliance-api-openapi.yml",
     "triple-whale-data-in-api-openapi.yml",
     "triple-whale-data-out-api-openapi.yml"
   ],
   "archived": [],
-  "errors": [],
+  "errors": [
+    "triple-whale-bi-benchmarks-openapi.json: dangling $ref: #/definitions/MetricExampleObj",
+    "triple-whale-bi-benchmarks-openapi.json: dangling $ref: #/definitions/PlatformMetrics"
+  ],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "triple-whale-bi-benchmarks-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "triple-whale-bi-benchmarks-openapi.json: declared missing tag: bi",
+    "triple-whale-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "triple-whale-openapi.yml: declared missing tag: API Keys",
+    "triple-whale-openapi.yml: declared missing tag: Compliance",
+    "triple-whale-openapi.yml: declared missing tag: Data In",
+    "triple-whale-openapi.yml: declared missing tag: Data Out",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/triple-whale-bi-benchmarks-swagger.json: archived document superseded by a larger archived document",
+    "triple-whale-api-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "triple-whale-bi-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "triple-whale-compliance-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "triple-whale-data-in-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "triple-whale-data-out-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

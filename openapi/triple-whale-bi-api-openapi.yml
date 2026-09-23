@@ -162,3 +162,5 @@ paths:
         address: https://bi-ipbu2ryima-uc.a.run.app
         protocol: http/1.1
         path_translation: APPEND_PATH_TO_ADDRESS
+      summary: Bi avg get
+      x-summary-source: derived

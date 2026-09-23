@@ -1,10 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Triple Whale API Keys Compliance API
+  title: Triple Whale Compliance API
   version: '1.0'
-  description: 'Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
-
-    '
+  description: Triple Whale API documentation, providing endpoints for managing user authentication, API key validation, and uploading data such as ads and metrics.
 servers:
 - url: https://api.triplewhale.com/api/v2/
 security:
@@ -15,9 +13,7 @@ paths:
   /compliance/requests/create-request:
     post:
       summary: Create Compliance Data Deletion Request
-      description: 'Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).
-
-        '
+      description: Create a compliance request to delete/mask customer PII for a shop using one or more identifiers (emails and/or phone numbers).
       operationId: create-compliance-request
       tags:
       - Compliance
