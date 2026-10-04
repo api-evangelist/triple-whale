@@ -160,6 +160,9 @@ apis:
   - type: AIPlugin
     url: well-known/triple-whale-ai-plugin.json
 common:
+  - type: CapabilityMap
+    url: capabilities/triple-whale-capability-edges.yml
+    name: Triple Whale Business Capability Map
   - type: IssueTracker
     url: https://github.com/Triple-Whale/triple-whale-public-apis/issues
   - type: Overlay
