@@ -97,3 +97,19 @@ marketplaces:
 - name: Smithery
   url: https://smithery.ai/server/triplewhale
   note: third-party distribution of the stdio package
+rfc9728:
+  endpoint: https://mcp.triplewhale.com/sse
+  metadata_url: https://mcp.triplewhale.com/.well-known/oauth-protected-resource
+  discovered_via: WWW-Authenticate resource_metadata on an anonymous POST initialize
+  fetched: '2026-09-25'
+  http_status: 200
+  content_type: application/json
+  document:
+    resource: https://mcp.triplewhale.com/sse
+    authorization_servers:
+    - https://mcp.triplewhale.com
+    scopes_supported:
+    - moby:read
+    - offline_access
+    bearer_methods_supported:
+    - header
