@@ -27,5 +27,5 @@
     - connectors/applications/triple-whale
     vendor_link: https://www.triplewhale.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
