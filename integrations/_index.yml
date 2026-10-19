@@ -29,3 +29,65 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
+- slug: triple-whale-maven-central
+  label: Maven Central
+  partner: maven-central
+  partner_name: Maven Central
+  category: official SDK (Java/JVM)
+  type: register
+  channel: package-registry
+  evidence: https://central.sonatype.com/artifact/com.triplewhale.pixel/shared
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: Maven Central (public registry JSON)
+    spec_file: null
+    language: Java/JVM
+    packages:
+    - name: com.triplewhale.pixel:shared
+      version: 0.2.0
+      released: '2026-09-06'
+      released_field: lastUpdated
+      lapsed: false
+      page: https://central.sonatype.com/artifact/com.triplewhale.pixel/shared
+      repo_leg: github-org:triple-whale
+      publisher_leg: groupId:triplewhale.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: triple-whale-npm-registry
+  label: npm registry
+  partner: npm
+  partner_name: npm registry
+  category: official SDK (JavaScript/TypeScript)
+  type: register
+  channel: package-registry
+  evidence: https://www.npmjs.com/package/@triplewhale/pixel-cli
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: npm registry (public registry JSON)
+    spec_file: null
+    language: JavaScript/TypeScript
+    packages:
+    - name: '@triplewhale/pixel-cli'
+      version: 0.1.3
+      released: '2026-03-19'
+      released_field: modified
+      lapsed: false
+      page: https://www.npmjs.com/package/@triplewhale/pixel-cli
+      repo_leg: github-org:triple-whale
+      publisher_leg: email:triplewhale.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
