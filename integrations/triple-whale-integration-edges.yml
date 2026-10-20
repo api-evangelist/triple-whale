@@ -6,6 +6,7 @@ source:
 - https://composio.dev/toolkits/triple-whale
 - https://monid.ai/tools/triple-whale
 checked:
+- gorgias/integrations/gorgias-integration-edges.yml
 - https://api.nuget.org/v3
 - https://composio.dev/toolkits/triple-whale
 - https://crates.io/api/v1
@@ -22,32 +23,6 @@ checked:
 summary: null
 marketplace_apps: []
 edges:
-- partner_name: Fivetran
-  partner: fivetran
-  partner_match: aggregator
-  type: marketplace
-  marketplace: fivetran-connectors
-  channel: elt-connector
-  relationship: ipaas-bridge
-  direction: third-party
-  evidence: https://fivetran.com/docs/connectors/applications/triple-whale
-  category: null
-  contract_reference:
-    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
-    spec_file: null
-    role: elt-connector:fivetran
-    registered_name: Triple Whale
-    matched_domain: triplewhale.com
-    matched_by: domain
-    detected_by: sweep-data-integration.py
-    detected: '2026-10-18'
-    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
-    connector_paths:
-    - connectors/applications/triple-whale
-    vendor_link: https://www.triplewhale.com/
-    builder: Fivetran
-  detected_by: sweep-data-integration.py
-  first_seen: '2026-10-18'
 - partner_name: Maven Central
   partner: maven-central
   partner_match: register
@@ -108,4 +83,46 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-official-sdks.py
   first_seen: '2026-10-18'
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/triple-whale
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: Triple Whale
+    matched_domain: triplewhale.com
+    matched_by: domain
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/triple-whale
+    vendor_link: https://www.triplewhale.com/
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
+- partner_name: Gorgias (own)
+  partner: gorgias
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.gorgias.com/apps/triple-whale
+  mirror_of: gorgias/integrations/gorgias-integration-edges.yml
+  apps:
+  - Triple Whale
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
 templates: []
