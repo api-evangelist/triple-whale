@@ -26,6 +26,9 @@ checked:
 - https://github.com/ScoopInstaller/Extras
 - https://github.com/ScoopInstaller/Main
 - yotpo/integrations/yotpo-integration-edges.yml
+- https://advertising.amazon.com/partners/directory
+- https://sellercentral.amazon.com/gspn
+- https://sellercentral.amazon.com/selling-partner-appstore
 summary: null
 marketplace_apps: []
 edges:
@@ -177,4 +180,19 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.84fd4459-2dc9-4565-841b-c6d65fd8704c
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Triple Whale
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
 templates: []
