@@ -91,6 +91,18 @@
     builder: Fivetran
   status: not-a-workflow
   arazzo: null
+- slug: triple-whale-amazon-selling-partner-appstore
+  label: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_name: Amazon Selling Partner Appstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.84fd4459-2dc9-4565-841b-c6d65fd8704c
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: triple-whale-gorgias-own
   label: Gorgias (own)
   partner: gorgias
@@ -115,14 +127,15 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: triple-whale-amazon-selling-partner-appstore
-  label: Amazon Selling Partner Appstore
-  partner: amazon-seller-central
-  partner_name: Amazon Selling Partner Appstore
+- slug: triple-whale-intercom-own
+  label: Intercom (own)
+  partner: intercom
+  partner_name: Intercom (own)
+  category: Analytics
   type: marketplace
   marketplace: own
   channel: partner-built
-  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.84fd4459-2dc9-4565-841b-c6d65fd8704c
+  evidence: https://www.intercom.com/app-store/?app_package_code=triple-whale-u2tg
   source: edge
   relationship: platform-app
   status: not-a-workflow

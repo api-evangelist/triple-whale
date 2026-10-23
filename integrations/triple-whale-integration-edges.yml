@@ -29,6 +29,7 @@ checked:
 - https://advertising.amazon.com/partners/directory
 - https://sellercentral.amazon.com/gspn
 - https://sellercentral.amazon.com/selling-partner-appstore
+- intercom/integrations/intercom-integration-edges.yml
 summary: null
 marketplace_apps: []
 edges:
@@ -118,22 +119,6 @@ edges:
     builder: Fivetran
   detected_by: sweep-data-integration.py
   first_seen: '2026-10-18'
-- partner_name: Gorgias (own)
-  partner: gorgias
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://www.gorgias.com/apps/triple-whale
-  mirror_of: gorgias/integrations/gorgias-integration-edges.yml
-  apps:
-  - Triple Whale
-  listing_count: 1
-  detected: '2026-10-20'
-  detected_by: mirror-platform-listings.py
 - partner_name: npm registry
   partner: npm
   partner_match: register
@@ -164,6 +149,37 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-official-clis.py
   first_seen: '2026-10-20'
+- partner_name: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.84fd4459-2dc9-4565-841b-c6d65fd8704c
+  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  apps:
+  - Triple Whale
+  detected: '2026-10-21'
+  detected_by: sweep-amazon-sp-api-appstore.py
+- partner_name: Gorgias (own)
+  partner: gorgias
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.gorgias.com/apps/triple-whale
+  mirror_of: gorgias/integrations/gorgias-integration-edges.yml
+  apps:
+  - Triple Whale
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
 - partner_name: Yotpo (own)
   partner: yotpo
   partner_match: mirror
@@ -180,8 +196,8 @@ edges:
   listing_count: 1
   detected: '2026-10-20'
   detected_by: mirror-platform-listings.py
-- partner_name: Amazon Selling Partner Appstore
-  partner: amazon-seller-central
+- partner_name: Intercom (own)
+  partner: intercom
   partner_match: mirror
   mirror_match: domain
   type: marketplace
@@ -189,10 +205,12 @@ edges:
   direction: third-party
   channel: partner-built
   marketplace: own
-  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sp.solution.84fd4459-2dc9-4565-841b-c6d65fd8704c
-  mirror_of: amazon-seller-central/integrations/amazon-seller-central-integration-edges.yml
+  evidence: https://www.intercom.com/app-store/?app_package_code=triple-whale-u2tg
+  mirror_of: intercom/integrations/intercom-integration-edges.yml
   apps:
   - Triple Whale
-  detected: '2026-10-21'
-  detected_by: sweep-amazon-sp-api-appstore.py
+  listing_count: 1
+  detected: '2026-10-23'
+  detected_by: mirror-platform-listings.py
+  category: Analytics
 templates: []
